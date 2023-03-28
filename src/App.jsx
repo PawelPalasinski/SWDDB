@@ -1,36 +1,37 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
 import "./App.css";
-
+import AllCards from './components/AllCards';
 import fetchSWDDB from "./js/api";
-// const CardList = React.lazy(() => import("./components/CardList"));
-import CardList from "./components/CardList";
-
 
 function App() {
-  const [cards, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetchSWDDB();
-        setData(response);
-      } catch (error) {
+    fetchSWDDB()
+      .then((data) => {
+        setData(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
         console.error(error);
-      }
-    }
-
-    fetchData();
+        setIsLoading(false);
+      });
   }, []);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <>
-
-              <CardList cards={cards} />
-
-      
-
-    </>
+    <div>
+      <AllCards dataPerPage={10} data={data} />
+    </div>
   );
 }
 
