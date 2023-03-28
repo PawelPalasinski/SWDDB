@@ -1,16 +1,17 @@
-import React from 'react'
+import React from "react";
+import CardImage from "./CardImage";
 
-const CardList = ({cards}) => {
+const CardList = ({ cards }) => {
   return (
-    <ul className="pokemonList">
-    {cards.map((c) => (
-      <li key={c.code}>
-            <p>{c.name}</p>
-        <img src={c.imagesrc} alt={c.name} />
-      </li>
-    ))}
-  </ul>
-  )
-}
+    <ul className="cardList">
+      {cards.map((c) => (
+        <li key={c.code}>
+          <p>{c.name}</p>
+          <CardImage src={c.imagesrc} alt={c.name} />
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-export default CardList
+export default CardList;
