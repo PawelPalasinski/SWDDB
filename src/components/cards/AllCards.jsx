@@ -13,16 +13,6 @@ const AllCards = ({ dataPerPage, data, selectedFaction, selectedRarity }) => {
     const handleNextPage = () => {
       setCurrentPage(currentPage + 1);
     };
-    
-    // let filteredData = data.filter((item) => {
-    //   if (selectedFaction.length > 0 && !selectedFaction.includes(item.faction_code)) {
-    //     return false;
-    //   }
-    //   if (selectedRarity.length > 0 && !selectedRarity.includes(item.rarity_code)) {
-    //     return false;
-    //   }
-    //   return true;
-    // });
 
     let filteredData = data.filter((item) => {
       if (selectedFaction && selectedFaction !== "all" && item.faction_code !== selectedFaction) {
