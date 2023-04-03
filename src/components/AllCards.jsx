@@ -2,7 +2,7 @@ import React, { useState, lazy, Suspense } from "react";
 
 const CardImage = lazy(() => import("./CardImage"));
 
-const AllCards = ({ dataPerPage, data, selectedFaction }) => {
+const AllCards = ({ dataPerPage, data, selectedFaction, selectedRarity }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = Math.ceil(data.length / dataPerPage);
   
@@ -13,10 +13,29 @@ const AllCards = ({ dataPerPage, data, selectedFaction }) => {
     const handleNextPage = () => {
       setCurrentPage(currentPage + 1);
     };
-  
+    
+    // let filteredData = data.filter((item) => {
+    //   if (selectedFaction.length > 0 && !selectedFaction.includes(item.faction_code)) {
+    //     return false;
+    //   }
+    //   if (selectedRarity.length > 0 && !selectedRarity.includes(item.rarity_code)) {
+    //     return false;
+    //   }
+    //   return true;
+    // });
+
+    let filteredData = data.filter((item) => {
+      if (selectedFaction && selectedFaction !== "all" && item.faction_code !== selectedFaction) {
+        return false;
+      }
+      if (selectedRarity && selectedRarity !== "all" && item.rarity_code !== selectedRarity) {
+        return false;
+      }
+      return true;
+    });
+
     const startIndex = (currentPage - 1) * dataPerPage;
     const endIndex = startIndex + dataPerPage;
-    const filteredData = selectedFaction === 'all' ? data : data.filter(item => item.faction_code === selectedFaction);
     const currentData = filteredData.slice(startIndex, endIndex);
   
     return (
