@@ -37,12 +37,14 @@ function Cards() {
           selectedFaction={selectedFaction}
           setSelectedFaction={setSelectedFaction}
         />
+
         <RarityChangeOptions
           filterRarityOptions={filterRarityOptions}
           selectedRarity={selectedRarity}
           setSelectedRarity={setSelectedRarity}
         />
       </div>
+
       <AllCards
         dataPerPage={20}
         data={data}
