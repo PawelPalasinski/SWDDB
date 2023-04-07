@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AllCards from "../components/cards/AllCards";
 import FactionChangeOptions from "../components/options/FactionChangeOptions";
 import RarityChangeOptions from "../components/options/RarityChangeOptions";
+import SearchByName from "../components/options/SearchByName";
 import Loader from "../components/loader/Loader";
 
 import fetchSWDDB from "../js/api";
@@ -12,6 +13,7 @@ function Cards() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFaction, setSelectedFaction] = useState("");
   const [selectedRarity, setSelectedRarity] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchSWDDB()
@@ -32,6 +34,13 @@ function Cards() {
   return (
     <div>
       <div>
+        <SearchByName
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+      </div>
+
+      <div>
         <FactionChangeOptions
           filterFactionOptions={filterFactionOptions}
           selectedFaction={selectedFaction}
@@ -50,6 +59,7 @@ function Cards() {
         data={data}
         selectedFaction={selectedFaction}
         selectedRarity={selectedRarity}
+        searchQuery={searchQuery}
       />
     </div>
   );
