@@ -7,6 +7,7 @@ const AllCards = ({
   data,
   selectedFaction,
   selectedRarity,
+  selectedExpansion,
   searchQuery,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,6 +39,14 @@ const AllCards = ({
     }
 
     if (
+      selectedExpansion &&
+      selectedExpansion !== "all" &&
+      item.set_code !== selectedExpansion
+    ) {
+      return false;
+    }
+
+    if (
       searchQuery &&
       !item.name.toLowerCase().includes(searchQuery.toLowerCase())
     ) {
@@ -59,6 +68,7 @@ const AllCards = ({
           <li key={item.code}>
             <p>{item.name}</p>
             <p>{item.faction_code}</p>
+            <p>{item.set_name}</p>
             <Suspense fallback={<div>Loading...</div>}>
               <CardImage
                 className="image"

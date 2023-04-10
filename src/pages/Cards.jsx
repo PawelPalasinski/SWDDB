@@ -2,17 +2,23 @@ import React, { useState, useEffect } from "react";
 import AllCards from "../components/cards/AllCards";
 import FactionChangeOptions from "../components/options/FactionChangeOptions";
 import RarityChangeOptions from "../components/options/RarityChangeOptions";
+import ExpansionChangeOptions from "../components/options/ExpansionChangeOptions";
 import SearchByName from "../components/options/SearchByName";
 import Loader from "../components/loader/Loader";
 
 import fetchSWDDB from "../js/api";
-import { filterFactionOptions, filterRarityOptions } from "../js/options";
+import {
+  filterFactionOptions,
+  filterRarityOptions,
+  filterExpansionOptions,
+} from "../js/options";
 
 function Cards() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFaction, setSelectedFaction] = useState("");
   const [selectedRarity, setSelectedRarity] = useState("");
+  const [selectedExpansion, setSelectedExpansion] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -52,6 +58,12 @@ function Cards() {
           selectedRarity={selectedRarity}
           setSelectedRarity={setSelectedRarity}
         />
+
+        <ExpansionChangeOptions
+          filterExpansionOptions={filterExpansionOptions}
+          selectedExpansion={selectedExpansion}
+          setSelectedExpansion={setSelectedExpansion}
+        />
       </div>
 
       <AllCards
@@ -59,6 +71,7 @@ function Cards() {
         data={data}
         selectedFaction={selectedFaction}
         selectedRarity={selectedRarity}
+        selectedExpansion={selectedExpansion}
         searchQuery={searchQuery}
       />
     </div>
