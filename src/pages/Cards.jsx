@@ -20,11 +20,13 @@ function Cards() {
   const [selectedRarity, setSelectedRarity] = useState("");
   const [selectedExpansion, setSelectedExpansion] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [cardsCount, setCardsCount] = useState(0);
 
   useEffect(() => {
     fetchSWDDB()
       .then((data) => {
         setData(data);
+        setCardsCount(setData(data).length);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -32,6 +34,14 @@ function Cards() {
         setIsLoading(false);
       });
   }, []);
+
+  const filteredData = data.filter(
+    (card) =>
+      (!selectedFaction || card.faction === selectedFaction) &&
+      (!selectedRarity || card.rarity === selectedRarity) &&
+      (!selectedExpansion || card.expansion === selectedExpansion) &&
+      (!searchQuery || card.name.includes(searchQuery))
+  );
 
   if (isLoading) {
     return <Loader />;
@@ -51,18 +61,21 @@ function Cards() {
           filterFactionOptions={filterFactionOptions}
           selectedFaction={selectedFaction}
           setSelectedFaction={setSelectedFaction}
+          cardsCount={cardsCount}
         />
 
         <RarityChangeOptions
           filterRarityOptions={filterRarityOptions}
           selectedRarity={selectedRarity}
           setSelectedRarity={setSelectedRarity}
+          cardsCount={cardsCount}
         />
 
         <ExpansionChangeOptions
           filterExpansionOptions={filterExpansionOptions}
           selectedExpansion={selectedExpansion}
           setSelectedExpansion={setSelectedExpansion}
+          cardsCount={cardsCount}
         />
       </div>
 
@@ -73,6 +86,7 @@ function Cards() {
         selectedRarity={selectedRarity}
         selectedExpansion={selectedExpansion}
         searchQuery={searchQuery}
+        cardsCount={cardsCount}
       />
     </div>
   );

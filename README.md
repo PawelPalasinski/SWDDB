@@ -7,10 +7,11 @@
 - [x] get all cards
 - [x] filter by faction
 - [x] filter by rarity
+- [x] filter by expansion
 - [x] routing
+- [ ] redux for state managment
 - [ ] Home with short description
 - [ ] About with technologies used description
-- [ ] redux for state managment
 - [ ] styled components
 - [ ] save own collection of cards to local storage
 - [ ] tests in jest

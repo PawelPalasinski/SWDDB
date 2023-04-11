@@ -4,8 +4,10 @@ const FactionChangeOptions = ({
   filterFactionOptions,
   selectedFaction,
   setSelectedFaction,
+  cardsCount,
 }) => {
   const renderFilterButtons = () => {
+    console.log(cardsCount);
     return filterFactionOptions.map((option) => {
       return (
         <button
@@ -13,7 +15,7 @@ const FactionChangeOptions = ({
           className={selectedFaction === option.value ? "active" : ""}
           onClick={() => setSelectedFaction(option.value)}
         >
-          {option.label}
+          {option.label} {cardsCount}
         </button>
       );
     });

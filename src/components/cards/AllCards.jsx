@@ -50,12 +50,14 @@ const AllCards = ({
       searchQuery &&
       !item.name.toLowerCase().includes(searchQuery.toLowerCase())
     ) {
-      console.log("query false" + searchQuery);
       return false;
     }
-    console.log("query true" + searchQuery);
     return true;
   });
+
+  console.log("F: " + filteredData.length);
+
+  const countCartds = filteredData.length;
 
   const startIndex = (currentPage - 1) * dataPerPage;
   const endIndex = startIndex + dataPerPage;
