@@ -15,7 +15,6 @@ export const filterRarityOptions = [
 ];
 
 export const filterExpansionOptions = [
-  { value: "all", label: "All Expansions" },
   { value: "AW", label: "Awakenings" },
   { value: "Sor", label: "Spirit of Rebellion" },
   { value: "EaW", label: "Empire at War" },

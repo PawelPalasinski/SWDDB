@@ -3,23 +3,24 @@ import React from "react";
 const ExpansionChangeOptions = ({
   filterExpansionOptions,
   selectedExpansion,
-  setSelectedExpansion,
+  handleExpansionChange,
 }) => {
-  const renderFilterButtons = () => {
-    return filterExpansionOptions.map((option) => {
-      return (
-        <button
-          key={option.value}
-          className={selectedExpansion === option.value ? "active" : ""}
-          onClick={() => setSelectedExpansion(option.value)}
-        >
+  return (
+    <div>
+      <h3>Expansion</h3>
+      {filterExpansionOptions.map((option) => (
+        <label key={option.value}>
+          <input
+            type="checkbox"
+            value={option.value}
+            checked={selectedExpansion.includes(option.value)}
+            onChange={handleExpansionChange}
+          />
           {option.label}
-        </button>
-      );
-    });
-  };
-
-  return <div>{renderFilterButtons()}</div>;
+        </label>
+      ))}
+    </div>
+  );
 };
 
 export default ExpansionChangeOptions;

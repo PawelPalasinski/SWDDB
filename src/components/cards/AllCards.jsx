@@ -9,6 +9,7 @@ const AllCards = ({
   selectedRarity,
   selectedExpansion,
   searchQuery,
+  onCardCountChange,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.length / dataPerPage);
@@ -40,8 +41,8 @@ const AllCards = ({
 
     if (
       selectedExpansion &&
-      selectedExpansion !== "all" &&
-      item.set_code !== selectedExpansion
+      selectedExpansion.length > 0 &&
+      !selectedExpansion.includes(item.set_code)
     ) {
       return false;
     }
@@ -55,9 +56,9 @@ const AllCards = ({
     return true;
   });
 
-  console.log("F: " + filteredData.length);
+  const countCards = filteredData.length;
 
-  const countCartds = filteredData.length;
+  onCardCountChange(countCards);
 
   const startIndex = (currentPage - 1) * dataPerPage;
   const endIndex = startIndex + dataPerPage;
@@ -65,6 +66,8 @@ const AllCards = ({
 
   return (
     <div>
+      <p>Total {countCards}</p>
+
       <ul>
         {currentData.map((item) => (
           <li key={item.code}>
