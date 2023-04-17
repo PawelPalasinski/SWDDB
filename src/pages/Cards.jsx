@@ -22,6 +22,7 @@ function Cards() {
   const [selectedExpansion, setSelectedExpansion] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [cardCount, setCardCount] = useState(0);
+  const [showFilters, setShowFilters] = useState(true);
 
   useEffect(() => {
     fetchSWDDB()
@@ -54,6 +55,10 @@ function Cards() {
     return <Loader />;
   }
 
+  const handleToggleFilters = () => {
+    setShowFilters(!showFilters);
+  };
+
   return (
     <div>
       <div>
@@ -67,25 +72,31 @@ function Cards() {
         />
       </div>
 
-      <div>
-        <FactionChangeOptions
-          filterFactionOptions={filterFactionOptions}
-          selectedFaction={selectedFaction}
-          setSelectedFaction={setSelectedFaction} // Corrected prop name
-        />
+      <button onClick={handleToggleFilters}>
+        {showFilters ? "Ukryj filtry" : "Pokaż filtry"}{" "}
+      </button>
 
-        <RarityChangeOptions
-          filterRarityOptions={filterRarityOptions}
-          selectedRarity={selectedRarity}
-          setSelectedRarity={setSelectedRarity} // Corrected prop name
-        />
+      {showFilters && (
+        <div>
+          <FactionChangeOptions
+            filterFactionOptions={filterFactionOptions}
+            selectedFaction={selectedFaction}
+            setSelectedFaction={setSelectedFaction} // Corrected prop name
+          />
 
-        <ExpansionChangeOptions
-          filterExpansionOptions={filterExpansionOptions}
-          selectedExpansion={selectedExpansion}
-          handleExpansionChange={handleExpansionChange} // Corrected prop name
-        />
-      </div>
+          <RarityChangeOptions
+            filterRarityOptions={filterRarityOptions}
+            selectedRarity={selectedRarity}
+            setSelectedRarity={setSelectedRarity} // Corrected prop name
+          />
+
+          <ExpansionChangeOptions
+            filterExpansionOptions={filterExpansionOptions}
+            selectedExpansion={selectedExpansion}
+            handleExpansionChange={handleExpansionChange} // Corrected prop name
+          />
+        </div>
+      )}
 
       <AllCards
         dataPerPage={20}

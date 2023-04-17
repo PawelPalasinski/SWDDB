@@ -66,8 +66,6 @@ const AllCards = ({
 
   return (
     <div>
-      <p>Total {countCards}</p>
-
       <ul>
         {currentData.map((item) => (
           <li key={item.code}>

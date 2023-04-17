@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import Logo from "../svg/Logo";
 
 function Navbar() {
   return (
     <nav>
+      <Logo />
       <ul>
         <li>
           <Link to="/">Home</Link>
