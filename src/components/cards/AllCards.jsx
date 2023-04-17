@@ -1,6 +1,7 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 
 const CardImage = lazy(() => import("./CardImage"));
+// import Jedi from "../svg/Jedi";
 
 const AllCards = ({
   dataPerPage,
@@ -10,17 +11,12 @@ const AllCards = ({
   selectedExpansion,
   searchQuery,
   onCardCountChange,
+  onAddToCollection,
+  currentPage,
+  handlePreviousPage,
+  handleNextPage,
 }) => {
-  const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.length / dataPerPage);
-
-  const handlePreviousPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
 
   let filteredData = data.filter((item) => {
     if (
@@ -70,6 +66,7 @@ const AllCards = ({
         {currentData.map((item) => (
           <li key={item.code}>
             <p>{item.name}</p>
+            <p>{item.code}</p>
             <p>{item.faction_code}</p>
             <p>{item.set_name}</p>
             <Suspense fallback={<div>Loading...</div>}>
@@ -79,6 +76,9 @@ const AllCards = ({
                 alt={item.name}
               />
             </Suspense>
+            <button onClick={() => onAddToCollection(item.code)}>
+              {/* <Jedi /> */}XXX
+            </button>
           </li>
         ))}
       </ul>

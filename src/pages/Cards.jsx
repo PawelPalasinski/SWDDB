@@ -23,6 +23,8 @@ function Cards() {
   const [searchQuery, setSearchQuery] = useState("");
   const [cardCount, setCardCount] = useState(0);
   const [showFilters, setShowFilters] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [collection, setCollection] = useState([]);
 
   useEffect(() => {
     fetchSWDDB()
@@ -57,6 +59,26 @@ function Cards() {
 
   const handleToggleFilters = () => {
     setShowFilters(!showFilters);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handleAddToCollection = (card) => {
+    console.log("Added card id: :", card);
+    const newCollection = JSON.parse(localStorage.getItem("collection")) || [];
+    if (!newCollection.includes(card)) {
+      setCollection([...newCollection, card]);
+      localStorage.setItem(
+        "collection",
+        JSON.stringify([...newCollection, card])
+      );
+    }
   };
 
   return (
@@ -106,6 +128,10 @@ function Cards() {
         selectedExpansion={selectedExpansion}
         searchQuery={searchQuery}
         onCardCountChange={handleCardCountChange}
+        onAddToCollection={handleAddToCollection}
+        currentPage={currentPage}
+        handlePreviousPage={handlePreviousPage}
+        handleNextPage={handleNextPage}
       />
     </div>
   );
