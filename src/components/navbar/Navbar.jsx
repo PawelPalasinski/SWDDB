@@ -14,6 +14,12 @@ function Navbar() {
           <Link to="/cards">Cards</Link>
         </li>
         <li>
+          <Link to="/test">Test</Link>
+        </li>
+        <li>
+          <Link to="/collection">Personal Collection</Link>
+        </li>
+        <li>
           <Link to="/about">About</Link>
         </li>
       </ul>

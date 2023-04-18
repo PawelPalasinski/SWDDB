@@ -7,6 +7,8 @@ import SearchByName from "../components/options/SearchByName";
 import CardCounter from "../components/cardCounter/CardCounter";
 import Loader from "../components/loader/Loader";
 
+import useStore from "../store/store";
+
 import fetchSWDDB from "../js/api";
 import {
   filterFactionOptions,
@@ -24,7 +26,12 @@ function Cards() {
   const [cardCount, setCardCount] = useState(0);
   const [showFilters, setShowFilters] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [collection, setCollection] = useState([]);
+  // const [collection, setCollection] = useState([]);
+
+  const collection = useStore((state) => state.collection);
+  const handleAddToCollection = useStore(
+    (state) => state.handleAddToCollection
+  );
 
   useEffect(() => {
     fetchSWDDB()
@@ -69,17 +76,17 @@ function Cards() {
     setCurrentPage(currentPage + 1);
   };
 
-  const handleAddToCollection = (card) => {
-    console.log("Added card id: :", card);
-    const newCollection = JSON.parse(localStorage.getItem("collection")) || [];
-    if (!newCollection.includes(card)) {
-      setCollection([...newCollection, card]);
-      localStorage.setItem(
-        "collection",
-        JSON.stringify([...newCollection, card])
-      );
-    }
-  };
+  // const handleAddToCollection = (card) => {
+  //   console.log("Added card id: :", card);
+  //   const newCollection = JSON.parse(localStorage.getItem("collection")) || [];
+  //   if (!newCollection.includes(card)) {
+  //     setCollection([...newCollection, card]);
+  //     localStorage.setItem(
+  //       "collection",
+  //       JSON.stringify([...newCollection, card])
+  //     );
+  //   }
+  // };
 
   return (
     <div>
