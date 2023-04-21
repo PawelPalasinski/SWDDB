@@ -3,11 +3,15 @@ import useStore from "../../store/store";
 
 function Collection() {
   const collection = useStore((state) => state.collection);
-  //   const handleAddToCollection = useStore(
-  //     (state) => state.handleAddToCollection
-  //   );
 
-  return <div>My Collection: {collection}</div>;
+  return (
+    <ul>
+      My Collection:
+      {collection.map((x) => (
+        <li key={x}>{x}</li>
+      ))}
+    </ul>
+  );
 }
 
 export default Collection;

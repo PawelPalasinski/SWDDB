@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 
 const CardImage = lazy(() => import("./CardImage"));
-// import Jedi from "../svg/Jedi";
+import Jedi from "../svg/Jedi";
 
 const AllCards = ({
   dataPerPage,
@@ -11,10 +11,10 @@ const AllCards = ({
   selectedExpansion,
   searchQuery,
   onCardCountChange,
-  onAddToCollection,
   currentPage,
   handlePreviousPage,
   handleNextPage,
+  handleCardClick,
 }) => {
   const totalPages = Math.ceil(data.length / dataPerPage);
 
@@ -76,8 +76,8 @@ const AllCards = ({
                 alt={item.name}
               />
             </Suspense>
-            <button onClick={() => onAddToCollection(item.code)}>
-              {/* <Jedi /> */}XXX
+            <button onClick={() => handleCardClick(item.code)}>
+              <Jedi />
             </button>
           </li>
         ))}
