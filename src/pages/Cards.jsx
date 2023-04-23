@@ -7,9 +7,9 @@ import SearchByName from "../components/options/SearchByName";
 import CardCounter from "../components/cardCounter/CardCounter";
 import Loader from "../components/loader/Loader";
 
-import useCollectionStore from "../store/store";
+import useCardStore from "../store/cardStore";
+import useCollectionStore from "../store/collectionStore";
 
-import fetchSWDDB from "../js/api";
 import {
   filterFactionOptions,
   filterRarityOptions,
@@ -17,8 +17,7 @@ import {
 } from "../js/options";
 
 function Cards() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data, isLoading, fetchData } = useCardStore();
   const [selectedFaction, setSelectedFaction] = useState("");
   const [selectedRarity, setSelectedRarity] = useState("");
   const [selectedExpansion, setSelectedExpansion] = useState([]);
@@ -34,16 +33,8 @@ function Cards() {
   };
 
   useEffect(() => {
-    fetchSWDDB()
-      .then((data) => {
-        setData(data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsLoading(false);
-      });
-  }, []);
+    fetchData();
+  }, [fetchData]);
 
   const handleExpansionChange = (event) => {
     const { value, checked } = event.target;
@@ -98,26 +89,25 @@ function Cards() {
           <FactionChangeOptions
             filterFactionOptions={filterFactionOptions}
             selectedFaction={selectedFaction}
-            setSelectedFaction={setSelectedFaction} // Corrected prop name
+            setSelectedFaction={setSelectedFaction}
           />
 
           <RarityChangeOptions
             filterRarityOptions={filterRarityOptions}
             selectedRarity={selectedRarity}
-            setSelectedRarity={setSelectedRarity} // Corrected prop name
+            setSelectedRarity={setSelectedRarity}
           />
 
           <ExpansionChangeOptions
             filterExpansionOptions={filterExpansionOptions}
             selectedExpansion={selectedExpansion}
-            handleExpansionChange={handleExpansionChange} // Corrected prop name
+            handleExpansionChange={handleExpansionChange}
           />
         </div>
       )}
 
       <AllCards
         dataPerPage={20}
-        data={data}
         selectedFaction={selectedFaction}
         selectedRarity={selectedRarity}
         selectedExpansion={selectedExpansion}

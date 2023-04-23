@@ -1,5 +1,5 @@
 import React from "react";
-import useStore from "../../store/store";
+import useStore from "../../store/collectionStore";
 
 function Collection() {
   const collection = useStore((state) => state.collection);

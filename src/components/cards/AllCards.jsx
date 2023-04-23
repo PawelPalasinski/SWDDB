@@ -1,11 +1,13 @@
 import React, { lazy, Suspense } from "react";
 
+import useStore from "../../store/cardStore";
+
 const CardImage = lazy(() => import("./CardImage"));
 import Jedi from "../svg/Jedi";
 
 const AllCards = ({
   dataPerPage,
-  data,
+  // data,
   selectedFaction,
   selectedRarity,
   selectedExpansion,
@@ -16,6 +18,8 @@ const AllCards = ({
   handleNextPage,
   handleCardClick,
 }) => {
+  const data = useStore((state) => state.data);
+
   const totalPages = Math.ceil(data.length / dataPerPage);
 
   let filteredData = data.filter((item) => {
