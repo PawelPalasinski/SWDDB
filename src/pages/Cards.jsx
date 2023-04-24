@@ -17,14 +17,13 @@ import {
 } from "../js/options";
 
 function Cards() {
-  const { data, isLoading, fetchData } = useCardStore();
+  const { isLoading, fetchData } = useCardStore();
   const [selectedFaction, setSelectedFaction] = useState("");
   const [selectedRarity, setSelectedRarity] = useState("");
   const [selectedExpansion, setSelectedExpansion] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [cardCount, setCardCount] = useState(0);
   const [showFilters, setShowFilters] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
 
   const { handleAddOrRemoveFromCollection } = useCollectionStore();
 
@@ -57,14 +56,6 @@ function Cards() {
 
   const handleToggleFilters = () => {
     setShowFilters(!showFilters);
-  };
-
-  const handlePreviousPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
   };
 
   return (
@@ -107,16 +98,12 @@ function Cards() {
       )}
 
       <AllCards
-        dataPerPage={20}
         selectedFaction={selectedFaction}
         selectedRarity={selectedRarity}
         selectedExpansion={selectedExpansion}
         searchQuery={searchQuery}
         onCardCountChange={handleCardCountChange}
         handleCardClick={handleCardClick}
-        currentPage={currentPage}
-        handlePreviousPage={handlePreviousPage}
-        handleNextPage={handleNextPage}
       />
     </div>
   );
