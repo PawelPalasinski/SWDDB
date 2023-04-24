@@ -1,6 +1,9 @@
 import React from "react";
+import useCardCountStore from "../../store/cardCountStore";
 
-function CardCounter({ cardCount }) {
+function CardCounter() {
+  const cardCount = useCardCountStore((state) => state.cardCount);
+
   return <div>Cards {cardCount}</div>;
 }
 

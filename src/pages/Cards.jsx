@@ -12,7 +12,6 @@ import useCollectionStore from "../store/collectionStore";
 
 function Cards() {
   const { isLoading, fetchData } = useCardStore();
-  const [cardCount, setCardCount] = useState(0);
   const [showFilters, setShowFilters] = useState(true);
 
   const { handleAddOrRemoveFromCollection } = useCollectionStore();
@@ -40,7 +39,7 @@ function Cards() {
   return (
     <div>
       <div>
-        <CardCounter cardCount={cardCount} />
+        <CardCounter />
       </div>
 
       <div>

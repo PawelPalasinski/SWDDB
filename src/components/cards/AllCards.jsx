@@ -1,13 +1,14 @@
-import React, { lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 
 import useCardStore from "../../store/cardStore";
 import usePaginationStore from "../../store/paginationStore";
 import useFilterStore from "../../store/filterStore";
+import useCardCountStore from "../../store/cardCountStore";
 
 const CardImage = lazy(() => import("./CardImage"));
 import Jedi from "../svg/Jedi";
 
-const AllCards = ({ onCardCountChange, handleCardClick }) => {
+const AllCards = ({ handleCardClick }) => {
   const data = useCardStore((state) => state.data);
 
   const currentPage = usePaginationStore((state) => state.currentPage);
@@ -18,6 +19,8 @@ const AllCards = ({ onCardCountChange, handleCardClick }) => {
   const selectedRarity = useFilterStore((state) => state.selectedRarity);
   const selectedExpansion = useFilterStore((state) => state.selectedExpansion);
   const searchQuery = useFilterStore((state) => state.searchQuery);
+
+  const setStoreCardCount = useCardCountStore((state) => state.setCardCount);
 
   const totalPages = Math.ceil(data.length / dataPerPage);
 
@@ -55,11 +58,12 @@ const AllCards = ({ onCardCountChange, handleCardClick }) => {
     return true;
   });
 
-  // let filteredData = filterData();
+  const cardCount = filteredData.length;
 
-  const countCards = filteredData.length;
-
-  onCardCountChange(countCards);
+  useEffect(() => {
+    setStoreCardCount(cardCount);
+    console.log(cardCount);
+  }, [cardCount, setStoreCardCount]);
 
   const startIndex = (currentPage - 1) * dataPerPage;
   const endIndex = startIndex + dataPerPage;
