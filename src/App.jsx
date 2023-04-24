@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/navbar/Navbar";
@@ -7,7 +8,21 @@ import PersonalCollection from "./pages/PersonalCollection";
 import About from "./pages/About";
 import Test from "./pages/Test";
 
+import Loader from "./components/loader/Loader";
+
+import useCardStore from "./store/cardStore";
+
 function App() {
+  const { isLoading, fetchData } = useCardStore();
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <Router>
       <Navbar />
