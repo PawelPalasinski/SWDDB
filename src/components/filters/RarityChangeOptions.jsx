@@ -1,10 +1,10 @@
 import React from "react";
+import { filterRarityOptions } from "../../js/options";
+import useFilterStore from "../../store/filterStore";
 
-const RarityChangeOptions = ({
-  filterRarityOptions,
-  selectedRarity,
-  setSelectedRarity,
-}) => {
+const RarityChangeOptions = () => {
+  const { selectedRarity, setSelectedRarity } = useFilterStore();
+
   const renderFilterButtons = () => {
     return filterRarityOptions.map((option) => {
       return (

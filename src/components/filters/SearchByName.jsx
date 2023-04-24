@@ -1,6 +1,9 @@
 import React from "react";
+import useFilterStore from "../../store/filterStore";
 
-const SearchByName = ({ searchQuery, setSearchQuery }) => {
+const SearchByName = () => {
+  const { searchQuery, setSearchQuery } = useFilterStore();
+
   return (
     <div>
       <input

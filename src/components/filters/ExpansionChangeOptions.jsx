@@ -1,10 +1,10 @@
 import React from "react";
+import { filterExpansionOptions } from "../../js/options";
+import useFilterStore from "../../store/filterStore";
 
-const ExpansionChangeOptions = ({
-  filterExpansionOptions,
-  selectedExpansion,
-  handleExpansionChange,
-}) => {
+const ExpansionChangeOptions = () => {
+  const { selectedExpansion, setSelectedExpansion } = useFilterStore();
+
   return (
     <div>
       <h3>Expansion</h3>
@@ -14,7 +14,7 @@ const ExpansionChangeOptions = ({
             type="checkbox"
             value={option.value}
             checked={selectedExpansion.includes(option.value)}
-            onChange={handleExpansionChange}
+            onChange={() => setSelectedExpansion(option.value)}
           />
           {option.label}
         </label>

@@ -1,13 +1,11 @@
 import React from "react";
+import { filterFactionOptions } from "../../js/options";
+import useFilterStore from "../../store/filterStore";
 
-const FactionChangeOptions = ({
-  filterFactionOptions,
-  selectedFaction,
-  setSelectedFaction,
-  cardsCount,
-}) => {
+const FactionChangeOptions = () => {
+  const { selectedFaction, setSelectedFaction } = useFilterStore();
+
   const renderFilterButtons = () => {
-    console.log(cardsCount);
     return filterFactionOptions.map((option) => {
       return (
         <button
@@ -15,7 +13,7 @@ const FactionChangeOptions = ({
           className={selectedFaction === option.value ? "active" : ""}
           onClick={() => setSelectedFaction(option.value)}
         >
-          {option.label} {cardsCount}
+          {option.label}
         </button>
       );
     });
