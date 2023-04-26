@@ -5,7 +5,7 @@ import usePaginationStore from "../../store/paginationStore";
 import useFilterStore from "../../store/filterStore";
 import useCardCountStore from "../../store/cardCountStore";
 
-const CardImage = lazy(() => import("./CardImage"));
+const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
 
 const AllCards = ({ handleCardClick }) => {

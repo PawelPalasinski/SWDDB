@@ -9,11 +9,12 @@
 - [x] filter by rarity
 - [x] filter by expansion
 - [x] routing
-- [ ] redux for state managment
+- [x] zustand for state managment
+- [ ] statistics
+- [ ] refactor to Typescript
 - [ ] Home with short description
 - [ ] About with technologies used description
 - [ ] styled components
-- [ ] save own collection of cards to local storage
+- [x] save own collection of cards to local storage
 - [ ] tests in jest
-- [ ] refactoring to TypeScript
 - [ ] in the future OAuth2
