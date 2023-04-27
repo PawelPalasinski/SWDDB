@@ -21,6 +21,18 @@ const AllCards = ({ handleCardClick }) => {
   const searchQuery = useFilterStore((state) => state.searchQuery);
 
   const setStoreCardCount = useCardCountStore((state) => state.setCardCount);
+  const setStoreCardRedCount = useCardCountStore(
+    (state) => state.setCardRedCount
+  );
+  const setStoreCardYellowCount = useCardCountStore(
+    (state) => state.setCardYellowCount
+  );
+  const setStoreCardBlueCount = useCardCountStore(
+    (state) => state.setCardBlueCount
+  );
+  const setStoreCardGrayCount = useCardCountStore(
+    (state) => state.setCardGrayCount
+  );
 
   const totalPages = Math.ceil(data.length / dataPerPage);
 
@@ -59,11 +71,37 @@ const AllCards = ({ handleCardClick }) => {
   });
 
   const cardCount = filteredData.length;
+  const cardRedCount = filteredData.filter(
+    (x) => x.faction_code === "red"
+  ).length;
+  const cardYellowCount = filteredData.filter(
+    (x) => x.faction_code === "yellow"
+  ).length;
+  const cardBlueCount = filteredData.filter(
+    (x) => x.faction_code === "blue"
+  ).length;
+  const cardGrayCount = filteredData.filter(
+    (x) => x.faction_code === "gray"
+  ).length;
 
   useEffect(() => {
-    setStoreCardCount(cardCount);
-    console.log(cardCount);
-  }, [cardCount, setStoreCardCount]);
+    setCardCount(cardCount);
+    setStoreCardRedCount(cardRedCount);
+    setStoreCardYellowCount(cardYellowCount);
+    setStoreCardBlueCount(cardBlueCount);
+    setStoreCardGrayCount(cardGrayCount);
+  }, [
+    cardCount,
+    cardRedCount,
+    cardYellowCount,
+    cardBlueCount,
+    cardGrayCount,
+    setStoreCardCount,
+    setStoreCardRedCount,
+    setStoreCardYellowCount,
+    setStoreCardBlueCount,
+    setStoreCardGrayCount,
+  ]);
 
   const startIndex = (currentPage - 1) * dataPerPage;
   const endIndex = startIndex + dataPerPage;
