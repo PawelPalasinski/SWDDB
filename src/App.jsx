@@ -7,6 +7,7 @@ import Cards from "./pages/Cards";
 import PersonalCollection from "./pages/PersonalCollection";
 import About from "./pages/About";
 import Test from "./pages/Test";
+import Statistics from "./components/statistics/Statistics";
 
 import Loader from "./components/loader/Loader";
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/cards" element={<Cards />} />
         <Route path="/collection" element={<PersonalCollection />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/statistics" element={<Statistics />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </Router>

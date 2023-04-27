@@ -1,5 +1,6 @@
 import React from "react";
 import useCardCountStore from "../../store/cardCountStore";
+import Statistics from "../statistics/Statistics";
 
 function CardCounter() {
   const cardCount = useCardCountStore((state) => state.cardCount);
@@ -15,6 +16,7 @@ function CardCounter() {
       <div>Yellow {cardYellowCount}</div>
       <div>Blue {cardBlueCount}</div>
       <div>Gray {cardGrayCount}</div>
+      <Statistics />
     </>
   );
 }

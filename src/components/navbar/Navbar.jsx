@@ -20,6 +20,9 @@ function Navbar() {
           <Link to="/collection">Personal Collection</Link>
         </li>
         <li>
+          <Link to="/statistics">Statistics</Link>
+        </li>
+        <li>
           <Link to="/about">About</Link>
         </li>
       </ul>
