@@ -10,9 +10,11 @@ function CardCounter() {
 
   return (
     <>
-      <div>Cards {cardCount}</div>;<div>Cards {cardRedCount}</div>;
-      <div>Cards {cardYellowCount}</div>;<div>Cards {cardBlueCount}</div>;
-      <div>Cards {cardGrayCount}</div>;
+      <div>Cards {cardCount}</div>
+      <div>Red {cardRedCount}</div>
+      <div>Yellow {cardYellowCount}</div>
+      <div>Blue {cardBlueCount}</div>
+      <div>Gray {cardGrayCount}</div>
     </>
   );
 }

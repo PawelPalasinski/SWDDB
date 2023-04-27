@@ -85,7 +85,7 @@ const AllCards = ({ handleCardClick }) => {
   ).length;
 
   useEffect(() => {
-    setCardCount(cardCount);
+    setStoreCardCount(cardCount);
     setStoreCardRedCount(cardRedCount);
     setStoreCardYellowCount(cardYellowCount);
     setStoreCardBlueCount(cardBlueCount);
