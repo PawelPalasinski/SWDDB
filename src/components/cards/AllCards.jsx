@@ -1,4 +1,5 @@
 import React, { useEffect, lazy, Suspense } from "react";
+import styled from "styled-components";
 
 import useCardStore from "../../store/cardStore";
 import usePaginationStore from "../../store/paginationStore";
@@ -7,6 +8,55 @@ import useCardCountStore from "../../store/cardCountStore";
 
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
+
+const CardWrapper = styled.div`
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+  }
+  li {
+    position: relative;
+    margin: 10px;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+`;
+
+const StyledCardImage = styled.img`
+  max-height: 200px;
+  object-fit: contain;
+`;
+
+const CardButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+`;
 
 const AllCards = ({ handleCardClick }) => {
   const data = useCardStore((state) => state.data);
@@ -116,24 +166,24 @@ const AllCards = ({ handleCardClick }) => {
   };
 
   return (
-    <div>
+    <CardWrapper>
       <ul>
         {currentData.map((item) => (
           <li key={item.code}>
-            <p>{item.name}</p>
+            {/* <p>{item.name}</p>
             <p>{item.code}</p>
             <p>{item.faction_code}</p>
-            <p>{item.set_name}</p>
+            <p>{item.set_name}</p> */}
             <Suspense fallback={<div>Loading...</div>}>
-              <CardImage
+              <StyledCardImage
                 className="image"
                 src={item.imagesrc}
                 alt={item.name}
               />
             </Suspense>
-            <button onClick={() => handleCardClick(item.code)}>
+            <CardButton onClick={() => handleCardClick(item.code)}>
               <Jedi />
-            </button>
+            </CardButton>
           </li>
         ))}
       </ul>
@@ -149,7 +199,7 @@ const AllCards = ({ handleCardClick }) => {
           Next
         </button>
       </div>
-    </div>
+    </CardWrapper>
   );
 };
 
