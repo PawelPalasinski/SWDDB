@@ -26,30 +26,30 @@ const CardWrapper = styled.div`
     align-items: center;
     background-color: #ffffff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 8px;
+    line-height: 0;
   }
 `;
 
 const StyledCardImage = styled.img`
   max-height: 200px;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 8px;
 `;
 
 const CardButton = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: -20px;
+  right: -30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 0;
   border: none;
-  border-radius: 4px;
+  border-radius: 50%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   background-color: transparent;
   color: #ffffff;
-  font-size: 18px;
-  font-weight: 600;
   text-transform: uppercase;
   transition: all 0.3s ease;
 

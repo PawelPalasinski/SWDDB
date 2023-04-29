@@ -9,7 +9,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Statistics() {
   //   const factionsData = useCardStore((state) => state.data);
-  const cardCount = useCardCountStore((state) => state.cardCount);
+  // const cardCount = useCardCountStore((state) => state.cardCount);
   const cardRedCount = useCardCountStore((state) => state.cardRedCount);
   const cardYellowCount = useCardCountStore((state) => state.cardYellowCount);
   const cardBlueCount = useCardCountStore((state) => state.cardBlueCount);
@@ -22,13 +22,7 @@ function Statistics() {
     datasets: [
       {
         label: "# of Votes",
-        data: [
-          cardCount,
-          cardRedCount,
-          cardYellowCount,
-          cardBlueCount,
-          cardGrayCount,
-        ],
+        data: [cardRedCount, cardYellowCount, cardBlueCount, cardGrayCount],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
