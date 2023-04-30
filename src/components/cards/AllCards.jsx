@@ -31,12 +31,6 @@ const CardWrapper = styled.div`
   }
 `;
 
-const StyledCardImage = styled.img`
-  max-height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
-`;
-
 const CardButton = styled.button`
   position: absolute;
   bottom: -20px;
@@ -55,6 +49,10 @@ const CardButton = styled.button`
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  & p {
+    margin-left: -37.5px;
   }
 `;
 
@@ -170,12 +168,8 @@ const AllCards = ({ handleCardClick }) => {
       <ul>
         {currentData.map((item) => (
           <li key={item.code}>
-            {/* <p>{item.name}</p>
-            <p>{item.code}</p>
-            <p>{item.faction_code}</p>
-            <p>{item.set_name}</p> */}
             <Suspense fallback={<div>Loading...</div>}>
-              <StyledCardImage
+              <CardImage
                 className="image"
                 src={item.imagesrc}
                 alt={item.name}
@@ -183,6 +177,7 @@ const AllCards = ({ handleCardClick }) => {
             </Suspense>
             <CardButton onClick={() => handleCardClick(item.code)}>
               <Jedi />
+              <p>ADD</p>
             </CardButton>
           </li>
         ))}
