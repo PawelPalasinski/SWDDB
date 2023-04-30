@@ -1,17 +1,36 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import { createGlobalStyle } from "styled-components";
+import SWFont from "./assets/fonts/DeathStar-VmWB.ttf";
+
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
 import Cards from "./pages/Cards";
 import PersonalCollection from "./pages/PersonalCollection";
 import About from "./pages/About";
 import Test from "./pages/Test";
-import Statistics from "./components/statistics/Statistics";
 
 import Loader from "./components/loader/Loader";
 
 import useCardStore from "./store/cardStore";
+
+const GlobalStyle = createGlobalStyle`
+@font-face {
+  font-family: 'DeathStar';
+  src: url(${SWFont});
+}
+
+body {
+  font-family: 'DeathStar', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: 'DeathStar', sans-serif;
+}
+`;
 
 function App() {
   const { isLoading, fetchData } = useCardStore();
@@ -25,17 +44,19 @@ function App() {
   }
 
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cards" element={<Cards />} />
-        <Route path="/collection" element={<PersonalCollection />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/statistics" element={<Statistics />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </Router>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cards" element={<Cards />} />
+          <Route path="/collection" element={<PersonalCollection />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
