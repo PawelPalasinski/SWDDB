@@ -34,8 +34,6 @@ const CardWrapper = styled.div`
 
 const CardButton = styled.button`
   position: absolute;
-  bottom: -20px;
-  right: -30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,7 +51,39 @@ const CardButton = styled.button`
   }
 
   & p {
-    margin-left: -37.5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+
+  width: 100%;
+  height: 0;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease;
+  overflow: hidden;
+
+  li:hover & {
+    bottom: 0;
+    height: 100%;
+  }
+
+  button {
+    visibility: hidden;
+  }
+
+  &:hover button {
+    visibility: visible;
   }
 `;
 
@@ -183,15 +213,12 @@ const AllCards = ({ handleCardClick }) => {
               />
             </Suspense>
 
-            <CardButton onClick={() => handleCardClick(item.code)}>
-              <Jedi />
-              <p>{getButtonText(item.code)}</p>
-            </CardButton>
-
-            {/* <CardButton onClick={() => handleCardClick(item.code)}>
-              <Jedi />
-              <p>ADD</p>
-            </CardButton> */}
+            <Overlay>
+              <CardButton onClick={() => handleCardClick(item.code)}>
+                <Jedi />
+                <p>{getButtonText(item.code)}</p>
+              </CardButton>
+            </Overlay>
           </li>
         ))}
       </ul>
