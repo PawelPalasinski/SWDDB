@@ -5,6 +5,7 @@ import useCardStore from "../../store/cardStore";
 import usePaginationStore from "../../store/paginationStore";
 import useFilterStore from "../../store/filterStore";
 import useCardCountStore from "../../store/cardCountStore";
+import useCollectionStore from "../../store/collectionStore";
 
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
@@ -119,15 +120,19 @@ const AllCards = ({ handleCardClick }) => {
   });
 
   const cardCount = filteredData.length;
+
   const cardRedCount = filteredData.filter(
     (x) => x.faction_code === "red"
   ).length;
+
   const cardYellowCount = filteredData.filter(
     (x) => x.faction_code === "yellow"
   ).length;
+
   const cardBlueCount = filteredData.filter(
     (x) => x.faction_code === "blue"
   ).length;
+
   const cardGrayCount = filteredData.filter(
     (x) => x.faction_code === "gray"
   ).length;
@@ -163,6 +168,8 @@ const AllCards = ({ handleCardClick }) => {
     setCurrentPage(currentPage + 1);
   };
 
+  const getButtonText = useCollectionStore((state) => state.getButtonText);
+
   return (
     <CardWrapper>
       <ul>
@@ -175,10 +182,16 @@ const AllCards = ({ handleCardClick }) => {
                 alt={item.name}
               />
             </Suspense>
+
             <CardButton onClick={() => handleCardClick(item.code)}>
               <Jedi />
-              <p>ADD</p>
+              <p>{getButtonText(item.code)}</p>
             </CardButton>
+
+            {/* <CardButton onClick={() => handleCardClick(item.code)}>
+              <Jedi />
+              <p>ADD</p>
+            </CardButton> */}
           </li>
         ))}
       </ul>

@@ -22,6 +22,15 @@ const useCollectionStore = create((set) => ({
       console.log("Card added to collection.");
     }
   },
+  getButtonText: (cardCode) => {
+    const collection = JSON.parse(localStorage.getItem("collection")) || [];
+    const index = collection.findIndex((code) => code === cardCode);
+    if (index !== -1) {
+      return "DEL";
+    } else {
+      return "ADD";
+    }
+  },
 }));
 
 export default useCollectionStore;
