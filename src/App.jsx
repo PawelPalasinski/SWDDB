@@ -10,6 +10,7 @@ import Cards from "./pages/Cards";
 import PersonalCollection from "./pages/PersonalCollection";
 import About from "./pages/About";
 import Test from "./pages/Test";
+import Footer from "./components/footer/Footer";
 
 import Loader from "./components/loader/Loader";
 
@@ -56,6 +57,7 @@ function App() {
           <Route path="/about" element={<About />} />
         </Routes>
       </Router>
+      <Footer />
     </>
   );
 }
