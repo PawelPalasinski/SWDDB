@@ -11,7 +11,7 @@ import PersonalCollection from "./pages/PersonalCollection";
 import About from "./pages/About";
 import Test from "./pages/Test";
 import Footer from "./components/footer/Footer";
-
+import NotFound from "./components/notFound/NotFound";
 import Loader from "./components/loader/Loader";
 
 import useCardStore from "./store/cardStore";
@@ -55,6 +55,7 @@ function App() {
           <Route path="/collection" element={<PersonalCollection />} />
           <Route path="/test" element={<Test />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
       <Footer />

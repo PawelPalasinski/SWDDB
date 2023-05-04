@@ -6,13 +6,15 @@ const useCardStore = create((set, get) => ({
   isLoading: true,
 
   fetchData: async () => {
-    try {
-      const response = await fetchSWDDB();
-      set({ data: response, isLoading: false });
-    } catch (error) {
-      console.error(error);
-      set({ isLoading: false });
-    }
+    setTimeout(async () => {
+      try {
+        const response = await fetchSWDDB();
+        set({ data: response, isLoading: false });
+      } catch (error) {
+        console.error(error);
+        set({ isLoading: false });
+      }
+    }, 2000);
   },
 }));
 
