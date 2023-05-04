@@ -1,6 +1,6 @@
 import React from "react";
 
-function Falcon() {
+const Falcon = () => {
   return (
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="#000000">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -17,6 +17,6 @@ function Falcon() {
       </g>
     </svg>
   );
-}
+};
 
 export default Falcon;

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Sabers() {
+const Sabers = () => {
   return (
     <svg
       viewBox="0 0 512 512"
@@ -21,6 +21,6 @@ function Sabers() {
       </g>
     </svg>
   );
-}
+};
 
 export default Sabers;

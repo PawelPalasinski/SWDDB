@@ -6,7 +6,7 @@ const StyledJedi = styled.svg`
   height: 65px;
 `;
 
-function Jedi() {
+const Jedi = () => {
   return (
     <StyledJedi
       fill="#000000"
@@ -43,6 +43,6 @@ function Jedi() {
       </g>
     </StyledJedi>
   );
-}
+};
 
 export default Jedi;

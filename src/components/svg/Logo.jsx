@@ -1,6 +1,6 @@
 import React from "react";
 
-function Logo() {
+const Logo = () => {
   return (
     <svg
       width="100px"
@@ -25,6 +25,6 @@ function Logo() {
       </g>
     </svg>
   );
-}
+};
 
 export default Logo;

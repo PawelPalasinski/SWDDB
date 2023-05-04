@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Sith from "../svg/Sith";
 
-function Loader() {
+const Loader = () => {
   return (
-    <div>Loading...</div>
-  )
-}
+    <div>
+      <Sith />
+    </div>
+  );
+};
 
-export default Loader
+export default Loader;
