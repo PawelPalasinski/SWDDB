@@ -14,6 +14,8 @@ import Footer from "./components/footer/Footer";
 import NotFound from "./components/notFound/NotFound";
 import Loader from "./components/loader/Loader";
 
+import ContactForm from "./components/contactForm/ContactForm";
+
 import useCardStore from "./store/cardStore";
 
 const GlobalStyle = createGlobalStyle`
@@ -55,6 +57,7 @@ function App() {
           <Route path="/collection" element={<PersonalCollection />} />
           <Route path="/test" element={<Test />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<ContactForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

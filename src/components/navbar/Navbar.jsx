@@ -49,6 +49,9 @@ function Navbar() {
           <Link to="/collection">Personal Collection</Link>
         </li>
         <li>
+          <Link to="/contact">Contact Me</Link>
+        </li>
+        <li>
           <Link to="/about">About</Link>
         </li>
       </ul>

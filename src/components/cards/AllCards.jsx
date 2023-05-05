@@ -45,12 +45,13 @@ const CardButton = styled.button`
   color: #ffffff;
   text-transform: uppercase;
   transition: all 0.3s ease;
+  margin-top: 80%;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
 
-  & p {
+  & span {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -84,6 +85,17 @@ const Overlay = styled.div`
 
   &:hover button {
     visibility: visible;
+  }
+`;
+
+const OverlayText = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -40%;
+  & p {
+    font-size: 10px;
   }
 `;
 
@@ -214,9 +226,14 @@ const AllCards = ({ handleCardClick }) => {
             </Suspense>
 
             <Overlay>
+              <OverlayText>
+                <p>{item.name}</p>
+                <p>{item.set_name}</p>
+                <p>{item.rarity_name}</p>
+              </OverlayText>
               <CardButton onClick={() => handleCardClick(item.code)}>
                 <Jedi />
-                <p>{getButtonText(item.code)}</p>
+                <span>{getButtonText(item.code)}</span>
               </CardButton>
             </Overlay>
           </li>
