@@ -13,9 +13,19 @@ const changeColor = keyframes`
   }
 `;
 
+const spinAndGrow = keyframes`
+  from {
+    transform: rotate(0deg) scale(0.1);
+  }
+  to {
+    transform: rotate(360deg) scale(4);
+  }
+`;
+
 const StyledSVG = styled.svg`
   fill: red;
-  animation: ${changeColor} 2s linear infinite;
+  animation: ${changeColor} 2s linear infinite,
+    ${spinAndGrow} 2s linear infinite;
 `;
 
 const Sith = ({ width = "100vw", height = "90vh" }) => {

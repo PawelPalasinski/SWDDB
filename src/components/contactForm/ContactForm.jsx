@@ -1,6 +1,10 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 
+import styled from "styled-components";
+
+const StyledForm = styled.form``;
+
 const ContactForm = () => {
   const form = useRef();
 
@@ -25,7 +29,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form ref={form} onSubmit={sendEmail}>
+    <StyledForm ref={form} onSubmit={sendEmail}>
       <label>Name</label>
       <input type="text" name="user_name" />
       <label>Email</label>
@@ -33,7 +37,7 @@ const ContactForm = () => {
       <label>Message</label>
       <textarea name="message" />
       <input type="submit" value="Send" />
-    </form>
+    </StyledForm>
   );
 };
 

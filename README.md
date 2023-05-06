@@ -10,11 +10,14 @@
 - [x] filter by expansion
 - [x] routing
 - [x] zustand for state managment
-- [ ] statistics
+- [x] statistics
+- [x] contact form
+- [ ] login and register
 - [ ] refactor to Typescript
 - [ ] Home with short description
 - [ ] About with technologies used description
 - [ ] styled components
 - [x] save own collection of cards to local storage
 - [ ] tests in jest
-- [ ] in the future OAuth2
+
+#### React, Vite, JavaScript, HHTML5, CSS3, SASS, Zustand, Axios, emailjs, styled components,
