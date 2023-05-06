@@ -9,6 +9,7 @@ import useCollectionStore from "../../store/collectionStore";
 
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
+import PaginationAllCards from "../pagination/PaginationAllCards";
 
 const CardWrapper = styled.div`
   ul {
@@ -125,8 +126,6 @@ const AllCards = ({ handleCardClick }) => {
     (state) => state.setCardGrayCount
   );
 
-  const totalPages = Math.ceil(data.length / dataPerPage);
-
   let filteredData = data.filter((item) => {
     if (
       selectedFaction &&
@@ -162,6 +161,8 @@ const AllCards = ({ handleCardClick }) => {
   });
 
   const cardCount = filteredData.length;
+
+  const totalPages = Math.ceil(cardCount / dataPerPage);
 
   const cardRedCount = filteredData.filter(
     (x) => x.faction_code === "red"
@@ -202,14 +203,6 @@ const AllCards = ({ handleCardClick }) => {
   const endIndex = startIndex + dataPerPage;
   const currentData = filteredData.slice(startIndex, endIndex);
 
-  const handlePreviousPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
   const getButtonText = useCollectionStore((state) => state.getButtonText);
 
   return (
@@ -241,15 +234,7 @@ const AllCards = ({ handleCardClick }) => {
       </ul>
 
       <div>
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-          Previous
-        </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Next
-        </button>
+        <PaginationAllCards totalPages={totalPages} />
       </div>
     </CardWrapper>
   );
