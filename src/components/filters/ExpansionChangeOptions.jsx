@@ -1,6 +1,32 @@
 import React, { useRef } from "react";
 import { filterExpansionOptions } from "../../js/options";
 import useFilterStore from "../../store/filterStore";
+import styled from "styled-components";
+
+const ExpansionOptionsContainer = styled.div`
+  h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  label {
+    display: block;
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: normal;
+    color: ${(props) => props.theme.textColor};
+    cursor: pointer;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"]:checked + span {
+    color: red;
+  }
+`;
 
 const ExpansionChangeOptions = () => {
   const { selectedExpansion, setSelectedExpansion } = useFilterStore();
@@ -15,7 +41,10 @@ const ExpansionChangeOptions = () => {
   };
 
   return (
-    <div ref={expansionRef} onChange={handleExpansionChange}>
+    <ExpansionOptionsContainer
+      ref={expansionRef}
+      onChange={handleExpansionChange}
+    >
       <h3>Expansion</h3>
       {filterExpansionOptions.map((option) => (
         <label key={option.value}>
@@ -24,10 +53,10 @@ const ExpansionChangeOptions = () => {
             value={option.value}
             defaultChecked={selectedExpansion.includes(option.value)}
           />
-          {option.label}
+          <span>{option.label}</span>
         </label>
       ))}
-    </div>
+    </ExpansionOptionsContainer>
   );
 };
 

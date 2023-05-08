@@ -46,7 +46,7 @@ const CardButton = styled.button`
   color: #ffffff;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  margin-top: 80%;
+  margin-bottom: -45%;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -62,7 +62,7 @@ const CardButton = styled.button`
 
 const Overlay = styled.div`
   position: absolute;
-
+  border-radius: 7px;
   width: 100%;
   height: 0;
   bottom: 100%;

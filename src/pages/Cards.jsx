@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import AllCards from "../components/cards/AllCards";
-import FactionChangeOptions from "../components/filters/FactionChangeOptions";
-import RarityChangeOptions from "../components/filters/RarityChangeOptions";
-import ExpansionChangeOptions from "../components/filters/ExpansionChangeOptions";
 import SearchByName from "../components/filters/SearchByName";
 import CardCounter from "../components/cardCounter/CardCounter";
+import Filters from "../components/filters/Filters";
 
 const CardCounterContainer = styled.div`
   position: fixed;
@@ -22,7 +20,7 @@ const CardCounterContainer = styled.div`
 
 import useCollectionStore from "../store/collectionStore";
 
-function Cards() {
+const Cards = () => {
   const [showFilters, setShowFilters] = useState(true);
 
   const { handleAddOrRemoveFromCollection } = useCollectionStore();
@@ -53,13 +51,7 @@ function Cards() {
         {showFilters ? "Ukryj filtry" : "Pokaż filtry"}{" "}
       </button>
 
-      {showFilters && (
-        <div>
-          <FactionChangeOptions />
-          <RarityChangeOptions />
-          <ExpansionChangeOptions />
-        </div>
-      )}
+      {showFilters && <Filters />}
 
       <AllCards
         onCardCountChange={handleCardCountChange}
@@ -67,6 +59,6 @@ function Cards() {
       />
     </div>
   );
-}
+};
 
 export default Cards;

@@ -1,5 +1,5 @@
 export const filterFactionOptions = [
-  { value: "all", label: "All Factions" },
+  { value: "all", label: "All" },
   { value: "red", label: "Red" },
   { value: "yellow", label: "Yellow" },
   { value: "blue", label: "Blue" },
@@ -7,7 +7,7 @@ export const filterFactionOptions = [
 ];
 
 export const filterRarityOptions = [
-  { value: "all", label: "All Factions" },
+  { value: "all", label: "All" },
   { value: "L", label: "Legendary" },
   { value: "R", label: "Rare" },
   { value: "U", label: "Uncommon" },

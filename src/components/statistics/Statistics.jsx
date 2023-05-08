@@ -1,27 +1,26 @@
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import styled from "styled-components";
 
-// import useCardStore from "../../store/cardStore";
 import useCardCountStore from "../../store/cardCountStore";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const StyledDoughnut = styled(Doughnut)`
+  max-height: 80vh;
+  margin: 2rem 0;
+`;
+
 function Statistics() {
-  //   const factionsData = useCardStore((state) => state.data);
-  // const cardCount = useCardCountStore((state) => state.cardCount);
   const cardRedCount = useCardCountStore((state) => state.cardRedCount);
   const cardYellowCount = useCardCountStore((state) => state.cardYellowCount);
   const cardBlueCount = useCardCountStore((state) => state.cardBlueCount);
   const cardGrayCount = useCardCountStore((state) => state.cardGrayCount);
 
-  console.log(cardRedCount);
-
   const data = {
-    // labels: ["Red", "Blue", "Yellow", "Gray"],
     datasets: [
       {
-        label: "# of Votes",
         data: [cardRedCount, cardYellowCount, cardBlueCount, cardGrayCount],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -44,7 +43,7 @@ function Statistics() {
     ],
   };
 
-  return <Doughnut data={data} />;
+  return <StyledDoughnut data={data} />;
 }
 
 export default Statistics;
