@@ -15,7 +15,12 @@ const CardCounterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: -1; /* przesuwamy element na dalszy plan, aby nie przysłaniał reszty treści */
+  z-index: -1;
+`;
+
+const PageContainer = styled.div`
+  overflow-y: scroll;
+  height: calc(100vh - 80px); /* 80px menu */
 `;
 
 import useCollectionStore from "../store/collectionStore";
@@ -38,7 +43,7 @@ const Cards = () => {
   };
 
   return (
-    <div>
+    <PageContainer>
       <CardCounterContainer>
         <CardCounter />
       </CardCounterContainer>
@@ -57,7 +62,7 @@ const Cards = () => {
         onCardCountChange={handleCardCountChange}
         handleCardClick={handleCardClick}
       />
-    </div>
+    </PageContainer>
   );
 };
 

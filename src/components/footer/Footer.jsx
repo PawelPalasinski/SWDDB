@@ -8,6 +8,7 @@ const StyledFooter = styled.footer`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  height: 40px;
 `;
 
 const Footer = () => {

@@ -28,6 +28,7 @@ body {
   font-family: 'DeathStar', sans-serif;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 button {

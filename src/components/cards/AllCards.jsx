@@ -20,7 +20,7 @@ const CardWrapper = styled.div`
     justify-content: space-between;
     margin: 0 auto;
     max-width: 1200px;
-    padding: 20px;
+    padding: 0 20px;
   }
   li {
     position: relative;
@@ -232,10 +232,7 @@ const AllCards = ({ handleCardClick }) => {
           </li>
         ))}
       </ul>
-
-      <div>
-        <PaginationAllCards totalPages={totalPages} />
-      </div>
+      <PaginationAllCards totalPages={totalPages} />
     </CardWrapper>
   );
 };
