@@ -5,6 +5,9 @@ const changeColor = keyframes`
   0% {
     fill: black;
   }
+  25% {
+    fill: white;
+  }
   50% {
     fill: red;
   }

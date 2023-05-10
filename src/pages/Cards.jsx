@@ -8,7 +8,7 @@ import Filters from "../components/filters/Filters";
 
 const CardCounterContainer = styled.div`
   position: fixed;
-  top: 0;
+  top: 20px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -20,7 +20,7 @@ const CardCounterContainer = styled.div`
 
 const PageContainer = styled.div`
   overflow-y: scroll;
-  height: calc(100vh - 80px); /* 80px menu */
+  height: auto;
 `;
 
 import useCollectionStore from "../store/collectionStore";

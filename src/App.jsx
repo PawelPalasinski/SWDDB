@@ -10,11 +10,11 @@ import Cards from "./pages/Cards";
 import PersonalCollection from "./pages/PersonalCollection";
 import About from "./pages/About";
 import Test from "./pages/Test";
+import Contact from "./pages/Contact";
+
 import Footer from "./components/footer/Footer";
 import NotFound from "./components/notFound/NotFound";
 import Loader from "./components/loader/Loader";
-
-import ContactForm from "./components/contactForm/ContactForm";
 
 import useCardStore from "./store/cardStore";
 
@@ -58,7 +58,7 @@ function App() {
           <Route path="/collection" element={<PersonalCollection />} />
           <Route path="/test" element={<Test />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<ContactForm />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

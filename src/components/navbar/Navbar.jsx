@@ -8,10 +8,10 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 0 10%;
   background-color: #2d2d2d;
   color: #fff;
-
+  height: 60px;
   ul {
     display: flex;
     justify-content: center;
@@ -82,7 +82,9 @@ function Navbar() {
 
   return (
     <Nav>
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
       <FaBars className="menu-icon" onClick={handleToggleMenu} />
       <ul className={isOpen ? "open" : ""}>
         <li>
