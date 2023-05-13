@@ -13,7 +13,7 @@ import Test from "./pages/Test";
 import Contact from "./pages/Contact";
 
 import Footer from "./components/footer/Footer";
-import NotFound from "./components/notFound/NotFound";
+import NotFound from "./pages/NotFound";
 import Loader from "./components/loader/Loader";
 
 import useCardStore from "./store/cardStore";

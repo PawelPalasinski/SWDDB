@@ -10,6 +10,7 @@ const FiltersContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0;
+  flex-direction: column;
 `;
 
 const Filters = () => {
