@@ -39,17 +39,18 @@ const Nav = styled.nav`
 
   @media screen and (max-width: 768px) {
     ul {
-      display: none;
+      display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
       flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 100vh;
-      position: absolute;
-      top: 80px;
+      height: 100%;
+      margin: 0;
+      position: fixed;
+      top: 0;
       left: 0;
       transition: all 0.5s ease;
-      background-color: #2d2d2d;
+      background-color: rgba(0, 0, 0, 0.9);
       z-index: 9999;
     }
 
@@ -61,14 +62,9 @@ const Nav = styled.nav`
       margin: 10px 0;
     }
 
-    ul.open {
-      display: flex;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
     body {
       overflow: ${({ isOpen }) => (isOpen ? "hidden" : "auto")};
+      height: 100vh;
     }
   }
 `;
@@ -81,29 +77,41 @@ function Navbar() {
   };
 
   return (
-    <Nav>
+    <Nav isOpen={isOpen}>
       <Link to="/">
         <Logo />
       </Link>
       <FaBars className="menu-icon" onClick={handleToggleMenu} />
-      <ul className={isOpen ? "open" : ""}>
+      <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={handleToggleMenu}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/cards">Cards</Link>
+          <Link to="/cards" onClick={handleToggleMenu}>
+            Cards
+          </Link>
         </li>
         <li>
-          <Link to="/test">Test</Link>
+          <Link to="/test" onClick={handleToggleMenu}>
+            Test
+          </Link>
         </li>
         <li>
-          <Link to="/collection">Personal Collection</Link>
+          <Link to="/collection" onClick={handleToggleMenu}>
+            Personal Collection
+          </Link>
         </li>
         <li>
-          <Link to="/contact">Contact Me</Link>
+          <Link to="/contact" onClick={handleToggleMenu}>
+            Contact Me
+          </Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/about" onClick={handleToggleMenu}>
+            About
+          </Link>
         </li>
       </ul>
     </Nav>
