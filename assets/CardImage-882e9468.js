@@ -1,4 +1,4 @@
-import{s as t,j as a}from"./index-e4ffdade.js";const s=t.img`
+import{s as t,j as a}from"./index-f2ff656e.js";const s=t.img`
   max-height: 200px;
   object-fit: cover;
   border-radius: 8px;
