@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import { LinkedIn } from "../svg/LinkedIn";
+import { GitHub } from "../svg/GitHub";
+
 const StyledFooter = styled.footer`
   background-color: #333;
   color: #fff;
@@ -9,9 +12,19 @@ const StyledFooter = styled.footer`
   align-items: center;
   padding: 1rem;
   height: 20px;
+  padding: 10px 10%;
+  & p {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    & p {
+      font-size: 8px;
+    }
+  }
+
   & ul {
     display: flex;
-    width: 20%;
     & li:first-child {
       margin-right: 10px;
     }
@@ -19,6 +32,20 @@ const StyledFooter = styled.footer`
       color: #fff;
       text-decoration: none;
       margin-right: 10px;
+      display: flex;
+      align-items: center;
+      & svg {
+        fill: #fff;
+        transition: fill 0.2s;
+        margin-right: 5px;
+        width: 20px;
+        height: 20px;
+      }
+      &:hover {
+        & svg {
+          fill: #f00;
+        }
+      }
     }
   }
 `;
@@ -26,7 +53,7 @@ const StyledFooter = styled.footer`
 const Footer = () => {
   return (
     <StyledFooter>
-      <div>© 2023 Pawel Palasinski</div>
+      <p>© 2023 Pawel Palasinski</p>
       <ul>
         <li>
           <a
@@ -34,7 +61,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Github
+            <GitHub />
           </a>
         </li>
         <li>
@@ -43,7 +70,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn
+            <LinkedIn />
           </a>
         </li>
       </ul>
