@@ -9,7 +9,12 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 0 10%;
-  background-color: #2d2d2d;
+  background: rgb(174, 175, 238);
+  background: radial-gradient(
+    circle,
+    rgba(174, 175, 238, 0) 32%,
+    rgba(12, 13, 13, 1) 100%
+  );
   color: #fff;
   height: 60px;
   ul {
@@ -78,13 +83,13 @@ function Navbar() {
 
   return (
     <Nav isOpen={isOpen}>
-      <Link to="/">
+      <Link to="SWDDB">
         <Logo />
       </Link>
       <FaBars className="menu-icon" onClick={handleToggleMenu} />
       <ul>
         <li>
-          <Link to="/" onClick={handleToggleMenu}>
+          <Link to="/SWDDB" onClick={handleToggleMenu}>
             Home
           </Link>
         </li>

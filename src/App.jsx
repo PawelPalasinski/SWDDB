@@ -52,7 +52,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="SWDDB" element={<Home />} />
           <Route path="/cards" element={<Cards />} />
           <Route path="/collection" element={<PersonalCollection />} />
           <Route path="/test" element={<Test />} />

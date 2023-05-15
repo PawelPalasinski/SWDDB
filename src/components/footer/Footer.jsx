@@ -5,7 +5,12 @@ import { LinkedIn } from "../svg/LinkedIn";
 import { GitHub } from "../svg/GitHub";
 
 const StyledFooter = styled.footer`
-  background-color: #333;
+  background: rgb(174, 175, 238);
+  background: radial-gradient(
+    circle,
+    rgba(174, 175, 238, 0) 32%,
+    rgba(12, 13, 13, 1) 100%
+  );
   color: #fff;
   display: flex;
   justify-content: space-between;
