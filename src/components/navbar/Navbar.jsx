@@ -83,7 +83,7 @@ function Navbar() {
 
   return (
     <Nav isOpen={isOpen}>
-      <Link to="SWDDB">
+      <Link to="/SWDDB">
         <Logo />
       </Link>
       <FaBars className="menu-icon" onClick={handleToggleMenu} />
@@ -94,27 +94,27 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/cards" onClick={handleToggleMenu}>
+          <Link to="/SWDDB/cards" onClick={handleToggleMenu}>
             Cards
           </Link>
         </li>
         <li>
-          <Link to="/test" onClick={handleToggleMenu}>
+          <Link to="/SWDDB/test" onClick={handleToggleMenu}>
             Test
           </Link>
         </li>
         <li>
-          <Link to="/collection" onClick={handleToggleMenu}>
+          <Link to="/SWDDB/collection" onClick={handleToggleMenu}>
             Personal Collection
           </Link>
         </li>
         <li>
-          <Link to="/contact" onClick={handleToggleMenu}>
+          <Link to="/SWDDB/contact" onClick={handleToggleMenu}>
             Contact Me
           </Link>
         </li>
         <li>
-          <Link to="/about" onClick={handleToggleMenu}>
+          <Link to="/SWDDB/about" onClick={handleToggleMenu}>
             About
           </Link>
         </li>
