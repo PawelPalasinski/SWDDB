@@ -6,8 +6,11 @@ import layerImage from "../assets/images/layer1.png";
 import logoImage from "../assets/images/logo.png";
 
 const ParallaxContainer = styled.div`
-  position: relative;
-  height: 90vh; /* Ustaw wysokość, która pasuje do Twoich potrzeb */
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  position: fixed;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
 `;
 
@@ -19,19 +22,6 @@ const ParallaxText = styled.div`
   text-align: center;
   color: #fff;
   z-index: 2;
-`;
-
-const ParallaxImage = styled.div`
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 100vh;
-  background-image: url(${backgroundImage});
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
 `;
 
 const ParallaxLayer = styled.div`
@@ -69,6 +59,27 @@ function Home() {
     const layer = layerRef.current;
     const logo = logoRef.current;
 
+    const handleMouseMove = (e) => {
+      const containerWidth = container.offsetWidth;
+      const containerHeight = container.offsetHeight;
+
+      const mouseX = e.clientX - container.offsetLeft;
+      const mouseY = e.clientY - container.offsetTop;
+
+      const offsetX = 0.1 - mouseX / containerWidth;
+      const offsetY = 0.1 - mouseY / containerHeight;
+
+      const layerParallaxAmount = 40;
+      const logoParallaxAmount = 20;
+
+      layer.style.transform = `translate(${offsetX * layerParallaxAmount}px, ${
+        offsetY * layerParallaxAmount
+      }px)`;
+      logo.style.transform = `translate(${offsetX * logoParallaxAmount}px, ${
+        offsetY * logoParallaxAmount
+      }px)`;
+    };
+
     container.addEventListener("mousemove", handleMouseMove);
 
     return () => {
@@ -76,37 +87,11 @@ function Home() {
     };
   }, []);
 
-  const handleMouseMove = (e) => {
-    const container = containerRef.current;
-    const layer = layerRef.current;
-    const logo = logoRef.current;
-
-    const containerWidth = container.offsetWidth;
-    const containerHeight = container.offsetHeight;
-
-    const mouseX = e.clientX - container.offsetLeft;
-    const mouseY = e.clientY - container.offsetTop;
-
-    const offsetX = 0.1 - mouseX / containerWidth;
-    const offsetY = 0.1 - mouseY / containerHeight;
-
-    const layerParallaxAmount = 40; // Wartość paralaksy dla warstwy
-    const logoParallaxAmount = 20; // Wartość paralaksy dla logo
-
-    layer.style.transform = `translate(${offsetX * layerParallaxAmount}px, ${
-      offsetY * layerParallaxAmount
-    }px)`;
-    logo.style.transform = `translate(${offsetX * logoParallaxAmount}px, ${
-      offsetY * logoParallaxAmount
-    }px)`;
-  };
-
   return (
     <ParallaxContainer ref={containerRef}>
       <ParallaxText>
         <p>Welcome to the Star Wars Destiny card collection app</p>
       </ParallaxText>
-      <ParallaxImage />
       <ParallaxLayer ref={layerRef} alt="Layer" />
       <ParallaxLogo ref={logoRef} src={logoImage} alt="Logo" />
     </ParallaxContainer>

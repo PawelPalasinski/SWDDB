@@ -56,7 +56,7 @@ const Nav = styled.nav`
       left: 0;
       transition: all 0.5s ease;
       background-color: rgba(0, 0, 0, 0.9);
-      z-index: 9999;
+      z-index: 9;
     }
 
     .menu-icon {
@@ -83,13 +83,13 @@ function Navbar() {
 
   return (
     <Nav isOpen={isOpen}>
-      <Link to="/SWDDB">
+      <Link to="/SWDDB/">
         <Logo />
       </Link>
       <FaBars className="menu-icon" onClick={handleToggleMenu} />
       <ul>
         <li>
-          <Link to="/SWDDB" onClick={handleToggleMenu}>
+          <Link to="/SWDDB/" onClick={handleToggleMenu}>
             Home
           </Link>
         </li>

@@ -8,11 +8,12 @@ const Wrapper = styled.div`
   background-image: url(${deathstarwallpaper});
   background-repeat: no-repeat;
   background-size: cover;
-  height: 85vh;
-  margin: 0 auto;
-  padding: 30px;
-  position: relative;
-  background-position: 50%;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
 `;
 
 const Contact = () => {

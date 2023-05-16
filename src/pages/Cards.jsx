@@ -7,12 +7,13 @@ import CardCounter from "../components/cardCounter/CardCounter";
 import Filters from "../components/filters/Filters";
 import Notification from "../components/notification/Notification";
 
+import space from "../assets/images/space.webp";
 const CardCounterContainer = styled.div`
+  background-image: url(${space});
+  background-repeat: no-repeat;
+  background-size: cover;
   position: fixed;
-  top: 20px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +28,7 @@ const PageContainer = styled.div`
 import useCollectionStore from "../store/collectionStore";
 
 const Cards = () => {
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
 
   const { handleAddOrRemoveFromCollection } = useCollectionStore();
@@ -64,7 +65,7 @@ const Cards = () => {
       </div>
 
       <button onClick={handleToggleFilters}>
-        {showFilters ? "Ukryj filtry" : "Pokaż filtry"}{" "}
+        {showFilters ? "Show filters" : "Hide filters"}{" "}
       </button>
 
       {showFilters && <Filters />}
