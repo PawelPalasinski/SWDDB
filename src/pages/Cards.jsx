@@ -18,10 +18,10 @@ const CardCounterContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: -1;
+  margin-top: -60px;
 `;
 
 const PageContainer = styled.div`
-  overflow-y: scroll;
   height: auto;
 `;
 

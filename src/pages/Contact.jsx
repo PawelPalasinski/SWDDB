@@ -16,11 +16,19 @@ const Wrapper = styled.div`
   z-index: -1;
 `;
 
+const FillSpace = styled.div`
+  width: 100%;
+  height: calc(90vh - 60px);
+`;
+
 const Contact = () => {
   return (
-    <Wrapper>
-      <ContactForm />
-    </Wrapper>
+    <>
+      <FillSpace></FillSpace>
+      <Wrapper>
+        <ContactForm />
+      </Wrapper>
+    </>
   );
 };
 

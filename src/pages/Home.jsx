@@ -12,6 +12,8 @@ const ParallaxContainer = styled.div`
   height: 100%;
   width: 100%;
   overflow: hidden;
+  z-index: -1;
+  margin-top: calc(-100vh + 90px);
 `;
 
 const ParallaxText = styled.div`
@@ -22,6 +24,7 @@ const ParallaxText = styled.div`
   text-align: center;
   color: #fff;
   z-index: 2;
+  font-size: 1.5em;
 `;
 
 const ParallaxLayer = styled.div`
@@ -47,6 +50,12 @@ const ParallaxLogo = styled.img`
   width: 20%;
   min-width: 100px;
   filter: invert(100%);
+  opacity: 0.5;
+`;
+
+const FillSpace = styled.div`
+  width: 100%;
+  height: calc(90vh - 60px);
 `;
 
 function Home() {
@@ -88,13 +97,16 @@ function Home() {
   }, []);
 
   return (
-    <ParallaxContainer ref={containerRef}>
-      <ParallaxText>
-        <p>Welcome to the Star Wars Destiny card collection app</p>
-      </ParallaxText>
-      <ParallaxLayer ref={layerRef} alt="Layer" />
-      <ParallaxLogo ref={logoRef} src={logoImage} alt="Logo" />
-    </ParallaxContainer>
+    <>
+      <FillSpace></FillSpace>
+      <ParallaxContainer ref={containerRef}>
+        <ParallaxText>
+          <p>Welcome to the Star Wars Destiny card collection app</p>
+        </ParallaxText>
+        <ParallaxLayer ref={layerRef} alt="Layer" />
+        <ParallaxLogo ref={logoRef} src={logoImage} alt="Logo" />
+      </ParallaxContainer>
+    </>
   );
 }
 

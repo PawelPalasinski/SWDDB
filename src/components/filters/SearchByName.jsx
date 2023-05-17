@@ -21,7 +21,7 @@ const SearchInput = styled.input`
   background-color: #f5f5f5;
   transition: box-shadow 0.2s ease-in-out;
   color: black;
-
+  margin-top: 60px;
   &:focus {
     outline: none;
     box-shadow: 0px 0px 5px 0px rgba(255, 0, 0, 0.75);
