@@ -1,6 +1,9 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import styled from "styled-components";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import useCardStore from "../../store/cardStore";
 import usePaginationStore from "../../store/paginationStore";
 import useFilterStore from "../../store/filterStore";
@@ -205,8 +208,25 @@ const AllCards = ({ handleCardClick }) => {
 
   const getButtonText = useCollectionStore((state) => state.getButtonText);
 
+  const handleButtonClick = (cardCode) => {
+    const buttonText = getButtonText(cardCode);
+
+    if (buttonText === "ADD") {
+      toast.success("Card added to collection.", {
+        theme: "dark",
+      });
+    } else if (buttonText === "DEL") {
+      toast.error("Card removed from collection.", {
+        theme: "dark",
+      });
+    }
+
+    handleCardClick(cardCode);
+  };
+
   return (
     <CardWrapper>
+      <ToastContainer />
       <ul>
         {currentData.map((item) => (
           <li key={item.code}>
@@ -224,7 +244,7 @@ const AllCards = ({ handleCardClick }) => {
                 <p>{item.set_name}</p>
                 <p>{item.rarity_name}</p>
               </OverlayText>
-              <CardButton onClick={() => handleCardClick(item.code)}>
+              <CardButton onClick={() => handleButtonClick(item.code)}>
                 <Jedi />
                 <span>{getButtonText(item.code)}</span>
               </CardButton>

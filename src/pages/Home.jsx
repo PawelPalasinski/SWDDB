@@ -5,15 +5,22 @@ import backgroundImage from "../assets/images/deathstarwallpaper.jpg";
 import layerImage from "../assets/images/layer1.png";
 import logoImage from "../assets/images/logo.png";
 
+const ParallaxBox = styled.div`
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: -60px;
+  position: fixed;
+  z-index: -1;
+`;
+
 const ParallaxContainer = styled.div`
   background-image: url(${backgroundImage});
   background-size: cover;
-  position: fixed;
-  height: 100%;
+  position: relative;
   width: 100%;
-  overflow: hidden;
-  z-index: -1;
-  margin-top: calc(-100vh + 90px);
+  height: 100%;
 `;
 
 const ParallaxText = styled.div`
@@ -54,8 +61,9 @@ const ParallaxLogo = styled.img`
 `;
 
 const FillSpace = styled.div`
-  width: 100%;
+  width: 1%;
   height: calc(90vh - 60px);
+  background-color: red;
 `;
 
 function Home() {
@@ -97,8 +105,7 @@ function Home() {
   }, []);
 
   return (
-    <>
-      <FillSpace></FillSpace>
+    <ParallaxBox>
       <ParallaxContainer ref={containerRef}>
         <ParallaxText>
           <p>Welcome to the Star Wars Destiny card collection app</p>
@@ -106,7 +113,7 @@ function Home() {
         <ParallaxLayer ref={layerRef} alt="Layer" />
         <ParallaxLogo ref={logoRef} src={logoImage} alt="Logo" />
       </ParallaxContainer>
-    </>
+    </ParallaxBox>
   );
 }
 
