@@ -83,13 +83,13 @@ function Navbar() {
 
   return (
     <Nav isOpen={isOpen}>
-      <Link to="/">
+      <Link to="/SWDDB">
         <Logo />
       </Link>
       <FaBars className="menu-icon" onClick={handleToggleMenu} />
       <ul>
         <li>
-          <Link to="/" onClick={handleToggleMenu}>
+          <Link to="/SWDDB" onClick={handleToggleMenu}>
             Home
           </Link>
         </li>

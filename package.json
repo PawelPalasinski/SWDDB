@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://pawelpalasinski.github.io/SWDDB/",
+  "homepage": "https://pawelpalasinski.github.io/SWDDB",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
