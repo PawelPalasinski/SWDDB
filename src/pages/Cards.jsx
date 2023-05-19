@@ -51,11 +51,11 @@ const Cards = () => {
 
       <div>
         <SearchByName />
-      </div>
 
-      <button onClick={handleToggleFilters}>
-        {showFilters ? "Show filters" : "Hide filters"}{" "}
-      </button>
+        <button onClick={handleToggleFilters}>
+          {showFilters ? "Show filters" : "Hide filters"}{" "}
+        </button>
+      </div>
 
       {showFilters && <Filters />}
 
