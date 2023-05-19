@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 import { createGlobalStyle } from "styled-components";
 import SWFont from "./assets/fonts/DeathStar-VmWB.ttf";
@@ -45,6 +46,9 @@ function App() {
   if (isLoading) {
     return <Loader />;
   }
+
+  // let location = useLocation();
+  // console.log(location);
 
   return (
     <>
