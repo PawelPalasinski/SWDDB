@@ -37,7 +37,6 @@ button {
 
 function App() {
   const { isLoading, fetchData } = useCardStore();
-  const location = useLocation();
 
   useEffect(() => {
     fetchData();
