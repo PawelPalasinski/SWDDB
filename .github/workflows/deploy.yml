@@ -1,4 +1,16 @@
- steps:
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Checkout repo
         uses: actions/checkout@v2
 
