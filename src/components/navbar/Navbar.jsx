@@ -94,27 +94,27 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/SWDDB/cards" onClick={handleToggleMenu}>
+          <Link to="/cards" onClick={handleToggleMenu}>
             Cards
           </Link>
         </li>
         <li>
-          <Link to="/SWDDB/test" onClick={handleToggleMenu}>
+          <Link to="/test" onClick={handleToggleMenu}>
             Test
           </Link>
         </li>
         <li>
-          <Link to="/SWDDB/collection" onClick={handleToggleMenu}>
+          <Link to="/collection" onClick={handleToggleMenu}>
             Personal Collection
           </Link>
         </li>
         <li>
-          <Link to="/SWDDB/contact" onClick={handleToggleMenu}>
+          <Link to="/contact" onClick={handleToggleMenu}>
             Contact Me
           </Link>
         </li>
         <li>
-          <Link to="/SWDDB/about" onClick={handleToggleMenu}>
+          <Link to="/about" onClick={handleToggleMenu}>
             About
           </Link>
         </li>
