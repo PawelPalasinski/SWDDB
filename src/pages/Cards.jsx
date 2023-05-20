@@ -4,9 +4,11 @@ import styled from "styled-components";
 import AllCards from "../components/cards/AllCards";
 import SearchByName from "../components/filters/SearchByName";
 import CardCounter from "../components/cardCounter/CardCounter";
+import Modal from "../components/modal/Modal";
 import Filters from "../components/filters/Filters";
 
 import space from "../assets/images/space.webp";
+
 const CardCounterContainer = styled.div`
   background-image: url(${space});
   background-repeat: no-repeat;
@@ -22,6 +24,33 @@ const CardCounterContainer = styled.div`
 
 const PageContainer = styled.div`
   height: auto;
+`;
+
+const FiltersContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 1rem;
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+// const SearchByName = styled.input`
+//   padding: 0.5rem;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+// `;
+
+const ToggleButton = styled.button`
+  padding: 0.5rem 1rem;
+  background-color: ${(props) => (props.showFilters ? "#ff0000" : "#00ff00")};
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 `;
 
 import useCollectionStore from "../store/collectionStore";
@@ -49,15 +78,19 @@ const Cards = () => {
         <CardCounter />
       </CardCounterContainer>
 
-      <div>
-        <SearchByName />
+      <FiltersContainer>
+        <SearchContainer>
+          <SearchByName type="text" placeholder="Search by name" />
+        </SearchContainer>
 
-        <button onClick={handleToggleFilters}>
-          {showFilters ? "Show filters" : "Hide filters"}{" "}
-        </button>
-      </div>
+        <ToggleButton onClick={handleToggleFilters} showFilters={showFilters}>
+          {showFilters ? "Hide filters" : "Show filters"}
+        </ToggleButton>
+      </FiltersContainer>
 
-      {showFilters && <Filters />}
+      <Modal isOpen={showFilters} onClose={handleToggleFilters}>
+        <Filters />
+      </Modal>
 
       <AllCards
         onCardCountChange={handleCardCountChange}

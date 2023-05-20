@@ -57,6 +57,7 @@ const Nav = styled.nav`
       transition: all 0.5s ease;
       background-color: rgba(0, 0, 0, 0.9);
       z-index: 9;
+      padding: 0;
     }
 
     .menu-icon {
