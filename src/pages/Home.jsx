@@ -5,22 +5,21 @@ import backgroundImage from "../assets/images/deathstarwallpaper.jpg";
 import layerImage from "../assets/images/layer1.png";
 import logoImage from "../assets/images/logo.png";
 
-const ParallaxBox = styled.div`
-  width: 100%;
-  height: 100vh;
-  margin: 0 auto;
-  overflow: hidden;
-  margin-top: -60px;
-  position: fixed;
-  z-index: -1;
-`;
+import { LinkedIn } from "../components/svg/LinkedIn";
+import Footer from "../components/footer/Footer";
+// import { GitHub } from ".../components/svg/GitHub";
 
 const ParallaxContainer = styled.div`
   background-image: url(${backgroundImage});
   background-size: cover;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  z-index: -1;
+  position: fixed;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: -60px;
 `;
 
 const ParallaxText = styled.div`
@@ -60,21 +59,36 @@ const ParallaxLogo = styled.img`
   opacity: 0.5;
 `;
 
-const FillSpace = styled.div`
-  width: 1%;
-  height: calc(90vh - 60px);
-  background-color: red;
+const ParallaxFooter = styled.div`
+position: absolute;
+bottom: 0;
+width: 110vw;
+text-align: center;
+z-index: 2;
+font-size: 1.5em;
+  & svg {
+    fill: #fff;
+    transition: fill 0.2s;
+    margin-right: 5px;
+    width: 100px;
+  }
+  &:hover {
+    & svg {
+      fill: #f00;
+    }
 `;
 
 function Home() {
   const containerRef = useRef(null);
   const layerRef = useRef(null);
   const logoRef = useRef(null);
+  const liRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
     const layer = layerRef.current;
     const logo = logoRef.current;
+    const li = liRef.current;
 
     const handleMouseMove = (e) => {
       const containerWidth = container.offsetWidth;
@@ -88,11 +102,15 @@ function Home() {
 
       const layerParallaxAmount = 40;
       const logoParallaxAmount = 20;
+      const linkParallaxAmount = 30;
 
       layer.style.transform = `translate(${offsetX * layerParallaxAmount}px, ${
         offsetY * layerParallaxAmount
       }px)`;
       logo.style.transform = `translate(${offsetX * logoParallaxAmount}px, ${
+        offsetY * logoParallaxAmount
+      }px)`;
+      li.style.transform = `translate(${offsetX * linkParallaxAmount}px, ${
         offsetY * logoParallaxAmount
       }px)`;
     };
@@ -105,15 +123,17 @@ function Home() {
   }, []);
 
   return (
-    <ParallaxBox>
-      <ParallaxContainer ref={containerRef}>
-        <ParallaxText>
-          <p>Welcome to the Star Wars Destiny card collection app</p>
-        </ParallaxText>
-        <ParallaxLayer ref={layerRef} alt="Layer" />
-        <ParallaxLogo ref={logoRef} src={logoImage} alt="Logo" />
-      </ParallaxContainer>
-    </ParallaxBox>
+    <ParallaxContainer ref={containerRef}>
+      <ParallaxText>
+        <p>Welcome to the Star Wars Destiny card collection app</p>
+      </ParallaxText>
+      <ParallaxLayer ref={layerRef} alt="Layer" />
+      <ParallaxLogo ref={logoRef} src={logoImage} alt="Logo" />
+
+      <ParallaxFooter ref={liRef}>
+        <Footer />
+      </ParallaxFooter>
+    </ParallaxContainer>
   );
 }
 

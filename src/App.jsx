@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { createGlobalStyle } from "styled-components";
-import SWFont from "./assets/fonts/DeathStar-VmWB.ttf";
+import SWFont from "./assets/fonts/Starjedi.ttf";
 
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
@@ -12,7 +12,7 @@ import About from "./pages/About";
 import Test from "./pages/Test";
 import Contact from "./pages/Contact";
 
-import Footer from "./components/footer/Footer";
+// import Footer from "./components/footer/Footer";
 import NotFound from "./pages/NotFound";
 import Loader from "./components/loader/Loader";
 
@@ -60,7 +60,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
       </Router>
     </>
   );

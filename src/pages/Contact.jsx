@@ -17,14 +17,13 @@ const Wrapper = styled.div`
 `;
 
 const FillSpace = styled.div`
-  width: 100%;
+  width: 1px;
   height: calc(90vh - 60px);
 `;
 
 const Contact = () => {
   return (
     <>
-      <FillSpace></FillSpace>
       <Wrapper>
         <ContactForm />
       </Wrapper>
