@@ -13,14 +13,21 @@ const StyledFooter = styled.footer`
   );
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 1rem;
-  padding: 0px 10%;
   height: 60px;
+  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
   & p {
     font-size: 18px;
   }
+
+  & ul{
+    
+    margin-right: 5%;
+    li {
+    margin-rught: 10px;
+  }
+}
 
   @media (max-width: 768px) {
     & p {
@@ -39,17 +46,7 @@ const StyledFooter = styled.footer`
       margin-right: 10px;
       display: flex;
       align-items: center;
-      & svg {
-        fill: #fff;
-        transition: fill 0.2s;
-        margin-right: 5px;
-        width: 20px;
-        height: 20px;
-      }
-      &:hover {
-        & svg {
-          fill: #f00;
-        }
+      width: 25px;
       }
     }
   }

@@ -6,6 +6,7 @@ import SearchByName from "../components/filters/SearchByName";
 import CardCounter from "../components/cardCounter/CardCounter";
 import Modal from "../components/modal/Modal";
 import Filters from "../components/filters/Filters";
+import Footer from "../components/footer/Footer";
 
 import space from "../assets/images/space.webp";
 
@@ -38,12 +39,6 @@ const SearchContainer = styled.div`
   align-items: center;
 `;
 
-// const SearchByName = styled.input`
-//   padding: 0.5rem;
-//   border: 1px solid #ccc;
-//   border-radius: 4px;
-// `;
-
 const ToggleButton = styled.button`
   padding: 0.5rem 1rem;
   background-color: ${(props) => (props.showFilters ? "#ff0000" : "#00ff00")};
@@ -51,6 +46,10 @@ const ToggleButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+`;
+
+const StyledFooter = styled.footer`
+  width: 100%;
 `;
 
 import useCollectionStore from "../store/collectionStore";
@@ -96,6 +95,10 @@ const Cards = () => {
         onCardCountChange={handleCardCountChange}
         handleCardClick={handleCardClick}
       />
+
+      <StyledFooter>
+        <Footer />
+      </StyledFooter>
     </PageContainer>
   );
 };

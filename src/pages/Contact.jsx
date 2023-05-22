@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ContactForm from "../components/contactForm/ContactForm";
 
 import deathstarwallpaper from "../assets/images/deathstarwallpaper.jpg";
+import Footer from "../components/footer/Footer";
 
 const Wrapper = styled.div`
   background-image: url(${deathstarwallpaper});
@@ -14,11 +15,14 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   z-index: -1;
+  flex-direction: column;
 `;
 
-const FillSpace = styled.div`
-  width: 1px;
-  height: calc(90vh - 60px);
+const StyledFooter = styled.footer`
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  width: 100%;
 `;
 
 const Contact = () => {
@@ -26,6 +30,9 @@ const Contact = () => {
     <>
       <Wrapper>
         <ContactForm />
+        <StyledFooter>
+          <Footer />
+        </StyledFooter>
       </Wrapper>
     </>
   );

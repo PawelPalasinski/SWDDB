@@ -5,9 +5,7 @@ import backgroundImage from "../assets/images/deathstarwallpaper.jpg";
 import layerImage from "../assets/images/layer1.png";
 import logoImage from "../assets/images/logo.png";
 
-import { LinkedIn } from "../components/svg/LinkedIn";
 import Footer from "../components/footer/Footer";
-// import { GitHub } from ".../components/svg/GitHub";
 
 const ParallaxContainer = styled.div`
   background-image: url(${backgroundImage});
@@ -31,6 +29,7 @@ const ParallaxText = styled.div`
   color: #fff;
   z-index: 2;
   font-size: 1.5em;
+  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
 `;
 
 const ParallaxLayer = styled.div`
@@ -59,23 +58,11 @@ const ParallaxLogo = styled.img`
   opacity: 0.5;
 `;
 
-const ParallaxFooter = styled.div`
-position: absolute;
-bottom: 0;
-width: 110vw;
-text-align: center;
-z-index: 2;
-font-size: 1.5em;
-  & svg {
-    fill: #fff;
-    transition: fill 0.2s;
-    margin-right: 5px;
-    width: 100px;
-  }
-  &:hover {
-    & svg {
-      fill: #f00;
-    }
+const StyledFooter = styled.footer`
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  width: 110%;
 `;
 
 function Home() {
@@ -88,7 +75,6 @@ function Home() {
     const container = containerRef.current;
     const layer = layerRef.current;
     const logo = logoRef.current;
-    const li = liRef.current;
 
     const handleMouseMove = (e) => {
       const containerWidth = container.offsetWidth;
@@ -102,15 +88,11 @@ function Home() {
 
       const layerParallaxAmount = 40;
       const logoParallaxAmount = 20;
-      const linkParallaxAmount = 30;
 
       layer.style.transform = `translate(${offsetX * layerParallaxAmount}px, ${
         offsetY * layerParallaxAmount
       }px)`;
       logo.style.transform = `translate(${offsetX * logoParallaxAmount}px, ${
-        offsetY * logoParallaxAmount
-      }px)`;
-      li.style.transform = `translate(${offsetX * linkParallaxAmount}px, ${
         offsetY * logoParallaxAmount
       }px)`;
     };
@@ -129,10 +111,9 @@ function Home() {
       </ParallaxText>
       <ParallaxLayer ref={layerRef} alt="Layer" />
       <ParallaxLogo ref={logoRef} src={logoImage} alt="Logo" />
-
-      <ParallaxFooter ref={liRef}>
+      <StyledFooter>
         <Footer />
-      </ParallaxFooter>
+      </StyledFooter>
     </ParallaxContainer>
   );
 }

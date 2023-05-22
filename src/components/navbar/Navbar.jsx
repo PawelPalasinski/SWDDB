@@ -1,8 +1,17 @@
 import { useState } from "react";
-import { FaBars } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 import Logo from "../svg/Logo";
+
+const slideIn = keyframes`
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+`;
 
 const Nav = styled.nav`
   display: flex;
@@ -17,6 +26,18 @@ const Nav = styled.nav`
   );
   color: #fff;
   height: 60px;
+  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+
+  .menu-icon {
+    display: none;
+    cursor: pointer;
+  }
+
+  .close-icon {
+    display: none;
+    width: 0;
+  }
+
   ul {
     display: flex;
     justify-content: center;
@@ -30,9 +51,50 @@ const Nav = styled.nav`
     a {
       color: #fff;
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: blue;
+        transform-origin: left;
+        transition: width 0.3s ease-in-out;
+      }
+
+      &:hover:after {
+        width: 100%;
+        animation: ${slideIn} 0.5s ease-in-out;
+      }
 
       &:hover {
-        text-decoration: underline;
+        text-shadow: 1px 1px 2px #000, 0 0 1em blue, 0 0 0.2em #000;
+      }
+
+      &.active {
+        color: red;
+        text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: red;
+          transform-origin: left;
+          transition: width 0.3s ease-in-out;
+        }
+
+        &:hover:after {
+          width: 100%;
+          animation: ${slideIn} 0.5s ease-in-out;
+        }
       }
     }
   }
@@ -64,8 +126,19 @@ const Nav = styled.nav`
       display: block;
     }
 
+    .close-icon {
+      display: block;
+      position: absolute;
+      top: 10vh;
+      right: 10vw;
+      color: #fff;
+      font-size: 1.5rem;
+      width: auto;
+    }
+
     li {
       margin: 10px 0;
+      text-shadow: 1px 1px 2px #000, 0 0 1em blue, 0 0 0.2em #000;
     }
 
     body {
@@ -75,53 +148,61 @@ const Nav = styled.nav`
   }
 `;
 
-function Navbar() {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   return (
     <Nav isOpen={isOpen}>
-      <Link to="/SWDDB">
+      <Link to="/SWDDB/">
         <Logo />
       </Link>
       <FaBars className="menu-icon" onClick={handleToggleMenu} />
       <ul>
         <li>
-          <Link to="/SWDDB" onClick={handleToggleMenu}>
+          <FaTimes
+            className="close-icon"
+            onClick={handleToggleMenu}
+            style={{ display: isOpen ? "block" : "none" }}
+          />
+        </li>
+
+        <li>
+          <NavLink exact="true" to="/SWDDB/" onClick={handleToggleMenu}>
             Home
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/cards" onClick={handleToggleMenu}>
+          <NavLink to="/SWDDB/cards" onClick={handleToggleMenu}>
             Cards
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/test" onClick={handleToggleMenu}>
+          <NavLink to="/SWDDB/test" onClick={handleToggleMenu}>
             Test
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/collection" onClick={handleToggleMenu}>
+          <NavLink to="/SWDDB/collection" onClick={handleToggleMenu}>
             Personal Collection
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/contact" onClick={handleToggleMenu}>
+          <NavLink to="/SWDDB/contact" onClick={handleToggleMenu}>
             Contact Me
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/about" onClick={handleToggleMenu}>
+          <NavLink to="/SWDDB/about" onClick={handleToggleMenu}>
             About
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </Nav>
   );
-}
+};
 
 export default Navbar;

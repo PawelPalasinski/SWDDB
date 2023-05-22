@@ -21,6 +21,7 @@ const StyledForm = styled.form`
     margin-bottom: 10px;
     font-size: 18px;
     color: #fff;
+    text-shadow: 1px 1px 2px #000, 0 0 1em blue, 0 0 0.2em #000;
   }
 
   input,
@@ -46,6 +47,7 @@ const StyledForm = styled.form`
     padding: 12px;
     width: 100%;
     border: none;
+    text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
   }
 
   button[type="submit"]:hover {
@@ -56,11 +58,13 @@ const StyledForm = styled.form`
 const StyledError = styled.p`
   color: red;
   margin: 0;
+  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
 `;
 
 const StyledSuccess = styled.p`
-  color: green;
+  color: blue;
   margin: 0;
+  text-shadow: 1px 1px 2px #000, 0 0 1em bleu, 0 0 0.2em #000;
 `;
 
 const ContactForm = () => {
@@ -124,15 +128,15 @@ const ContactForm = () => {
 
   return (
     <StyledForm ref={form} onSubmit={sendEmail}>
-      <label htmlFor="user_name">Name *</label>
+      <label htmlFor="user_name">Name</label>
       <input type="text" name="user_name" id="user_name" />
       {errors.user_name && <StyledError>{errors.user_name}</StyledError>}
 
-      <label htmlFor="user_email">Email *</label>
+      <label htmlFor="user_email">Email</label>
       <input type="email" name="user_email" id="user_email" />
       {errors.user_email && <StyledError>{errors.user_email}</StyledError>}
 
-      <label htmlFor="message">Message *</label>
+      <label htmlFor="message">Message</label>
       <textarea name="message" id="message"></textarea>
       {errors.message && <StyledError>{errors.message}</StyledError>}
 
