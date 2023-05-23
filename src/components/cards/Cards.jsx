@@ -103,7 +103,7 @@ const OverlayText = styled.div`
   }
 `;
 
-const AllCards = ({ handleCardClick }) => {
+const Cards = ({ handleCardClick }) => {
   const data = useCardStore((state) => state.data);
 
   const currentPage = usePaginationStore((state) => state.currentPage);
@@ -257,4 +257,4 @@ const AllCards = ({ handleCardClick }) => {
   );
 };
 
-export default AllCards;
+export default Cards;

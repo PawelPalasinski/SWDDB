@@ -5,16 +5,11 @@ import useCardCountStore from "../../store/cardCountStore";
 import Statistics from "../statistics/Statistics";
 
 const CardAmount = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20% 0 0 0;
-  padding: 0;
   list-style: none;
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translate(-50%, 50%);
+  margin-top: 120px;
+  margin-left: -60%;
 
   li {
     margin-right: 10px;

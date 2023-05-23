@@ -157,7 +157,7 @@ const Navbar = () => {
 
   return (
     <Nav isOpen={isOpen}>
-      <Link to="/">
+      <Link to="/SWDDB/">
         <Logo />
       </Link>
       <FaBars className="menu-icon" onClick={handleToggleMenu} />
@@ -171,32 +171,27 @@ const Navbar = () => {
         </li>
 
         <li>
-          <NavLink exact="true" to="/" onClick={handleToggleMenu}>
+          <NavLink exact="true" to="/SWDDB/" onClick={handleToggleMenu}>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="cards" onClick={handleToggleMenu}>
+          <NavLink to="/SWDDB/cards" onClick={handleToggleMenu}>
             Cards
           </NavLink>
         </li>
         <li>
-          <NavLink to="test" onClick={handleToggleMenu}>
-            Test
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="collection" onClick={handleToggleMenu}>
+          <NavLink to="/SWDDB/collection" onClick={handleToggleMenu}>
             Personal Collection
           </NavLink>
         </li>
         <li>
-          <NavLink to="contact" onClick={handleToggleMenu}>
+          <NavLink to="/SWDDB/contact" onClick={handleToggleMenu}>
             Contact Me
           </NavLink>
         </li>
         <li>
-          <NavLink to="about" onClick={handleToggleMenu}>
+          <NavLink to="/SWDDB/about" onClick={handleToggleMenu}>
             About
           </NavLink>
         </li>

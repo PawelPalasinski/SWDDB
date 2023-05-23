@@ -5,13 +5,12 @@ import { createGlobalStyle } from "styled-components";
 import SWFont from "./assets/fonts/Starjedi.ttf";
 
 import Navbar from "./components/navbar/Navbar";
-import Home from "./pages/Home";
-import Cards from "./pages/Cards";
-import PersonalCollection from "./pages/PersonalCollection";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import HomePage from "./pages/HomePage";
+import CardsPage from "./pages/CardsPage";
+import PersonalCollectionPage from "./pages/PersonalCollectionPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 
-// import Footer from "./components/footer/Footer";
 import NotFound from "./pages/NotFound";
 import Loader from "./components/loader/Loader";
 
@@ -51,11 +50,14 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/SWDDB/" element={<Home />} />
-          <Route path="/cards" element={<Cards />} />
-          <Route path="/collection" element={<PersonalCollection />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/SWDDB/" element={<HomePage />} />
+          <Route path="/SWDDB/cards" element={<CardsPage />} />
+          <Route
+            path="/SWDDB/collection"
+            element={<PersonalCollectionPage />}
+          />
+          <Route path="/SWDDB/about" element={<AboutPage />} />
+          <Route path="/SWDDB/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

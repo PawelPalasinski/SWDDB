@@ -25,7 +25,7 @@ const StyledFooter = styled.footer`
   width: 100%;
 `;
 
-const Contact = () => {
+const ContactPage = () => {
   return (
     <>
       <Wrapper>
@@ -38,4 +38,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactPage;

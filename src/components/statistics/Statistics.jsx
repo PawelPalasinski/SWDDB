@@ -10,9 +10,10 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const StyledDoughnut = styled(Doughnut)`
   max-height: 80vh;
   margin: 2rem 0;
+  margin-left: -40%;
 `;
 
-function Statistics() {
+const Statistics = () => {
   const cardRedCount = useCardCountStore((state) => state.cardRedCount);
   const cardYellowCount = useCardCountStore((state) => state.cardYellowCount);
   const cardBlueCount = useCardCountStore((state) => state.cardBlueCount);
@@ -44,6 +45,6 @@ function Statistics() {
   };
 
   return <StyledDoughnut data={data} />;
-}
+};
 
 export default Statistics;

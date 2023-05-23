@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import AllCards from "../components/cards/AllCards";
+import Cards from "../components/cards/Cards";
 import SearchByName from "../components/filters/SearchByName";
 import CardCounter from "../components/cardCounter/CardCounter";
 import Modal from "../components/modal/Modal";
@@ -37,6 +37,7 @@ const FiltersContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 60px;
 `;
 
 const ToggleButton = styled.button`
@@ -44,8 +45,11 @@ const ToggleButton = styled.button`
   background-color: ${(props) => (props.showFilters ? "#ff0000" : "#00ff00")};
   color: #ffffff;
   border: none;
-  border-radius: 4px;
+  border-radius: 0 10px 10px 0;
   cursor: pointer;
+  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+  width: 160px;
+  height: 40px;
 `;
 
 const StyledFooter = styled.footer`
@@ -54,7 +58,7 @@ const StyledFooter = styled.footer`
 
 import useCollectionStore from "../store/collectionStore";
 
-const Cards = () => {
+const CardsPage = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   const { handleAddOrRemoveFromCollection } = useCollectionStore();
@@ -91,7 +95,7 @@ const Cards = () => {
         <Filters />
       </Modal>
 
-      <AllCards
+      <Cards
         onCardCountChange={handleCardCountChange}
         handleCardClick={handleCardClick}
       />
@@ -103,4 +107,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default CardsPage;

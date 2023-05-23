@@ -65,7 +65,7 @@ const StyledFooter = styled.footer`
   width: 110%;
 `;
 
-function Home() {
+const HomePage = () => {
   const containerRef = useRef(null);
   const layerRef = useRef(null);
   const logoRef = useRef(null);
@@ -116,6 +116,6 @@ function Home() {
       </StyledFooter>
     </ParallaxContainer>
   );
-}
+};
 
-export default Home;
+export default HomePage;
