@@ -9,7 +9,6 @@ import Home from "./pages/Home";
 import Cards from "./pages/Cards";
 import PersonalCollection from "./pages/PersonalCollection";
 import About from "./pages/About";
-import Test from "./pages/Test";
 import Contact from "./pages/Contact";
 
 // import Footer from "./components/footer/Footer";
@@ -52,10 +51,9 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/SWDDB/" element={<Home />} />
           <Route path="/cards" element={<Cards />} />
           <Route path="/collection" element={<PersonalCollection />} />
-          <Route path="/test" element={<Test />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
