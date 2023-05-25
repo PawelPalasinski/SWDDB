@@ -15,10 +15,31 @@ const ModalContainer = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: white;
   padding: 2rem;
   border-radius: 8px;
   max-width: 600px;
+  background: rgba(255, 255, 255, 0.44);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+`;
+
+const CloseButton = styled.button`
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+  width: 100%;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 `;
 
 const Modal = ({ isOpen, onClose, children }) => {
@@ -30,7 +51,7 @@ const Modal = ({ isOpen, onClose, children }) => {
     <ModalContainer>
       <ModalContent>
         {children}
-        <button onClick={onClose}>Close</button>
+        <CloseButton onClick={onClose}>Close</CloseButton>
       </ModalContent>
     </ModalContainer>
   );

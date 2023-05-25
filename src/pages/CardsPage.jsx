@@ -29,15 +29,15 @@ const PageContainer = styled.div`
 
 const FiltersContainer = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  margin-top: 60px;
 `;
 
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 60px;
 `;
 
 const ToggleButton = styled.button`
@@ -45,7 +45,7 @@ const ToggleButton = styled.button`
   background-color: ${(props) => (props.showFilters ? "#ff0000" : "#00ff00")};
   color: #ffffff;
   border: none;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 2em 2em 0;
   cursor: pointer;
   text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
   width: 160px;

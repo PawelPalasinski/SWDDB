@@ -5,22 +5,32 @@ import styled from "styled-components";
 
 const ExpansionOptionsContainer = styled.div`
   h3 {
-    margin: 0 0 10px;
+    color: #ffd700;
+    margin: 10px 5px;
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 2px #000, 0 0 1em blue, 0 0 0.2em #000;
   }
 
   label {
     display: block;
-    margin: 0 0 8px;
+    margin-bottom: 10px;
     font-size: 14px;
     font-weight: normal;
-    color: ${(props) => props.theme.textColor};
+    color: #000;
     cursor: pointer;
+    text-align: center;
+    text-shadow: 1px 1px 2px #fff, 0 0 1em blue, 0 0 0.2em #000;
+  }
+
+  span {
+    text-decoration: underline;
   }
 
   input[type="checkbox"] {
     display: none;
+    color: #000;
   }
 
   input[type="checkbox"]:checked + span {

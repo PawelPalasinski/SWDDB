@@ -10,7 +10,8 @@ const CardAmount = styled.ul`
   top: 0;
   margin-top: 120px;
   margin-left: -60%;
-
+  color: white;
+  mix-blend-mode: difference;
   li {
     margin-right: 10px;
     font-size: 16px;
@@ -28,10 +29,10 @@ function CardCounter() {
   return (
     <>
       <CardAmount>
-        <li>All: {cardCount} ✴</li>
-        <li>Red: {cardRedCount} ✴</li>
-        <li>Yellow: {cardYellowCount} ✴</li>
-        <li>Blue: {cardBlueCount} ✴</li>
+        <li>All: {cardCount}</li>
+        <li>Red: {cardRedCount}</li>
+        <li>Yellow: {cardYellowCount}</li>
+        <li>Blue: {cardBlueCount}</li>
         <li>Gray: {cardGrayCount}</li>
       </CardAmount>
       <Statistics />

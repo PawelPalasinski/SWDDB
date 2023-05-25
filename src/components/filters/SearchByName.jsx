@@ -14,14 +14,14 @@ const SearchWrapper = styled.div`
 
 const SearchInput = styled.input`
   width: 100%;
+  height: 38px;
   max-width: 25rem;
-  padding: 0.5rem;
+  padding-left: 1em;
   border: none;
-  border-radius: 2rem;
+  border-radius: 2rem 0 0 2em;
   background-color: #f5f5f5;
   transition: box-shadow 0.2s ease-in-out;
   color: black;
-  margin-top: 60px;
   &:focus {
     outline: none;
     box-shadow: 0px 0px 5px 0px rgba(255, 0, 0, 0.75);

@@ -4,25 +4,20 @@ import useFilterStore from "../../store/filterStore";
 import styled from "styled-components";
 
 const RarityButton = styled.button`
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  color: #ccc;
+  width: 100px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 5px;
+  background-color: ${({ active }) => (active ? "#ffd700" : "#f8f9fa")};
+  color: ${({ active }) => (active ? "#000" : "#fff")};
+  border: ${({ active }) => (active ? "none" : "1px solid #ced4da")};
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 700;
-  margin-right: 1rem;
-  padding: 0.5rem 1rem;
   transition: all 0.2s ease-in-out;
-
+  text-shadow: 1px 1px 2px #fff, 0 0 1em black, 0 0 0.2em #000;
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.6);
   &:hover {
-    color: #6f42c1;
-    border-bottom-color: #6f42c1;
-  }
-
-  &.active {
-    color: #6f42c1;
-    border-bottom-color: #6f42c1;
+    background-color: #ffd700;
+    color: #000;
   }
 `;
 
@@ -31,10 +26,11 @@ const RarityChangeOptions = () => {
 
   const renderFilterButtons = () => {
     return filterRarityOptions.map((option) => {
+      const active = selectedRarity === option.value;
       return (
         <RarityButton
           key={option.value}
-          className={selectedRarity === option.value ? "active" : ""}
+          active={active}
           onClick={() => setSelectedRarity(option.value)}
         >
           {option.label}
