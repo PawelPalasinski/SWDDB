@@ -29,7 +29,7 @@ const ParallaxText = styled.div`
   color: #fff;
   z-index: 2;
   font-size: 1.5em;
-  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
 `;
 
 const ParallaxLayer = styled.div`

@@ -23,10 +23,6 @@ const CardCounterContainer = styled.div`
   margin-top: -60px;
 `;
 
-const PageContainer = styled.div`
-  height: auto;
-`;
-
 const FiltersContainer = styled.div`
   display: flex;
   align-items: center;
@@ -42,8 +38,8 @@ const SearchContainer = styled.div`
 
 const ToggleButton = styled.button`
   padding: 0.5rem 1rem;
-  background-color: ${(props) => (props.showFilters ? "#ff0000" : "#00ff00")};
-  color: #ffffff;
+  background-color: ${(props) => (props.showFilters ? "#ff0000" : "#FFD700")};
+  color: #fff;
   border: none;
   border-radius: 0 2em 2em 0;
   cursor: pointer;
@@ -76,7 +72,7 @@ const CardsPage = () => {
   };
 
   return (
-    <PageContainer>
+    <>
       <CardCounterContainer>
         <CardCounter />
       </CardCounterContainer>
@@ -103,7 +99,7 @@ const CardsPage = () => {
       <StyledFooter>
         <Footer />
       </StyledFooter>
-    </PageContainer>
+    </>
   );
 };
 

@@ -6,11 +6,11 @@ import styled from "styled-components";
 const ExpansionOptionsContainer = styled.div`
   h3 {
     color: #ffd700;
-    margin: 10px 5px;
+    margin: 0 auto;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-    text-shadow: 1px 1px 2px #000, 0 0 1em blue, 0 0 0.2em #000;
+    text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   }
 
   label {
@@ -18,14 +18,14 @@ const ExpansionOptionsContainer = styled.div`
     margin-bottom: 10px;
     font-size: 14px;
     font-weight: normal;
-    color: #000;
+    color: #fff;
     cursor: pointer;
     text-align: center;
-    text-shadow: 1px 1px 2px #fff, 0 0 1em blue, 0 0 0.2em #000;
+    text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   }
 
   span {
-    text-decoration: underline;
+    font-size: 12px;
   }
 
   input[type="checkbox"] {
@@ -34,7 +34,7 @@ const ExpansionOptionsContainer = styled.div`
   }
 
   input[type="checkbox"]:checked + span {
-    color: red;
+    color: #ffd700;
   }
 `;
 

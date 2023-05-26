@@ -5,7 +5,7 @@ const SvgContainer = styled.svg`
   width: 70px;
   height: 70px;
   fill: #ffd700;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 255, 0.25));
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 1));
   transition: transform 0.2s ease-in-out;
 
   &:hover {

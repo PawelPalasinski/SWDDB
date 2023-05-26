@@ -12,6 +12,7 @@ const ModalContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 9;
+  overflow: auto;
 `;
 
 const ModalContent = styled.div`

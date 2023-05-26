@@ -8,9 +8,7 @@ import useCardCountStore from "../../store/cardCountStore";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const StyledDoughnut = styled(Doughnut)`
-  max-height: 80vh;
-  margin: 2rem 0;
-  margin-left: -40%;
+  z-index: -1;
 `;
 
 const Statistics = () => {

@@ -17,6 +17,11 @@ const CardAmount = styled.ul`
     font-size: 16px;
     font-weight: bold;
   }
+  &:last-child {
+    margin: 2rem 0;
+    margin-left: -40%;
+    max-height: 80vh;
+  }
 `;
 
 function CardCounter() {

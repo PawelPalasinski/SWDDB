@@ -21,7 +21,7 @@ const StyledForm = styled.form`
     margin-bottom: 10px;
     font-size: 18px;
     color: #fff;
-    text-shadow: 1px 1px 2px #000, 0 0 1em blue, 0 0 0.2em #000;
+    text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   }
 
   input,
@@ -38,7 +38,7 @@ const StyledForm = styled.form`
   }
 
   button[type="submit"] {
-    background-color: #e84855;
+    background-color: #ffd700;
     color: #fff;
     font-size: 20px;
     cursor: pointer;
@@ -51,20 +51,25 @@ const StyledForm = styled.form`
   }
 
   button[type="submit"]:hover {
-    background-color: #f67c92;
+    background-color: #fff;
+    color: #ffd700;
   }
 `;
 
 const StyledError = styled.p`
   color: red;
   margin: 0;
-  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+  font-size: 12px;
+  margin-top: -24px;
 `;
 
 const StyledSuccess = styled.p`
   color: blue;
   margin: 0;
-  text-shadow: 1px 1px 2px #000, 0 0 1em bleu, 0 0 0.2em #000;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+  font-size: 12px;
+  margin-top: -24px;
 `;
 
 const ContactForm = () => {

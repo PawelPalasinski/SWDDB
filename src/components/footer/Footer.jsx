@@ -16,7 +16,7 @@ const StyledFooter = styled.footer`
   justify-content: space-around;
   align-items: center;
   height: 60px;
-  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #FFD700, 0 0 0.2em #000;
   & p {
     font-size: 18px;
   }

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import FactionChangeOptions from "./FactionChangeOptions";
 import RarityChangeOptions from "./RarityChangeOptions";
 import ExpansionChangeOptions from "./ExpansionChangeOptions";
+import Statistics from "../statistics/Statistics";
 
 const FiltersContainer = styled.div`
   display: flex;
@@ -11,6 +12,13 @@ const FiltersContainer = styled.div`
   align-items: center;
   margin: 1rem 0;
   flex-direction: column;
+  position: relative;
+`;
+
+const StatisticsContainer = styled.div`
+  position: absolute;
+  z-index: -1;
+  margin-top: 200px;
 `;
 
 const Filters = () => {
@@ -19,6 +27,9 @@ const Filters = () => {
       <FactionChangeOptions />
       <RarityChangeOptions />
       <ExpansionChangeOptions />
+      <StatisticsContainer>
+        <Statistics />
+      </StatisticsContainer>
     </FiltersContainer>
   );
 };

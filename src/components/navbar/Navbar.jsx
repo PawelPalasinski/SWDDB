@@ -24,9 +24,9 @@ const Nav = styled.nav`
     rgba(174, 175, 238, 0) 32%,
     rgba(12, 13, 13, 1) 100%
   );
-  color: #fff;
+  color: #ffd700;
   height: 60px;
-  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
 
   .menu-icon {
     display: none;
@@ -49,7 +49,7 @@ const Nav = styled.nav`
     margin: 0 10px;
 
     a {
-      color: #fff;
+      color: #ffd700;
       text-decoration: none;
       position: relative;
       overflow: hidden;
@@ -61,7 +61,7 @@ const Nav = styled.nav`
         left: 0;
         width: 0;
         height: 2px;
-        background-color: blue;
+        background-color: #ffd700;
         transform-origin: left;
         transition: width 0.3s ease-in-out;
       }
@@ -72,12 +72,12 @@ const Nav = styled.nav`
       }
 
       &:hover {
-        text-shadow: 1px 1px 2px #000, 0 0 1em blue, 0 0 0.2em #000;
+        text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
       }
 
       &.active {
-        color: red;
-        text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+        color: #fff;
+        text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em;
 
         &:after {
           content: "";
@@ -86,7 +86,7 @@ const Nav = styled.nav`
           left: 0;
           width: 0;
           height: 2px;
-          background-color: red;
+          background-color: #ffd700;
           transform-origin: left;
           transition: width 0.3s ease-in-out;
         }
@@ -148,7 +148,7 @@ const Nav = styled.nav`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggleMenu = () => {
@@ -171,7 +171,7 @@ const Navbar = () => {
         </li>
 
         <li>
-          <NavLink exact="true" to="/SWDDB/" onClick={handleToggleMenu}>
+          <NavLink exact to="/SWDDB/" onClick={handleToggleMenu}>
             Home
           </NavLink>
         </li>
@@ -180,11 +180,13 @@ const Navbar = () => {
             Cards
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/SWDDB/collection" onClick={handleToggleMenu}>
-            Personal Collection
-          </NavLink>
-        </li>
+        {isLoggedIn && (
+          <li>
+            <NavLink to="/SWDDB/collection" onClick={handleToggleMenu}>
+              Personal Collection
+            </NavLink>
+          </li>
+        )}
         <li>
           <NavLink to="/SWDDB/contact" onClick={handleToggleMenu}>
             Contact Me
@@ -195,6 +197,24 @@ const Navbar = () => {
             About
           </NavLink>
         </li>
+        {isLoggedIn ? (
+          <li>
+            <button onClick={onLogout}>Logout</button>
+          </li>
+        ) : (
+          <>
+            <li>
+              <NavLink to="/SWDDB/login" onClick={handleToggleMenu}>
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/SWDDB/register" onClick={handleToggleMenu}>
+                Register
+              </NavLink>
+            </li>
+          </>
+        )}
       </ul>
     </Nav>
   );

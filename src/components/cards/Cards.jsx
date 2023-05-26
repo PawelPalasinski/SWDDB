@@ -24,6 +24,7 @@ const CardWrapper = styled.div`
     margin: 0 auto;
     max-width: 1200px;
     padding: 0 20px;
+    min-height: calc(100vh - 120px - 110px);
   }
   li {
     position: relative;
