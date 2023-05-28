@@ -39,6 +39,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [registeredUsers, setRegisteredUsers] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -46,10 +47,26 @@ function App() {
 
   const handleLogin = () => {
     // Logika logowania użytkownika
+    // Przykład:
+    if (username === "admin" && password === "admin") {
+      setUserLoggedIn(true);
+      setUsername("");
+      setPassword("");
+      setErrorMessage("ERROR");
+    } else {
+      setErrorMessage("Invalid username or password");
+    }
   };
 
   const handleLogout = () => {
     // Logika wylogowywania użytkownika
+    setUserLoggedIn(false);
+  };
+
+  const handleRegistration = (username, password) => {
+    // Dodaj zarejestrowanego użytkownika do stanu
+    setRegisteredUsers((prevUsers) => [...prevUsers, { username, password }]);
+    setErrorMessage("Registration successful. You can now log in.");
   };
 
   if (isLoading) {
@@ -60,22 +77,35 @@ function App() {
     <>
       <GlobalStyle />
       <Router>
-        <Navbar isLoggedIn={userLoggedIn} onLogout={handleLogout} />
+        <Navbar
+          isLoggedIn={userLoggedIn}
+          onLogout={handleLogout}
+          exact="true"
+        />
         {errorMessage && <p>{errorMessage}</p>}
         <Routes>
           <Route path="/SWDDB/" element={<HomePage />} />
           <Route path="/SWDDB/cards" element={<CardsPage />} />
           <Route
             path="/SWDDB/collection"
-            element={userLoggedIn ? <PersonalCollectionPage /> : <LoginPage />}
+            element={!userLoggedIn ? <PersonalCollectionPage /> : <LoginPage />}
+            exact="true"
           />
           <Route path="/SWDDB/about" element={<AboutPage />} />
           <Route path="/SWDDB/contact" element={<ContactPage />} />
           <Route
             path="/SWDDB/login"
-            element={<LoginPage onLogin={handleLogin} />}
+            element={
+              <LoginPage
+                onLogin={handleLogin}
+                registeredUsers={registeredUsers}
+              />
+            }
           />
-          <Route path="/SWDDB/register" element={<RegisterPage />} />
+          <Route
+            path="/SWDDB/register"
+            element={<RegisterPage onRegister={handleRegistration} />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

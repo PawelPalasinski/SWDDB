@@ -3,6 +3,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import Logo from "../svg/Logo";
+import useAuthStore from "../../store/authStore";
 
 const slideIn = keyframes`
   0% {
@@ -148,11 +149,17 @@ const Nav = styled.nav`
   }
 `;
 
-const Navbar = ({ isLoggedIn, onLogout }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn); // Pobranie wartości isLoggedIn ze stanu uwierzytelniania
+  const logoutUser = useAuthStore((state) => state.logoutUser); // Pobranie funkcji logoutUser ze stanu uwierzytelniania
 
   const handleToggleMenu = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
+  const handleLogout = () => {
+    logoutUser(); // Wywołanie funkcji logoutUser
   };
 
   return (
@@ -180,13 +187,19 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
             Cards
           </NavLink>
         </li>
+
         {isLoggedIn && (
           <li>
-            <NavLink to="/SWDDB/collection" onClick={handleToggleMenu}>
+            <NavLink
+              to="/SWDDB/collection"
+              exact="true"
+              onClick={handleToggleMenu}
+            >
               Personal Collection
             </NavLink>
           </li>
         )}
+
         <li>
           <NavLink to="/SWDDB/contact" onClick={handleToggleMenu}>
             Contact Me
@@ -197,9 +210,10 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
             About
           </NavLink>
         </li>
+
         {isLoggedIn ? (
           <li>
-            <button onClick={onLogout}>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
           </li>
         ) : (
           <>
