@@ -8,31 +8,55 @@ const PaginationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
+`;
 
-  button {
-    margin: 0 1rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    background-color: #f1f1f1;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+const ButtonPrev = styled.button`
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 2em 0 0 2em;
+  background-color: #ffd700;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+  transition: all 0.2s ease-in-out;
+  width: 100px;
 
-    &:hover {
-      background-color: #ddd;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+  &:hover {
+    background-color: #fff;
   }
 
-  span {
-    margin: 0 1rem;
-    font-size: 1.2rem;
-    font-weight: bold;
+  &:disabled {
+    display: none;
   }
+`;
+
+const ButtonNext = styled.button`
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0 2em 2em 0;
+  background-color: #ffd700;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
+  transition: all 0.2s ease-in-out;
+  width: 100px;
+
+  &:hover {
+    background-color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+const PageNumber = styled.span`
+  margin: 0 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+}
 `;
 
 const PaginationAllCards = ({ totalPages }) => {
@@ -49,15 +73,18 @@ const PaginationAllCards = ({ totalPages }) => {
 
   return (
     <PaginationWrapper>
-      <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+      <ButtonPrev onClick={handlePreviousPage} disabled={currentPage === 1}>
         Previous
-      </button>
-      <span>
-        Page {currentPage} of {totalPages}
-      </span>
-      <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+      </ButtonPrev>
+      <PageNumber>
+        {currentPage} of {totalPages}
+      </PageNumber>
+      <ButtonNext
+        onClick={handleNextPage}
+        disabled={currentPage === totalPages}
+      >
         Next
-      </button>
+      </ButtonNext>
     </PaginationWrapper>
   );
 };

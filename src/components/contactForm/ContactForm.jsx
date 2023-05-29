@@ -43,7 +43,7 @@ const StyledForm = styled.form`
     font-size: 20px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    border-radius: 4px;
+    border-radius: 2em;
     padding: 12px;
     width: 100%;
     border: none;
