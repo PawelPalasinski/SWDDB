@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import useAuthStore from "../../store/authStore";
 
 const LoginForm = () => {
-  const loginUser = useAuthStore((state) => state.loginUser); // Pobranie funkcji loginUser ze stanu uwierzytelniania
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const { loginUser } = useAuthStore();
 
   const handleLogin = () => {
     if (username.trim() === "" || password.trim() === "") {
@@ -13,18 +14,20 @@ const LoginForm = () => {
       return;
     }
 
-    // Wywołanie funkcji loginUser ze stanu uwierzytelniania
-    loginUser(username, password)
-      .then(() => {
-        // Zalogowano pomyślnie
-        setUsername("");
-        setPassword("");
-        setErrorMessage("");
-      })
-      .catch((error) => {
-        // Obsługa błędu logowania
-        setErrorMessage(error.message);
-      });
+    // Sprawdzenie poprawności danych logowania
+
+    // Symulacja sukcesu logowania
+    const userData = {
+      username: username,
+      password: password,
+    };
+
+    // Logowanie użytkownika
+    loginUser(username, password);
+
+    setUsername("");
+    setPassword("");
+    setErrorMessage("");
   };
 
   return (

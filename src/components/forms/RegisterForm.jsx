@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import useAuthStore from "../../store/authStore";
 
 const RegisterForm = () => {
-  const registerUser = useAuthStore((state) => state.registerUser); // Pobranie funkcji registerUser ze stanu uwierzytelniania
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const { registerUser } = useAuthStore();
 
   const handleRegister = () => {
     if (username.trim() === "" || password.trim() === "") {
@@ -13,18 +14,20 @@ const RegisterForm = () => {
       return;
     }
 
-    // Wywołanie funkcji registerUser ze stanu uwierzytelniania
-    registerUser(username, password)
-      .then(() => {
-        // Zarejestrowano pomyślnie
-        setUsername("");
-        setPassword("");
-        setErrorMessage("");
-      })
-      .catch((error) => {
-        // Obsługa błędu rejestracji
-        setErrorMessage(error.message);
-      });
+    // Sprawdzenie czy dane rejestracji są poprawne
+
+    // Symulacja sukcesu rejestracji
+    const userData = {
+      username: username,
+      password: password,
+    };
+
+    // Rejestracja użytkownika
+    registerUser(username, password);
+
+    setUsername("");
+    setPassword("");
+    setErrorMessage("");
   };
 
   return (

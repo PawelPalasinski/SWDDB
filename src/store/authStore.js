@@ -8,7 +8,7 @@ const useAuthStore = create((set) => ({
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
     set({ isLoggedIn: true }); // Ustawienie isLoggedIn na true po rejestracji
-    console.log(first);
+    console.log("reg+");
   },
   loginUser: (username, password) => {
     // Logika logowania użytkownika
