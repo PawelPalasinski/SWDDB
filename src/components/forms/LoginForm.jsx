@@ -1,37 +1,26 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/authStore";
 
-const LoginForm = () => {
+const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const { loginUser } = useAuthStore();
+  const loginUser = useAuthStore((state) => state.loginUser);
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (username.trim() === "" || password.trim() === "") {
-      setErrorMessage("Username and password are required.");
-      return;
-    }
-
-    // Sprawdzenie poprawności danych logowania
-
-    // Symulacja sukcesu logowania
-    const userData = {
-      username: username,
-      password: password,
-    };
-
-    // Logowanie użytkownika
     loginUser(username, password);
-
     setUsername("");
     setPassword("");
-    setErrorMessage("");
+    setErrorMessage("Invalid username or password");
+    navigate("/SWDDB/collection");
   };
 
   return (
     <div>
+      <h2>Login</h2>
+      {errorMessage && <p>{errorMessage}</p>}
       <input
         type="text"
         placeholder="Username"
@@ -45,9 +34,8 @@ const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button onClick={handleLogin}>Login</button>
-      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 };
 
-export default LoginForm;
+export default LoginPage;

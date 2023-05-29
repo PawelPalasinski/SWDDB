@@ -13,6 +13,8 @@ import NotFound from "./pages/NotFound";
 import Loader from "./components/loader/Loader";
 
 import useCardStore from "./store/cardStore";
+import useAuthStore from "./store/authStore";
+
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
@@ -35,77 +37,31 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const { isLoading, fetchData } = useCardStore();
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [registeredUsers, setRegisteredUsers] = useState([]);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  const handleLogin = () => {
-    // Logika logowania użytkownika
-    // Przykład:
-    if (username === "admin" && password === "admin") {
-      setUserLoggedIn(true);
-      setUsername("");
-      setPassword("");
-      setErrorMessage("ERROR");
-    } else {
-      setErrorMessage("Invalid username or password");
-    }
-  };
-
-  const handleLogout = () => {
-    // Logika wylogowywania użytkownika
-    setUserLoggedIn(false);
-  };
-
-  const handleRegistration = (username, password) => {
-    // Dodaj zarejestrowanego użytkownika do stanu
-    setRegisteredUsers((prevUsers) => [...prevUsers, { username, password }]);
-    setErrorMessage("Registration successful. You can now log in.");
-  };
-
   if (isLoading) {
     return <Loader />;
   }
-
   return (
     <>
       <GlobalStyle />
       <Router>
-        <Navbar
-          isLoggedIn={userLoggedIn}
-          onLogout={handleLogout}
-          exact="true"
-        />
-        {errorMessage && <p>{errorMessage}</p>}
+        <Navbar isLoggedIn={isLoggedIn} />
         <Routes>
           <Route path="/SWDDB/" element={<HomePage />} />
           <Route path="/SWDDB/cards" element={<CardsPage />} />
           <Route
             path="/SWDDB/collection"
-            element={!userLoggedIn ? <PersonalCollectionPage /> : <LoginPage />}
-            exact="true"
+            element={isLoggedIn ? <PersonalCollectionPage /> : <LoginPage />}
           />
           <Route path="/SWDDB/about" element={<AboutPage />} />
           <Route path="/SWDDB/contact" element={<ContactPage />} />
-          <Route
-            path="/SWDDB/login"
-            element={
-              <LoginPage
-                onLogin={handleLogin}
-                registeredUsers={registeredUsers}
-              />
-            }
-          />
-          <Route
-            path="/SWDDB/register"
-            element={<RegisterPage onRegister={handleRegistration} />}
-          />
+          <Route path="/SWDDB/login" element={<LoginPage />} />
+          <Route path="/SWDDB/register" element={<RegisterPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

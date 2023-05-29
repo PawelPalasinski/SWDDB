@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import Logo from "../svg/Logo";
 import useAuthStore from "../../store/authStore";
@@ -151,15 +151,18 @@ const Nav = styled.nav`
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn); // Pobranie wartości isLoggedIn ze stanu uwierzytelniania
-  const logoutUser = useAuthStore((state) => state.logoutUser); // Pobranie funkcji logoutUser ze stanu uwierzytelniania
+
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const logoutUser = useAuthStore((state) => state.logoutUser);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/SWDDB/login");
+  };
 
   const handleToggleMenu = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
-
-  const handleLogout = () => {
-    logoutUser(); // Wywołanie funkcji logoutUser
   };
 
   return (
@@ -178,7 +181,7 @@ const Navbar = () => {
         </li>
 
         <li>
-          <NavLink exact to="/SWDDB/" onClick={handleToggleMenu}>
+          <NavLink exact="true" to="/SWDDB/" onClick={handleToggleMenu}>
             Home
           </NavLink>
         </li>
