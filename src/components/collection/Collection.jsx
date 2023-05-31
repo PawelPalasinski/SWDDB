@@ -152,8 +152,8 @@ function Collection() {
           loader={<LoadingMessage>Loading...</LoadingMessage>}
           endMessage={<LoadingMessage>No more data to load</LoadingMessage>}
         >
-          {filteredData.map((item) => (
-            <li key={item.code}>
+          {filteredData.map((item, index) => (
+            <li key={`${item.code}-${index}`}>
               <Suspense fallback={<LoadingMessage>Loading...</LoadingMessage>}>
                 <CardImage
                   className="image"
