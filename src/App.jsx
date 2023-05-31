@@ -28,6 +28,15 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'DeathStar', sans-serif;
     margin: 0;
     padding: 0;
+    overflow: auto;
+    scrollbar-width: thin;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      width: 0.1em;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
   }
 
   button {

@@ -9,20 +9,29 @@ const CardImage = lazy(() => import("../cardImage/CardImage"));
 
 const PAGE_SIZE = 10;
 
-const CollectionWrapper = styled.div``;
+const CollectionWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+`;
+
+const CardList = styled.ul`
+  list-style: none;
+  padding: 0;
+  padding: 0 20px;
+  min-height: calc(100vh - 120px - 110px);
+  width: 100%;
+`;
 
 const StyledInfiniteScroll = styled(InfiniteScroll)`
-  ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 0 20px;
-    min-height: calc(100vh - 120px - 110px);
-  }
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
   li {
     position: relative;
     margin: 10px;
@@ -31,7 +40,6 @@ const StyledInfiniteScroll = styled(InfiniteScroll)`
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     line-height: 0;
-    width: fit-content;
   }
 `;
 
@@ -68,7 +76,10 @@ const OverlayText = styled.div`
   flex-direction: column;
   margin-top: -40%;
   & p {
-    font-size: 8px;
+    font-size: 12px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 `;
 
@@ -77,16 +88,16 @@ const ProgressBarWrapper = styled.div`
   height: 5px;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
 `;
 
 const ProgressBar = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;
-  height: 100%;
+  right: 0;
+  width: 15px;
+  height: ${({ progress }) => progress}%;
   background-color: #000;
-  width: ${({ progress }) => progress}%;
 `;
 
 function Collection() {
@@ -133,7 +144,7 @@ function Collection() {
       <ProgressBarWrapper>
         <ProgressBar progress={scrollProgress} />
       </ProgressBarWrapper>
-      <>
+      <CardList>
         <StyledInfiniteScroll
           dataLength={filteredData.length}
           next={loadMoreData}
@@ -154,7 +165,6 @@ function Collection() {
               <Overlay>
                 <OverlayText>
                   <p>{item.name}</p>
-                  <p>{item.code}</p>
                   <p>{item.faction_code}</p>
                   <p>{item.set_name}</p>
                 </OverlayText>
@@ -162,7 +172,7 @@ function Collection() {
             </li>
           ))}
         </StyledInfiniteScroll>
-      </>
+      </CardList>
     </CollectionWrapper>
   );
 }
