@@ -198,14 +198,14 @@ const Navbar = () => {
               exact="true"
               onClick={handleToggleMenu}
             >
-              Personal Collection
+              Collection
             </NavLink>
           </li>
         )}
 
         <li>
           <NavLink to="/SWDDB/contact" onClick={handleToggleMenu}>
-            Contact Me
+            Contact
           </NavLink>
         </li>
         <li>

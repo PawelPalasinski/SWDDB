@@ -2,27 +2,36 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import useStore from "../../store/collectionStore";
 import useCardStore from "../../store/cardStore";
 import InfiniteScroll from "react-infinite-scroll-component";
+import ScrollProgressBar from "react-scroll-progress-bar";
 import styled from "styled-components";
 
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 
 const PAGE_SIZE = 10;
 
-const CollectionWrapper = styled.ul`
-  list-style-type: none;
-  padding: 0;
+const CollectionWrapper = styled.div``;
 
-  li {
-    margin-bottom: 20px;
+const StyledInfiniteScroll = styled(InfiniteScroll)`
+  ul {
+    list-style: none;
+    padding: 0;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 20px;
+    min-height: calc(100vh - 120px - 110px);
   }
-
-  p {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
-    margin-right: 10px;
+  li {
+    position: relative;
+    margin: 10px;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    line-height: 0;
+    width: fit-content;
   }
 `;
 
@@ -31,11 +40,71 @@ const LoadingMessage = styled.div`
   color: #999;
 `;
 
+const Overlay = styled.div`
+  position: absolute;
+  border-radius: 7px;
+  width: 100%;
+  height: 0;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s ease;
+  overflow: hidden;
+
+  li:hover & {
+    bottom: 0;
+    height: 100%;
+  }
+`;
+
+const OverlayText = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -40%;
+  & p {
+    font-size: 8px;
+  }
+`;
+
+const ProgressBarWrapper = styled.div`
+  width: 100%;
+  height: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+`;
+
+const ProgressBar = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #000;
+  width: ${({ progress }) => progress}%;
+`;
+
 function Collection() {
   const collection = useStore((state) => state.collection);
   const data = useCardStore((state) => state.data);
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState([]);
+
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const handleScroll = () => {
+    const windowHeight = window.innerHeight;
+    const fullHeight = document.documentElement.scrollHeight;
+    const scrolledHeight = window.pageYOffset;
+    const visibleHeight = windowHeight + scrolledHeight;
+    const progress = (visibleHeight / fullHeight) * 100;
+    setScrollProgress(progress);
+  };
 
   useEffect(() => {
     const startIndex = (currentPage - 1) * PAGE_SIZE;
@@ -46,38 +115,54 @@ function Collection() {
     setFilteredData((prevData) => [...prevData, ...newData]);
   }, [collection, data, currentPage]);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const loadMoreData = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const hasMore = filteredData.length < data.length;
+  const hasMore = currentPage * PAGE_SIZE <= filteredData.length;
 
   return (
     <CollectionWrapper>
-      <p>My Collection:</p>
-      <InfiniteScroll
-        dataLength={filteredData.length}
-        next={loadMoreData}
-        hasMore={hasMore}
-        loader={<LoadingMessage>Loading...</LoadingMessage>}
-        endMessage={<LoadingMessage>No more data to load</LoadingMessage>}
-      >
-        {filteredData.map((item) => (
-          <li key={item.code}>
-            <p>{item.name}</p>
-            <p>{item.code}</p>
-            <p>{item.faction_code}</p>
-            <p>{item.set_name}</p>
-            <Suspense fallback={<LoadingMessage>Loading...</LoadingMessage>}>
-              <CardImage
-                className="image"
-                src={item.imagesrc}
-                alt={item.name}
-              />
-            </Suspense>
-          </li>
-        ))}
-      </InfiniteScroll>
+      <ProgressBarWrapper>
+        <ProgressBar progress={scrollProgress} />
+      </ProgressBarWrapper>
+      <>
+        <StyledInfiniteScroll
+          dataLength={filteredData.length}
+          next={loadMoreData}
+          hasMore={hasMore}
+          loader={<LoadingMessage>Loading...</LoadingMessage>}
+          endMessage={<LoadingMessage>No more data to load</LoadingMessage>}
+        >
+          {filteredData.map((item) => (
+            <li key={item.code}>
+              <Suspense fallback={<LoadingMessage>Loading...</LoadingMessage>}>
+                <CardImage
+                  className="image"
+                  src={item.imagesrc}
+                  alt={item.name}
+                />
+              </Suspense>
+
+              <Overlay>
+                <OverlayText>
+                  <p>{item.name}</p>
+                  <p>{item.code}</p>
+                  <p>{item.faction_code}</p>
+                  <p>{item.set_name}</p>
+                </OverlayText>
+              </Overlay>
+            </li>
+          ))}
+        </StyledInfiniteScroll>
+      </>
     </CollectionWrapper>
   );
 }
