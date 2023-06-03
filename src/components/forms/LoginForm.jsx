@@ -16,39 +16,60 @@ const LoginTitle = styled.h2`
 
 const ErrorMessage = styled.p`
   color: red;
-  margin-bottom: 10px;
+  margin: 0;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+  font-size: 12px;
+  margin-top: -24px;
 `;
 
 const LoginForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 50%;
+margin: 0 auto;
+padding: 30px;
+background: rgba(255, 255, 255, 0.3);
+border-radius: 20px;
+backdrop-filter: blur(10px);
+box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+border: 1px solid rgba(255, 255, 255, 0.18);
+height: auto;
+label {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
 `;
 
 const InputField = styled.input`
-  width: 300px;
-  height: 40px;
-  padding: 8px;
-  margin-bottom: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 25px;
+  border: none;
   border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+  font-size: 16px;
+  resize: vertical;
 `;
 
 const LoginButton = styled.button`
-  width: 200px;
-  height: 40px;
   background-color: #ffd700;
   color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
+  font-size: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  border-radius: 2em;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
 
   &:hover {
-    background-color: #f0c809;
+    background-color: #fff;
+    color: #ffd700;
   }
 `;
 
