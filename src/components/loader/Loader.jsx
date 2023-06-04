@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Sith from "../svg/Sith";
+import SithLoader from "../svg/SithLoader";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   z-index: 999;
 `;
 
-const LoaderIcon = styled(Sith)``;
+const LoaderIcon = styled(SithLoader)``;
 
 const Loader = () => {
   return (

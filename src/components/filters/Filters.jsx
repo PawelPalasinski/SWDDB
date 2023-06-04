@@ -18,7 +18,6 @@ const FiltersContainer = styled.div`
 const StatisticsContainer = styled.div`
   position: absolute;
   z-index: -1;
-  margin-top: 200px;
 `;
 
 const Filters = () => {

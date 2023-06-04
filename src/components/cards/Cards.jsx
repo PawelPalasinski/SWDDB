@@ -12,6 +12,8 @@ import useCollectionStore from "../../store/collectionStore";
 
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
+import Sith from "../svg/Sith";
+
 import PaginationAllCards from "../pagination/PaginationAllCards";
 
 const CardWrapper = styled.div`
@@ -34,6 +36,7 @@ const CardWrapper = styled.div`
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     line-height: 0;
+    height: fit-content;
   }
 `;
 
@@ -52,15 +55,12 @@ const CardButton = styled.button`
   transition: all 0.3s ease;
   margin-bottom: -45%;
 
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
   & span {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   }
 `;
 
@@ -78,18 +78,11 @@ const Overlay = styled.div`
   justify-content: center;
   transition: 0.5s ease;
   overflow: hidden;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
 
   li:hover & {
     bottom: 0;
     height: 100%;
-  }
-
-  button {
-    visibility: hidden;
-  }
-
-  &:hover button {
-    visibility: visible;
   }
 `;
 
@@ -245,10 +238,23 @@ const Cards = ({ handleCardClick }) => {
                 <p>{item.set_name}</p>
                 <p>{item.rarity_name}</p>
               </OverlayText>
-              <CardButton onClick={() => handleButtonClick(item.code)}>
+
+              {/* <CardButton onClick={() => handleButtonClick(item.code)}>
                 <Jedi />
                 <span>{getButtonText(item.code)}</span>
-              </CardButton>
+              </CardButton> */}
+
+              {getButtonText(item.code) === "ADD" ? (
+                <CardButton onClick={() => handleButtonClick(item.code)}>
+                  <Jedi />
+                  <span>{getButtonText(item.code)}</span>
+                </CardButton>
+              ) : (
+                <CardButton onClick={() => handleButtonClick(item.code)}>
+                  <Sith />
+                  <span>{getButtonText(item.code)}</span>
+                </CardButton>
+              )}
             </Overlay>
           </li>
         ))}

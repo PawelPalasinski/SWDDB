@@ -139,7 +139,7 @@ const Nav = styled.nav`
 
     li {
       margin: 10px 0;
-      text-shadow: 1px 1px 2px #000, 0 0 1em blue, 0 0 0.2em #000;
+      text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
     }
 
     body {

@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledJedi = styled.svg`
   width: 65px;
   height: 65px;
+  filter: drop-shadow(3px 5px 10px #ffd700);
 `;
 
 const Jedi = () => {
