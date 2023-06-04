@@ -9,11 +9,6 @@ const LoginPageWrapper = styled.div`
   align-items: center;
 `;
 
-const LoginTitle = styled.h2`
-  font-size: 24px;
-  margin-bottom: 20px;
-`;
-
 const ErrorMessage = styled.p`
   color: red;
   margin: 0;
@@ -90,7 +85,6 @@ const LoginPage = () => {
 
   return (
     <LoginPageWrapper>
-      <LoginTitle>Login</LoginTitle>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <LoginForm>
         <InputField

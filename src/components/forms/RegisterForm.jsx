@@ -9,11 +9,6 @@ const RegisterPageWrapper = styled.div`
   align-items: center;
 `;
 
-const RegisterTitle = styled.h2`
-  font-size: 24px;
-  margin-bottom: 20px;
-`;
-
 const ErrorMessage = styled.p`
   color: red;
   margin: 0;
@@ -94,7 +89,6 @@ const RegisterPage = () => {
 
   return (
     <RegisterPageWrapper>
-      <RegisterTitle>Register</RegisterTitle>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <RegisterForm>
         <InputField
