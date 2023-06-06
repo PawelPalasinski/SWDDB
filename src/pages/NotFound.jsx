@@ -12,6 +12,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
 
   & h1 {
     color: whitesmoke;
