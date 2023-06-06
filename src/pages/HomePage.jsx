@@ -87,6 +87,7 @@ const HomePage = () => {
     const container = containerRef.current;
     const layer = layerRef.current;
     const logo = logoRef.current;
+    const liRef = useRef(null);
     const tieFighters = tieFightersRef.current;
 
     const handleMouseMove = (e) => {
