@@ -4,6 +4,7 @@ import styled from "styled-components";
 import backgroundImage from "../assets/images/deathstarwallpaper.jpg";
 import layerImage from "../assets/images/layer1.png";
 import logoImage from "../assets/images/logo.png";
+import tieFightersImage from "../assets/images/tieFighters.png";
 
 import Footer from "../components/footer/Footer";
 
@@ -58,6 +59,17 @@ const ParallaxLogo = styled.img`
   opacity: 0.5;
 `;
 
+const ParallaxTieFighters = styled.img`
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  width: 20%;
+  min-width: 100px;
+`;
+
 const StyledFooter = styled.footer`
   position: absolute;
   z-index: 2;
@@ -69,12 +81,13 @@ const HomePage = () => {
   const containerRef = useRef(null);
   const layerRef = useRef(null);
   const logoRef = useRef(null);
-  const liRef = useRef(null);
+  const tieFightersRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
     const layer = layerRef.current;
     const logo = logoRef.current;
+    const tieFighters = tieFightersRef.current;
 
     const handleMouseMove = (e) => {
       const containerWidth = container.offsetWidth;
@@ -88,6 +101,7 @@ const HomePage = () => {
 
       const layerParallaxAmount = 40;
       const logoParallaxAmount = 20;
+      const tieFightersParallaxAmount = 120;
 
       layer.style.transform = `translate(${offsetX * layerParallaxAmount}px, ${
         offsetY * layerParallaxAmount
@@ -95,6 +109,9 @@ const HomePage = () => {
       logo.style.transform = `translate(${offsetX * logoParallaxAmount}px, ${
         offsetY * logoParallaxAmount
       }px)`;
+      tieFighters.style.transform = `translate(${
+        offsetX * tieFightersParallaxAmount
+      }px, ${offsetY * tieFightersParallaxAmount}px)`;
     };
 
     container.addEventListener("mousemove", handleMouseMove);
@@ -111,6 +128,11 @@ const HomePage = () => {
       </ParallaxText>
       <ParallaxLayer ref={layerRef} alt="Layer" />
       <ParallaxLogo ref={logoRef} src={logoImage} alt="Logo" />
+      <ParallaxTieFighters
+        ref={tieFightersRef}
+        src={tieFightersImage}
+        alt="Tie Fighters"
+      />
       <StyledFooter>
         <Footer />
       </StyledFooter>
