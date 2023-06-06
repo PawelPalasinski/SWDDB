@@ -1,8 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import useStore from "../../store/collectionStore";
+import useCollectionStore from "../../store/collectionStore";
 import useCardStore from "../../store/cardStore";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ScrollProgressBar from "react-scroll-progress-bar";
 import styled from "styled-components";
 
 const CardImage = lazy(() => import("../cardImage/CardImage"));
@@ -100,8 +99,8 @@ const ProgressBar = styled.div`
   background-color: #000;
 `;
 
-function Collection() {
-  const collection = useStore((state) => state.collection);
+const Collection = () => {
+  const collection = useCollectionStore((state) => state.collection);
   const data = useCardStore((state) => state.data);
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState([]);
@@ -175,6 +174,6 @@ function Collection() {
       </CardList>
     </CollectionWrapper>
   );
-}
+};
 
 export default Collection;
