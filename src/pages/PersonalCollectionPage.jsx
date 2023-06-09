@@ -1,5 +1,5 @@
 import React from "react";
-import Collection from "../components/collection/Collection";
+import PersonalCollection from "../components/collection/PersonalCollection";
 import useCollectionStore from "../store/collectionStore";
 import EmptyCollection from "../components/emptyCollection/EmptyCollection";
 
@@ -14,7 +14,7 @@ const PersonalCollectionPage = () => {
       ) : (
         <>
           <p>My Collection:</p>
-          <Collection />
+          <PersonalCollection />
         </>
       )}
     </>

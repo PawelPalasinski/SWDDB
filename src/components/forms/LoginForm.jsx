@@ -81,7 +81,7 @@ const LoginPage = () => {
     setUsername("");
     setPassword("");
     setErrorMessage("Invalid username or password");
-    navigate("/SWDDB/collection");
+    navigate("/SWDDB/card-collection");
   };
 
   return (
@@ -100,7 +100,9 @@ const LoginPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <LoginButton onClick={handleLogin}>Login</LoginButton>
+        <LoginButton type="button" onClick={handleLogin}>
+          Login
+        </LoginButton>
       </LoginForm>
     </LoginPageWrapper>
   );

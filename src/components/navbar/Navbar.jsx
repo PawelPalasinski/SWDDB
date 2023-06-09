@@ -194,7 +194,7 @@ const Navbar = () => {
         {isLoggedIn && (
           <li>
             <NavLink
-              to="/SWDDB/collection"
+              to="/SWDDB/card-collection"
               exact="true"
               onClick={handleToggleMenu}
             >

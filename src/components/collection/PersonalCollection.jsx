@@ -99,7 +99,7 @@ const ProgressBar = styled.div`
   background-color: #000;
 `;
 
-const Collection = () => {
+const PersonalCollection = () => {
   const collection = useCollectionStore((state) => state.collection);
   const data = useCardStore((state) => state.data);
   const [currentPage, setCurrentPage] = useState(1);
@@ -114,6 +114,7 @@ const Collection = () => {
     const visibleHeight = windowHeight + scrolledHeight;
     const progress = (visibleHeight / fullHeight) * 100;
     setScrollProgress(progress);
+    console.log(progress);
   };
 
   useEffect(() => {
@@ -123,6 +124,7 @@ const Collection = () => {
       .filter((item) => collection.includes(item.code))
       .slice(startIndex, endIndex);
     setFilteredData((prevData) => [...prevData, ...newData]);
+    console.log(collection);
   }, [collection, data, currentPage]);
 
   useEffect(() => {
@@ -136,7 +138,11 @@ const Collection = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const hasMore = currentPage * PAGE_SIZE <= filteredData.length;
+  const hasMore = currentPage * PAGE_SIZE <= collection.length;
+
+  console.log(currentPage);
+  console.log(filteredData.length);
+  console.log(currentPage * PAGE_SIZE <= collection.length);
 
   return (
     <CollectionWrapper>
@@ -176,4 +182,4 @@ const Collection = () => {
   );
 };
 
-export default Collection;
+export default PersonalCollection;

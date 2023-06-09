@@ -64,7 +64,7 @@ function App() {
           <Route path="/SWDDB/" element={<HomePage />} />
           <Route path="/SWDDB/cards" element={<CardsPage />} />
           <Route
-            path="/SWDDB/collection"
+            path="/SWDDB/card-collection"
             element={isLoggedIn ? <PersonalCollectionPage /> : <LoginPage />}
           />
           <Route path="/SWDDB/about" element={<AboutPage />} />
