@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import SWFont from "./assets/fonts/Starjedi.ttf";
+import FuturisticFont from "./assets/fonts/immortal.ttf";
 
 import Navbar from "./components/navbar/Navbar";
 import HomePage from "./pages/HomePage";
@@ -22,6 +23,11 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'DeathStar';
     src: url(${SWFont});
+  }
+
+  @font-face {
+    font-family: 'Neuropolitical';
+    src: url(${FuturisticFont});
   }
 
   body {
