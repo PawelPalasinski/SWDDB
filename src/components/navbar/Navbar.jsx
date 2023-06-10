@@ -149,6 +149,26 @@ const Nav = styled.nav`
   }
 `;
 
+const LogoutButton = styled.button`
+  background-color: #ffd700;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 2em;
+  padding: 5px;
+  width: 110%;
+  heigth: 60px;
+  border: none;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
+  margin-left: 25%;
+
+  &:hover {
+    background-color: #fff;
+    color: #ffd700;
+  }
+`;
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -216,7 +236,7 @@ const Navbar = () => {
 
         {isLoggedIn ? (
           <li>
-            <button onClick={handleLogout}>Logout</button>
+            <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
           </li>
         ) : (
           <>

@@ -110,7 +110,7 @@ const PersonalCollection = () => {
   const handleScroll = () => {
     const windowHeight = window.innerHeight;
     const fullHeight = document.documentElement.scrollHeight;
-    const scrolledHeight = window.pageYOffset;
+    const scrolledHeight = window.scrollY;
     const visibleHeight = windowHeight + scrolledHeight;
     const progress = (visibleHeight / fullHeight) * 100;
     setScrollProgress(progress);
@@ -139,10 +139,6 @@ const PersonalCollection = () => {
   };
 
   const hasMore = currentPage * PAGE_SIZE <= collection.length;
-
-  console.log(currentPage);
-  console.log(filteredData.length);
-  console.log(currentPage * PAGE_SIZE <= collection.length);
 
   return (
     <CollectionWrapper>

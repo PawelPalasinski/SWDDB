@@ -239,11 +239,6 @@ const Cards = ({ handleCardClick }) => {
                 <p>{item.rarity_name}</p>
               </OverlayText>
 
-              {/* <CardButton onClick={() => handleButtonClick(item.code)}>
-                <Jedi />
-                <span>{getButtonText(item.code)}</span>
-              </CardButton> */}
-
               {getButtonText(item.code) === "ADD" ? (
                 <CardButton onClick={() => handleButtonClick(item.code)}>
                   <Jedi />

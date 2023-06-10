@@ -27,22 +27,22 @@ const ModalContent = styled.div`
 `;
 
 const CloseButton = styled.button`
-  background-color: transparent;
-  color: white;
+  background-color: #ffd700;
+  color: #fff;
   font-size: 16px;
-  font-weight: bold;
-  border: none;
   cursor: pointer;
-  padding: 8px 16px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease-in-out;
-  width: 100%;
-
+  transition: all 0.3s ease-in-out;
+  border-radius: 2em;
+  padding: 5px;
+  width: 50%;
+  heigth: 60px;
+  border: none;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #fff;
+    color: #ffd700;
   }
 `;
-
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) {
     return null;
