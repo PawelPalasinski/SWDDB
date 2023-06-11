@@ -22,6 +22,10 @@ const ExpansionOptionsContainer = styled.div`
     cursor: pointer;
     text-align: center;
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+
+    &:hover {
+      color: #ffd700;
+    }
   }
 
   span {
