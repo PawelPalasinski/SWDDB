@@ -3,6 +3,12 @@ import { filterRarityOptions } from "../../js/options";
 import useFilterStore from "../../store/filterStore";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
 const RarityButton = styled.button`
   width: 100px;
   border-radius: 10px;
@@ -39,7 +45,7 @@ const RarityChangeOptions = () => {
     });
   };
 
-  return <div>{renderFilterButtons()}</div>;
+  return <Wrapper>{renderFilterButtons()}</Wrapper>;
 };
 
 export default RarityChangeOptions;

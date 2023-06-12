@@ -13,11 +13,11 @@
 - [x] save own collection of cards to local storage
 - [x] statistics
 - [x] contact form
-- [ ] RWD styled components (work in progress)
+- [x] RWD styled components (work in progress)
 - [ ] dark mode
-- [ ] Home with paralax effect
+- [x] Home with paralax effect
 - [ ] login and register (backend - MongoDB)
-- [ ] About with technologies used description (star wars opening text)
+- [x] About with technologies used description (star wars opening text?)
 - [ ] refactor to Typescript
 - [ ] tests in jest
 

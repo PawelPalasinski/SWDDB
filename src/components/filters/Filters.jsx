@@ -18,6 +18,7 @@ const FiltersContainer = styled.div`
 const StatisticsContainer = styled.div`
   position: absolute;
   z-index: -1;
+  padding-top: 40px;
 `;
 
 const Filters = () => {

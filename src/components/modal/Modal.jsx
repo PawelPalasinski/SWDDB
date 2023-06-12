@@ -16,7 +16,6 @@ const ModalContainer = styled.div`
 `;
 
 const ModalContent = styled.div`
-  padding: 2rem;
   border-radius: 8px;
   max-width: 600px;
   background: rgba(255, 255, 255, 0.44);
@@ -27,6 +26,8 @@ const ModalContent = styled.div`
 `;
 
 const CloseButton = styled.button`
+  padding: 10px;
+  display: block;
   background-color: #ffd700;
   color: #fff;
   font-size: 16px;
@@ -38,12 +39,13 @@ const CloseButton = styled.button`
   heigth: 60px;
   border: none;
   text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
-  margin-left: 25%;
+  margin: 0 0 10px 25%;
   &:hover {
     background-color: #fff;
     color: #ffd700;
   }
 `;
+
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) {
     return null;

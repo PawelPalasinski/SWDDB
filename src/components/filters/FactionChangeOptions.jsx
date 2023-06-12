@@ -3,6 +3,13 @@ import { filterFactionOptions } from "../../js/options";
 import useFilterStore from "../../store/filterStore";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+`;
+
 const FactionButton = styled.button`
   width: 100px;
   border-radius: 10px;
@@ -40,7 +47,7 @@ const FactionChangeOptions = () => {
     });
   };
 
-  return <div>{renderFilterButtons()}</div>;
+  return <Wrapper>{renderFilterButtons()}</Wrapper>;
 };
 
 export default FactionChangeOptions;
