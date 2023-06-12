@@ -35,8 +35,8 @@ const MainContainer = styled.main`
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border: 1px solid rgba(255, 255, 255, 0.18);
   height: auto;
-  @import url("https://fonts.googleapis.com/css?family=Megrim&display=swap");
-  font-family: "Megrim", cursive;
+  @import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
+  font-family: "Michroma", sans-serif;
 `;
 
 const LanguageButtons = styled.div`
