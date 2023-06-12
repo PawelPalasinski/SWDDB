@@ -439,7 +439,7 @@ Error generating stack: `+o.message+`
   font-weight: bold;
   text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
 }
-`,Gb=({totalPages:e})=>{const t=so(o=>o.currentPage),n=so(o=>o.setCurrentPage);return W(Vb,{children:[S(Yb,{onClick:()=>{n(t-1)},disabled:t===1,children:"Previous"}),W(Xb,{children:[t," of ",e]}),S(Kb,{onClick:()=>{n(t+1)},disabled:t===e,children:"Next"})]})},Qb=k.lazy(()=>I1(()=>import("./CardImage-40744e05.js"),[])),qb=D.div`
+`,Gb=({totalPages:e})=>{const t=so(o=>o.currentPage),n=so(o=>o.setCurrentPage);return W(Vb,{children:[S(Yb,{onClick:()=>{n(t-1)},disabled:t===1,children:"Previous"}),W(Xb,{children:[t," of ",e]}),S(Kb,{onClick:()=>{n(t+1)},disabled:t===e,children:"Next"})]})},Qb=k.lazy(()=>I1(()=>import("./CardImage-19ebded8.js"),[])),qb=D.div`
   ul {
     list-style: none;
     padding: 0;
@@ -593,7 +593,6 @@ Error generating stack: `+o.message+`
   z-index: 9;
   overflow: auto;
 `,HC=D.div`
-  padding: 2rem;
   border-radius: 8px;
   max-width: 600px;
   background: rgba(255, 255, 255, 0.44);
@@ -602,6 +601,8 @@ Error generating stack: `+o.message+`
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 `,UC=D.button`
+  padding: 10px;
+  display: block;
   background-color: #ffd700;
   color: #fff;
   font-size: 16px;
@@ -613,12 +614,17 @@ Error generating stack: `+o.message+`
   heigth: 60px;
   border: none;
   text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
-  margin-left: 25%;
+  margin: 0 0 10px 25%;
   &:hover {
     background-color: #fff;
     color: #ffd700;
   }
-`,VC=({isOpen:e,onClose:t,children:n})=>e?S(WC,{children:W(HC,{children:[n,S(UC,{onClick:t,children:"Close"})]})}):null,YC=[{value:"all",label:"All"},{value:"red",label:"Red"},{value:"yellow",label:"Yellow"},{value:"blue",label:"Blue"},{value:"gray",label:"Gray"}],KC=[{value:"all",label:"All"},{value:"L",label:"Legendary"},{value:"R",label:"Rare"},{value:"U",label:"Uncommon"},{value:"C",label:"Common"}],XC=[{value:"AW",label:"Awakenings"},{value:"Sor",label:"Spirit of Rebellion"},{value:"EaW",label:"Empire at War"},{value:"TPG",label:"Two-Player Game"},{value:"LEG",label:"Legacies"},{value:"RIV",label:"Rivals"},{value:"WotF",label:"Way of the Force"},{value:"AtG",label:"Across the Galaxy"},{value:"CONV",label:"Convergence"},{value:"AoN",label:"Allies of Necessity"},{value:"SoH",label:"Spark of Hope"},{value:"CM",label:"Covert Missions"},{value:"TR",label:"Transformations"}],GC=D.button`
+`,VC=({isOpen:e,onClose:t,children:n})=>e?S(WC,{children:W(HC,{children:[n,S(UC,{onClick:t,children:"Close"})]})}):null,YC=[{value:"all",label:"All"},{value:"red",label:"Red"},{value:"yellow",label:"Yellow"},{value:"blue",label:"Blue"},{value:"gray",label:"Gray"}],KC=[{value:"all",label:"All"},{value:"L",label:"Legendary"},{value:"R",label:"Rare"},{value:"U",label:"Uncommon"},{value:"C",label:"Common"}],XC=[{value:"AW",label:"Awakenings"},{value:"Sor",label:"Spirit of Rebellion"},{value:"EaW",label:"Empire at War"},{value:"TPG",label:"Two-Player Game"},{value:"LEG",label:"Legacies"},{value:"RIV",label:"Rivals"},{value:"WotF",label:"Way of the Force"},{value:"AtG",label:"Across the Galaxy"},{value:"CONV",label:"Convergence"},{value:"AoN",label:"Allies of Necessity"},{value:"SoH",label:"Spark of Hope"},{value:"CM",label:"Covert Missions"},{value:"TR",label:"Transformations"}],GC=D.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+`,QC=D.button`
   width: 100px;
   border-radius: 10px;
   margin: 10px 5px;
@@ -635,7 +641,11 @@ Error generating stack: `+o.message+`
     color: #fff;
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   }
-`,QC=()=>{const{selectedFaction:e,setSelectedFaction:t}=Mn();return S("div",{children:(()=>YC.map(r=>{const i=e===r.value;return S(GC,{active:i,onClick:()=>t(r.value),children:r.label},r.value)}))()})},qC=D.button`
+`,qC=()=>{const{selectedFaction:e,setSelectedFaction:t}=Mn();return S(GC,{children:(()=>YC.map(r=>{const i=e===r.value;return S(QC,{active:i,onClick:()=>t(r.value),children:r.label},r.value)}))()})},JC=D.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`,ZC=D.button`
   width: 100px;
   border-radius: 10px;
   margin: 10px 5px;
@@ -652,7 +662,7 @@ Error generating stack: `+o.message+`
     color: #fff;
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   }
-`,JC=()=>{const{selectedRarity:e,setSelectedRarity:t}=Mn();return S("div",{children:(()=>KC.map(r=>{const i=e===r.value;return S(qC,{active:i,onClick:()=>t(r.value),children:r.label},r.value)}))()})},ZC=D.div`
+`,e4=()=>{const{selectedRarity:e,setSelectedRarity:t}=Mn();return S(JC,{children:(()=>KC.map(r=>{const i=e===r.value;return S(ZC,{active:i,onClick:()=>t(r.value),children:r.label},r.value)}))()})},t4=D.div`
   h3 {
     color: #ffd700;
     margin: 0 auto;
@@ -689,17 +699,18 @@ Error generating stack: `+o.message+`
   input[type="checkbox"]:checked + span {
     color: #ffd700;
   }
-`,e4=()=>{const{selectedExpansion:e,setSelectedExpansion:t}=Mn(),n=k.useRef(null);return W(ZC,{ref:n,onChange:()=>{const i=Array.from(n.current.querySelectorAll("input:checked")).map(o=>o.value);t(i)},children:[S("h3",{children:"Expansion"}),XC.map(i=>W("label",{children:[S("input",{type:"checkbox",value:i.value,defaultChecked:e.includes(i.value)}),S("span",{children:i.label})]},i.value))]})},t4=D.div`
+`,n4=()=>{const{selectedExpansion:e,setSelectedExpansion:t}=Mn(),n=k.useRef(null);return W(t4,{ref:n,onChange:()=>{const i=Array.from(n.current.querySelectorAll("input:checked")).map(o=>o.value);t(i)},children:[S("h3",{children:"Expansion"}),XC.map(i=>W("label",{children:[S("input",{type:"checkbox",value:i.value,defaultChecked:e.includes(i.value)}),S("span",{children:i.label})]},i.value))]})},r4=D.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0;
   flex-direction: column;
   position: relative;
-`,n4=D.div`
+`,i4=D.div`
   position: absolute;
   z-index: -1;
-`,r4=()=>W(t4,{children:[S(QC,{}),S(JC,{}),S(e4,{}),S(n4,{children:S(Vy,{})})]}),Kl="/SWDDB/assets/space-f314d075.webp",i4=D.div`
+  padding-top: 40px;
+`,o4=()=>W(r4,{children:[S(qC,{}),S(e4,{}),S(n4,{}),S(i4,{children:S(Vy,{})})]}),Kl="/SWDDB/assets/space-f314d075.webp",s4=D.div`
   background-image: url(${Kl});
   background-repeat: no-repeat;
   background-size: cover;
@@ -710,16 +721,16 @@ Error generating stack: `+o.message+`
   justify-content: center;
   z-index: -1;
   margin-top: -60px;
-`,o4=D.div`
+`,a4=D.div`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
   margin-top: 60px;
-`,s4=D.div`
+`,l4=D.div`
   display: flex;
   align-items: center;
-`,a4=D.button`
+`,c4=D.button`
   padding: 0.5rem 1rem;
   background-color: ${e=>e.showFilters?"#ff0000":"#FFD700"};
   color: #fff;
@@ -729,9 +740,9 @@ Error generating stack: `+o.message+`
   text-shadow: 1px 1px 2px #000, 0 0 1em red, 0 0 0.2em #000;
   width: 160px;
   height: 40px;
-`,l4=D.footer`
+`,u4=D.footer`
   width: 100%;
-`,c4=()=>{const[e,t]=k.useState(!1),{handleAddOrRemoveFromCollection:n}=jl(),r=s=>{n(s)},i=s=>{setCardCount(s)},o=()=>{t(!e)};return W(qn,{children:[S(i4,{children:S(jC,{})}),W(o4,{children:[S(s4,{children:S(r5,{type:"text",placeholder:"Search by name"})}),S(a4,{onClick:o,showFilters:e,children:e?"Hide filters":"Show filters"})]}),S(VC,{isOpen:e,onClose:o,children:S(r4,{})}),S(e5,{onCardCountChange:i,handleCardClick:r}),S(l4,{children:S(vi,{})})]})};/*! *****************************************************************************
+`,d4=()=>{const[e,t]=k.useState(!1),{handleAddOrRemoveFromCollection:n}=jl(),r=s=>{n(s)},i=s=>{setCardCount(s)},o=()=>{t(!e)};return W(qn,{children:[S(s4,{children:S(jC,{})}),W(a4,{children:[S(l4,{children:S(r5,{type:"text",placeholder:"Search by name"})}),S(c4,{onClick:o,showFilters:e,children:e?"Hide filters":"Show filters"})]}),S(VC,{isOpen:e,onClose:o,children:S(o4,{})}),S(e5,{onCardCountChange:i,handleCardClick:r}),S(u4,{children:S(vi,{})})]})};/*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
@@ -744,24 +755,24 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
-***************************************************************************** */var ud=function(e,t){return ud=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(n,r){n.__proto__=r}||function(n,r){for(var i in r)r.hasOwnProperty(i)&&(n[i]=r[i])},ud(e,t)};function u4(e,t){ud(e,t);function n(){this.constructor=e}e.prototype=t===null?Object.create(t):(n.prototype=t.prototype,new n)}var fo=function(){return fo=Object.assign||function(t){for(var n,r=1,i=arguments.length;r<i;r++){n=arguments[r];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(t[o]=n[o])}return t},fo.apply(this,arguments)};function d4(e,t,n,r){var i,o=!1,s=0;function a(){i&&clearTimeout(i)}function l(){a(),o=!0}typeof t!="boolean"&&(r=n,n=t,t=void 0);function c(){var u=this,d=Date.now()-s,f=arguments;if(o)return;function h(){s=Date.now(),n.apply(u,f)}function p(){i=void 0}r&&!i&&h(),a(),r===void 0&&d>e?h():t!==!0&&(i=setTimeout(r?p:h,r===void 0?e-d:e))}return c.cancel=l,c}var Jr={Pixel:"Pixel",Percent:"Percent"},K0={unit:Jr.Percent,value:.8};function X0(e){return typeof e=="number"?{unit:Jr.Percent,value:e*100}:typeof e=="string"?e.match(/^(\d*(\.\d+)?)px$/)?{unit:Jr.Pixel,value:parseFloat(e)}:e.match(/^(\d*(\.\d+)?)%$/)?{unit:Jr.Percent,value:parseFloat(e)}:(console.warn('scrollThreshold format is invalid. Valid formats: "120px", "50%"...'),K0):(console.warn("scrollThreshold should be string or number"),K0)}var f4=function(e){u4(t,e);function t(n){var r=e.call(this,n)||this;return r.lastScrollTop=0,r.actionTriggered=!1,r.startY=0,r.currentY=0,r.dragging=!1,r.maxPullDownDistance=0,r.getScrollableTarget=function(){return r.props.scrollableTarget instanceof HTMLElement?r.props.scrollableTarget:typeof r.props.scrollableTarget=="string"?document.getElementById(r.props.scrollableTarget):(r.props.scrollableTarget===null&&console.warn(`You are trying to pass scrollableTarget but it is null. This might
+***************************************************************************** */var ud=function(e,t){return ud=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(n,r){n.__proto__=r}||function(n,r){for(var i in r)r.hasOwnProperty(i)&&(n[i]=r[i])},ud(e,t)};function f4(e,t){ud(e,t);function n(){this.constructor=e}e.prototype=t===null?Object.create(t):(n.prototype=t.prototype,new n)}var fo=function(){return fo=Object.assign||function(t){for(var n,r=1,i=arguments.length;r<i;r++){n=arguments[r];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(t[o]=n[o])}return t},fo.apply(this,arguments)};function h4(e,t,n,r){var i,o=!1,s=0;function a(){i&&clearTimeout(i)}function l(){a(),o=!0}typeof t!="boolean"&&(r=n,n=t,t=void 0);function c(){var u=this,d=Date.now()-s,f=arguments;if(o)return;function h(){s=Date.now(),n.apply(u,f)}function p(){i=void 0}r&&!i&&h(),a(),r===void 0&&d>e?h():t!==!0&&(i=setTimeout(r?p:h,r===void 0?e-d:e))}return c.cancel=l,c}var Jr={Pixel:"Pixel",Percent:"Percent"},K0={unit:Jr.Percent,value:.8};function X0(e){return typeof e=="number"?{unit:Jr.Percent,value:e*100}:typeof e=="string"?e.match(/^(\d*(\.\d+)?)px$/)?{unit:Jr.Pixel,value:parseFloat(e)}:e.match(/^(\d*(\.\d+)?)%$/)?{unit:Jr.Percent,value:parseFloat(e)}:(console.warn('scrollThreshold format is invalid. Valid formats: "120px", "50%"...'),K0):(console.warn("scrollThreshold should be string or number"),K0)}var p4=function(e){f4(t,e);function t(n){var r=e.call(this,n)||this;return r.lastScrollTop=0,r.actionTriggered=!1,r.startY=0,r.currentY=0,r.dragging=!1,r.maxPullDownDistance=0,r.getScrollableTarget=function(){return r.props.scrollableTarget instanceof HTMLElement?r.props.scrollableTarget:typeof r.props.scrollableTarget=="string"?document.getElementById(r.props.scrollableTarget):(r.props.scrollableTarget===null&&console.warn(`You are trying to pass scrollableTarget but it is null. This might
         happen because the element may not have been added to DOM yet.
         See https://github.com/ankeetmaini/react-infinite-scroll-component/issues/59 for more info.
-      `),null)},r.onStart=function(i){r.lastScrollTop||(r.dragging=!0,i instanceof MouseEvent?r.startY=i.pageY:i instanceof TouchEvent&&(r.startY=i.touches[0].pageY),r.currentY=r.startY,r._infScroll&&(r._infScroll.style.willChange="transform",r._infScroll.style.transition="transform 0.2s cubic-bezier(0,0,0.31,1)"))},r.onMove=function(i){r.dragging&&(i instanceof MouseEvent?r.currentY=i.pageY:i instanceof TouchEvent&&(r.currentY=i.touches[0].pageY),!(r.currentY<r.startY)&&(r.currentY-r.startY>=Number(r.props.pullDownToRefreshThreshold)&&r.setState({pullToRefreshThresholdBreached:!0}),!(r.currentY-r.startY>r.maxPullDownDistance*1.5)&&r._infScroll&&(r._infScroll.style.overflow="visible",r._infScroll.style.transform="translate3d(0px, "+(r.currentY-r.startY)+"px, 0px)")))},r.onEnd=function(){r.startY=0,r.currentY=0,r.dragging=!1,r.state.pullToRefreshThresholdBreached&&(r.props.refreshFunction&&r.props.refreshFunction(),r.setState({pullToRefreshThresholdBreached:!1})),requestAnimationFrame(function(){r._infScroll&&(r._infScroll.style.overflow="auto",r._infScroll.style.transform="none",r._infScroll.style.willChange="unset")})},r.onScrollListener=function(i){typeof r.props.onScroll=="function"&&setTimeout(function(){return r.props.onScroll&&r.props.onScroll(i)},0);var o=r.props.height||r._scrollableNode?i.target:document.documentElement.scrollTop?document.documentElement:document.body;if(!r.actionTriggered){var s=r.props.inverse?r.isElementAtTop(o,r.props.scrollThreshold):r.isElementAtBottom(o,r.props.scrollThreshold);s&&r.props.hasMore&&(r.actionTriggered=!0,r.setState({showLoader:!0}),r.props.next&&r.props.next()),r.lastScrollTop=o.scrollTop}},r.state={showLoader:!1,pullToRefreshThresholdBreached:!1,prevDataLength:n.dataLength},r.throttledOnScrollListener=d4(150,r.onScrollListener).bind(r),r.onStart=r.onStart.bind(r),r.onMove=r.onMove.bind(r),r.onEnd=r.onEnd.bind(r),r}return t.prototype.componentDidMount=function(){if(typeof this.props.dataLength>"u")throw new Error('mandatory prop "dataLength" is missing. The prop is needed when loading more content. Check README.md for usage');if(this._scrollableNode=this.getScrollableTarget(),this.el=this.props.height?this._infScroll:this._scrollableNode||window,this.el&&this.el.addEventListener("scroll",this.throttledOnScrollListener),typeof this.props.initialScrollY=="number"&&this.el&&this.el instanceof HTMLElement&&this.el.scrollHeight>this.props.initialScrollY&&this.el.scrollTo(0,this.props.initialScrollY),this.props.pullDownToRefresh&&this.el&&(this.el.addEventListener("touchstart",this.onStart),this.el.addEventListener("touchmove",this.onMove),this.el.addEventListener("touchend",this.onEnd),this.el.addEventListener("mousedown",this.onStart),this.el.addEventListener("mousemove",this.onMove),this.el.addEventListener("mouseup",this.onEnd),this.maxPullDownDistance=this._pullDown&&this._pullDown.firstChild&&this._pullDown.firstChild.getBoundingClientRect().height||0,this.forceUpdate(),typeof this.props.refreshFunction!="function"))throw new Error(`Mandatory prop "refreshFunction" missing.
+      `),null)},r.onStart=function(i){r.lastScrollTop||(r.dragging=!0,i instanceof MouseEvent?r.startY=i.pageY:i instanceof TouchEvent&&(r.startY=i.touches[0].pageY),r.currentY=r.startY,r._infScroll&&(r._infScroll.style.willChange="transform",r._infScroll.style.transition="transform 0.2s cubic-bezier(0,0,0.31,1)"))},r.onMove=function(i){r.dragging&&(i instanceof MouseEvent?r.currentY=i.pageY:i instanceof TouchEvent&&(r.currentY=i.touches[0].pageY),!(r.currentY<r.startY)&&(r.currentY-r.startY>=Number(r.props.pullDownToRefreshThreshold)&&r.setState({pullToRefreshThresholdBreached:!0}),!(r.currentY-r.startY>r.maxPullDownDistance*1.5)&&r._infScroll&&(r._infScroll.style.overflow="visible",r._infScroll.style.transform="translate3d(0px, "+(r.currentY-r.startY)+"px, 0px)")))},r.onEnd=function(){r.startY=0,r.currentY=0,r.dragging=!1,r.state.pullToRefreshThresholdBreached&&(r.props.refreshFunction&&r.props.refreshFunction(),r.setState({pullToRefreshThresholdBreached:!1})),requestAnimationFrame(function(){r._infScroll&&(r._infScroll.style.overflow="auto",r._infScroll.style.transform="none",r._infScroll.style.willChange="unset")})},r.onScrollListener=function(i){typeof r.props.onScroll=="function"&&setTimeout(function(){return r.props.onScroll&&r.props.onScroll(i)},0);var o=r.props.height||r._scrollableNode?i.target:document.documentElement.scrollTop?document.documentElement:document.body;if(!r.actionTriggered){var s=r.props.inverse?r.isElementAtTop(o,r.props.scrollThreshold):r.isElementAtBottom(o,r.props.scrollThreshold);s&&r.props.hasMore&&(r.actionTriggered=!0,r.setState({showLoader:!0}),r.props.next&&r.props.next()),r.lastScrollTop=o.scrollTop}},r.state={showLoader:!1,pullToRefreshThresholdBreached:!1,prevDataLength:n.dataLength},r.throttledOnScrollListener=h4(150,r.onScrollListener).bind(r),r.onStart=r.onStart.bind(r),r.onMove=r.onMove.bind(r),r.onEnd=r.onEnd.bind(r),r}return t.prototype.componentDidMount=function(){if(typeof this.props.dataLength>"u")throw new Error('mandatory prop "dataLength" is missing. The prop is needed when loading more content. Check README.md for usage');if(this._scrollableNode=this.getScrollableTarget(),this.el=this.props.height?this._infScroll:this._scrollableNode||window,this.el&&this.el.addEventListener("scroll",this.throttledOnScrollListener),typeof this.props.initialScrollY=="number"&&this.el&&this.el instanceof HTMLElement&&this.el.scrollHeight>this.props.initialScrollY&&this.el.scrollTo(0,this.props.initialScrollY),this.props.pullDownToRefresh&&this.el&&(this.el.addEventListener("touchstart",this.onStart),this.el.addEventListener("touchmove",this.onMove),this.el.addEventListener("touchend",this.onEnd),this.el.addEventListener("mousedown",this.onStart),this.el.addEventListener("mousemove",this.onMove),this.el.addEventListener("mouseup",this.onEnd),this.maxPullDownDistance=this._pullDown&&this._pullDown.firstChild&&this._pullDown.firstChild.getBoundingClientRect().height||0,this.forceUpdate(),typeof this.props.refreshFunction!="function"))throw new Error(`Mandatory prop "refreshFunction" missing.
           Pull Down To Refresh functionality will not work
-          as expected. Check README.md for usage'`)},t.prototype.componentWillUnmount=function(){this.el&&(this.el.removeEventListener("scroll",this.throttledOnScrollListener),this.props.pullDownToRefresh&&(this.el.removeEventListener("touchstart",this.onStart),this.el.removeEventListener("touchmove",this.onMove),this.el.removeEventListener("touchend",this.onEnd),this.el.removeEventListener("mousedown",this.onStart),this.el.removeEventListener("mousemove",this.onMove),this.el.removeEventListener("mouseup",this.onEnd)))},t.prototype.componentDidUpdate=function(n){this.props.dataLength!==n.dataLength&&(this.actionTriggered=!1,this.setState({showLoader:!1}))},t.getDerivedStateFromProps=function(n,r){var i=n.dataLength!==r.prevDataLength;return i?fo(fo({},r),{prevDataLength:n.dataLength}):null},t.prototype.isElementAtTop=function(n,r){r===void 0&&(r=.8);var i=n===document.body||n===document.documentElement?window.screen.availHeight:n.clientHeight,o=X0(r);return o.unit===Jr.Pixel?n.scrollTop<=o.value+i-n.scrollHeight+1:n.scrollTop<=o.value/100+i-n.scrollHeight+1},t.prototype.isElementAtBottom=function(n,r){r===void 0&&(r=.8);var i=n===document.body||n===document.documentElement?window.screen.availHeight:n.clientHeight,o=X0(r);return o.unit===Jr.Pixel?n.scrollTop+i>=n.scrollHeight-o.value:n.scrollTop+i>=o.value/100*n.scrollHeight},t.prototype.render=function(){var n=this,r=fo({height:this.props.height||"auto",overflow:"auto",WebkitOverflowScrolling:"touch"},this.props.style),i=this.props.hasChildren||!!(this.props.children&&this.props.children instanceof Array&&this.props.children.length),o=this.props.pullDownToRefresh&&this.props.height?{overflow:"auto"}:{};return G.createElement("div",{style:o,className:"infinite-scroll-component__outerdiv"},G.createElement("div",{className:"infinite-scroll-component "+(this.props.className||""),ref:function(s){return n._infScroll=s},style:r},this.props.pullDownToRefresh&&G.createElement("div",{style:{position:"relative"},ref:function(s){return n._pullDown=s}},G.createElement("div",{style:{position:"absolute",left:0,right:0,top:-1*this.maxPullDownDistance}},this.state.pullToRefreshThresholdBreached?this.props.releaseToRefreshContent:this.props.pullDownToRefreshContent)),this.props.children,!this.state.showLoader&&!i&&this.props.hasMore&&this.props.loader,this.state.showLoader&&this.props.hasMore&&this.props.loader,!this.props.hasMore&&this.props.endMessage))},t}(k.Component);const h4=k.lazy(()=>I1(()=>import("./CardImage-40744e05.js"),[])),Wc=10,p4=D.div`
+          as expected. Check README.md for usage'`)},t.prototype.componentWillUnmount=function(){this.el&&(this.el.removeEventListener("scroll",this.throttledOnScrollListener),this.props.pullDownToRefresh&&(this.el.removeEventListener("touchstart",this.onStart),this.el.removeEventListener("touchmove",this.onMove),this.el.removeEventListener("touchend",this.onEnd),this.el.removeEventListener("mousedown",this.onStart),this.el.removeEventListener("mousemove",this.onMove),this.el.removeEventListener("mouseup",this.onEnd)))},t.prototype.componentDidUpdate=function(n){this.props.dataLength!==n.dataLength&&(this.actionTriggered=!1,this.setState({showLoader:!1}))},t.getDerivedStateFromProps=function(n,r){var i=n.dataLength!==r.prevDataLength;return i?fo(fo({},r),{prevDataLength:n.dataLength}):null},t.prototype.isElementAtTop=function(n,r){r===void 0&&(r=.8);var i=n===document.body||n===document.documentElement?window.screen.availHeight:n.clientHeight,o=X0(r);return o.unit===Jr.Pixel?n.scrollTop<=o.value+i-n.scrollHeight+1:n.scrollTop<=o.value/100+i-n.scrollHeight+1},t.prototype.isElementAtBottom=function(n,r){r===void 0&&(r=.8);var i=n===document.body||n===document.documentElement?window.screen.availHeight:n.clientHeight,o=X0(r);return o.unit===Jr.Pixel?n.scrollTop+i>=n.scrollHeight-o.value:n.scrollTop+i>=o.value/100*n.scrollHeight},t.prototype.render=function(){var n=this,r=fo({height:this.props.height||"auto",overflow:"auto",WebkitOverflowScrolling:"touch"},this.props.style),i=this.props.hasChildren||!!(this.props.children&&this.props.children instanceof Array&&this.props.children.length),o=this.props.pullDownToRefresh&&this.props.height?{overflow:"auto"}:{};return G.createElement("div",{style:o,className:"infinite-scroll-component__outerdiv"},G.createElement("div",{className:"infinite-scroll-component "+(this.props.className||""),ref:function(s){return n._infScroll=s},style:r},this.props.pullDownToRefresh&&G.createElement("div",{style:{position:"relative"},ref:function(s){return n._pullDown=s}},G.createElement("div",{style:{position:"absolute",left:0,right:0,top:-1*this.maxPullDownDistance}},this.state.pullToRefreshThresholdBreached?this.props.releaseToRefreshContent:this.props.pullDownToRefreshContent)),this.props.children,!this.state.showLoader&&!i&&this.props.hasMore&&this.props.loader,this.state.showLoader&&this.props.hasMore&&this.props.loader,!this.props.hasMore&&this.props.endMessage))},t}(k.Component);const g4=k.lazy(()=>I1(()=>import("./CardImage-19ebded8.js"),[])),Wc=10,m4=D.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1200px;
-`,g4=D.ul`
+`,y4=D.ul`
   list-style: none;
   padding: 0;
   padding: 0 20px;
   min-height: calc(100vh - 120px - 110px);
   width: 100%;
-`,m4=D(f4)`
+`,v4=D(p4)`
   max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
@@ -780,7 +791,7 @@ and limitations under the License.
 `,Hc=D.div`
   font-size: 16px;
   color: #999;
-`,y4=D.div`
+`,x4=D.div`
   position: absolute;
   border-radius: 7px;
   width: 100%;
@@ -799,7 +810,7 @@ and limitations under the License.
     bottom: 0;
     height: 100%;
   }
-`,v4=D.div`
+`,w4=D.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -811,20 +822,20 @@ and limitations under the License.
     overflow-wrap: break-word;
     word-break: break-word;
   }
-`,x4=D.div`
+`,_4=D.div`
   width: 100%;
   height: 5px;
   position: fixed;
   top: 0;
   right: 0;
-`,w4=D.div`
+`,S4=D.div`
   position: fixed;
   top: 0;
   right: 0;
   width: 15px;
   height: ${({progress:e})=>e}%;
   background-color: #000;
-`,_4=()=>{const e=jl(d=>d.collection),t=Of(d=>d.data),[n,r]=k.useState(1),[i,o]=k.useState([]),[s,a]=k.useState(0),l=()=>{const d=window.innerHeight,f=document.documentElement.scrollHeight,h=window.scrollY,y=(d+h)/f*100;a(y),console.log(y)};k.useEffect(()=>{const d=(n-1)*Wc,f=d+Wc,h=t.filter(p=>e.includes(p.code)).slice(d,f);o(p=>[...p,...h]),console.log(e)},[e,t,n]),k.useEffect(()=>(window.addEventListener("scroll",l),()=>{window.removeEventListener("scroll",l)}),[]);const c=()=>{r(d=>d+1)},u=n*Wc<=e.length;return W(p4,{children:[S(x4,{children:S(w4,{progress:s})}),S(g4,{children:S(m4,{dataLength:i.length,next:c,hasMore:u,loader:S(Hc,{children:"Loading..."}),endMessage:S(Hc,{children:"No more data to load"}),children:i.map((d,f)=>W("li",{children:[S(k.Suspense,{fallback:S(Hc,{children:"Loading..."}),children:S(h4,{className:"image",src:d.imagesrc,alt:d.name})}),S(y4,{children:W(v4,{children:[S("p",{children:d.name}),S("p",{children:d.faction_code}),S("p",{children:d.set_name})]})})]},`${d.code}-${f}`))})})]})},Yy="/SWDDB/assets/deathstarpng-cab082e6.png",S4="/SWDDB/assets/cards-b0dc59ee.png",b4=D.div`
+`,b4=()=>{const e=jl(d=>d.collection),t=Of(d=>d.data),[n,r]=k.useState(1),[i,o]=k.useState([]),[s,a]=k.useState(0),l=()=>{const d=window.innerHeight,f=document.documentElement.scrollHeight,h=window.scrollY,y=(d+h)/f*100;a(y),console.log(y)};k.useEffect(()=>{const d=(n-1)*Wc,f=d+Wc,h=t.filter(p=>e.includes(p.code)).slice(d,f);o(p=>[...p,...h]),console.log(e)},[e,t,n]),k.useEffect(()=>(window.addEventListener("scroll",l),()=>{window.removeEventListener("scroll",l)}),[]);const c=()=>{r(d=>d+1)},u=n*Wc<=e.length;return W(m4,{children:[S(_4,{children:S(S4,{progress:s})}),S(y4,{children:S(v4,{dataLength:i.length,next:c,hasMore:u,loader:S(Hc,{children:"Loading..."}),endMessage:S(Hc,{children:"No more data to load"}),children:i.map((d,f)=>W("li",{children:[S(k.Suspense,{fallback:S(Hc,{children:"Loading..."}),children:S(g4,{className:"image",src:d.imagesrc,alt:d.name})}),S(x4,{children:W(w4,{children:[S("p",{children:d.name}),S("p",{children:d.faction_code}),S("p",{children:d.set_name})]})})]},`${d.code}-${f}`))})})]})},Yy="/SWDDB/assets/deathstarpng-cab082e6.png",k4="/SWDDB/assets/cards-b0dc59ee.png",C4=D.div`
 background-image: url(${Kl});
 background-size: cover;
 background-position: center;
@@ -891,7 +902,7 @@ justify-content: center;
 `,Uc=D.a`
   color: #ffd700;
   text-decoration: none;
-`,k4=()=>W(b4,{children:[S("img",{src:S4,alt:"Cards and dice"}),W("h1",{children:["N",S("span",{children:S("img",{src:Yy,alt:"Death Star"})}),"cards added to collection found."]}),W("p",{children:[W(Uc,{as:no,to:"/SWDDB/register",children:["Register"," "]}),"or",W(Uc,{as:no,to:"/SWDDB/login",children:[" ","login"," "]}),"now and start adding",W(Uc,{as:no,to:"/SWDDB/cards",children:[" ","cards"," "]}),"to your collection."]})]}),C4=()=>{const t=jl(r=>r.collection).length===0,n=D.div`
+`,E4=()=>W(C4,{children:[S("img",{src:k4,alt:"Cards and dice"}),W("h1",{children:["N",S("span",{children:S("img",{src:Yy,alt:"Death Star"})}),"cards added to collection found."]}),W("p",{children:[W(Uc,{as:no,to:"/SWDDB/register",children:["Register"," "]}),"or",W(Uc,{as:no,to:"/SWDDB/login",children:[" ","login"," "]}),"now and start adding",W(Uc,{as:no,to:"/SWDDB/cards",children:[" ","cards"," "]}),"to your collection."]})]}),P4=()=>{const t=jl(r=>r.collection).length===0,n=D.div`
     background-image: url(${Kl});
     background-repeat: no-repeat;
     background-size: cover;
@@ -902,7 +913,7 @@ justify-content: center;
     justify-content: center;
     z-index: -1;
     margin-top: -60px;
-  `;return S(qn,{children:t?S(k4,{}):S(n,{children:S(_4,{})})})},E4={en:{about:{title:"Why I created this application",paragraph1:"This page was created primarily for two reasons. Firstly, I wanted to have my own application for storing collections of Star Wars Destiny cards. Secondly, I aimed to develop my skills in JavaScript and React, as well as learn new things. Previously, I used styling modules, but in this application, I started using Styled Components, which turned out to be a great tool. Additionally, I set myself the goal of learning application testing and TypeScript.",paragraph2:"Writing this application was a challenge, especially in the context of learning new things. One of the main challenges was managing the application state. For this purpose, I used the Zustand library, which turned out to be an exceptionally simple tool."}},pl:{about:{title:"Dlaczego stworzyłem tę aplikację",paragraph1:"Ta strona powstała głównie z dwóch powodów. Po pierwsze, chciałem mieć własną aplikację do zapisywania kolekcji kart do gry Star Wars Destiny. Po drugie, miałem na celu rozwijanie swoich umiejętności w JavaScript i React oraz naukę nowych rzeczy. Wcześniej korzystałem z modułów do stylowania, ale w tej aplikacji zacząłem używać Styled Components i okazały się one świetnym narzędziem. Dodatkowo, postawiłem sobie za zadanie nauczenie się testowania aplikacji oraz TypeScript.",paragraph2:"Pisanie tej aplikacji było wyzwaniem, zwłaszcza w kontekście nauki nowych rzeczy. Jednym z głównych wyzwań było zarządzanie stanem aplikacji. W tym celu zastosowałem bibliotekę Zustand, która okazała się wyjątkowo prostym narzędziem."}}},P4=D.div`
+  `;return S(qn,{children:t?S(E4,{}):S(n,{children:S(b4,{})})})},T4={en:{about:{title:"Why I created this application",paragraph1:"This page was created primarily for two reasons. Firstly, I wanted to have my own application for storing collections of Star Wars Destiny cards. Secondly, I aimed to develop my skills in JavaScript and React, as well as learn new things. Previously, I used styling modules, but in this application, I started using Styled Components, which turned out to be a great tool. Additionally, I set myself the goal of learning application testing and TypeScript.",paragraph2:"Writing this application was a challenge, especially in the context of learning new things. One of the main challenges was managing the application state. For this purpose, I used the Zustand library, which turned out to be an exceptionally simple tool."}},pl:{about:{title:"Dlaczego stworzyłem tę aplikację",paragraph1:"Ta strona powstała głównie z dwóch powodów. Po pierwsze, chciałem mieć własną aplikację do zapisywania kolekcji kart do gry Star Wars Destiny. Po drugie, miałem na celu rozwijanie swoich umiejętności w JavaScript i React oraz naukę nowych rzeczy. Wcześniej korzystałem z modułów do stylowania, ale w tej aplikacji zacząłem używać Styled Components i okazały się one świetnym narzędziem. Dodatkowo, postawiłem sobie za zadanie nauczenie się testowania aplikacji oraz TypeScript.",paragraph2:"Pisanie tej aplikacji było wyzwaniem, zwłaszcza w kontekście nauki nowych rzeczy. Jednym z głównych wyzwań było zarządzanie stanem aplikacji. W tym celu zastosowałem bibliotekę Zustand, która okazała się wyjątkowo prostym narzędziem."}}},L4=D.div`
   background-image: url(${Go});
   background-repeat: no-repeat;
   background-size: cover;
@@ -915,7 +926,7 @@ justify-content: center;
   flex-direction: column;
   text-align: center;
   font-weight: 400;
-`,T4=D.main`
+`,O4=D.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -932,7 +943,7 @@ justify-content: center;
   height: auto;
   @import url("https://fonts.googleapis.com/css?family=Megrim&display=swap");
   font-family: "Megrim", cursive;
-`,L4=D.div`
+`,M4=D.div`
   display: flex;
   column-gap: 10px;
   & button {
@@ -952,7 +963,7 @@ justify-content: center;
       color: #ffd700;
     }
   }
-`,O4=D.h1`
+`,R4=D.h1`
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -961,12 +972,12 @@ justify-content: center;
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
-`,M4=D.footer`
+`,A4=D.footer`
   position: absolute;
   z-index: 2;
   bottom: 0;
   width: 100%;
-`,R4=()=>{const[e,t]=k.useState("en"),n=E4[e],r=i=>{t(i)};return W(P4,{children:[W(T4,{children:[W(L4,{children:[S("button",{onClick:()=>r("en"),children:"English"}),S("button",{onClick:()=>r("pl"),children:"Polski"})]}),S(O4,{children:n.about.title}),W("section",{children:[S("article",{children:S(G0,{children:n.about.paragraph1})}),S("article",{children:S(G0,{children:n.about.paragraph2})})]})]}),S(M4,{children:S(vi,{})})]})},Bo={_origin:"https://api.emailjs.com"},A4=(e,t="https://api.emailjs.com")=>{Bo._userID=e,Bo._origin=t},Ky=(e,t,n)=>{if(!e)throw"The public key is required. Visit https://dashboard.emailjs.com/admin/account";if(!t)throw"The service ID is required. Visit https://dashboard.emailjs.com/admin";if(!n)throw"The template ID is required. Visit https://dashboard.emailjs.com/admin/templates";return!0};class Q0{constructor(t){this.status=t?t.status:0,this.text=t?t.responseText:"Network Error"}}const Xy=(e,t,n={})=>new Promise((r,i)=>{const o=new XMLHttpRequest;o.addEventListener("load",({target:s})=>{const a=new Q0(s);a.status===200||a.text==="OK"?r(a):i(a)}),o.addEventListener("error",({target:s})=>{i(new Q0(s))}),o.open("POST",Bo._origin+e,!0),Object.keys(n).forEach(s=>{o.setRequestHeader(s,n[s])}),o.send(t)}),D4=(e,t,n,r)=>{const i=r||Bo._userID;return Ky(i,e,t),Xy("/api/v1.0/email/send",JSON.stringify({lib_version:"3.11.0",user_id:i,service_id:e,template_id:t,template_params:n}),{"Content-type":"application/json"})},z4=e=>{let t;if(typeof e=="string"?t=document.querySelector(e):t=e,!t||t.nodeName!=="FORM")throw"The 3rd parameter is expected to be the HTML form element or the style selector of form";return t},I4=(e,t,n,r)=>{const i=r||Bo._userID,o=z4(n);Ky(i,e,t);const s=new FormData(o);return s.append("lib_version","3.11.0"),s.append("service_id",e),s.append("template_id",t),s.append("user_id",i),Xy("/api/v1.0/email/send-form",s)},N4={init:A4,send:D4,sendForm:I4},F4=D.form`
+`,D4=()=>{const[e,t]=k.useState("en"),n=T4[e],r=i=>{t(i)};return W(L4,{children:[W(O4,{children:[W(M4,{children:[S("button",{onClick:()=>r("en"),children:"English"}),S("button",{onClick:()=>r("pl"),children:"Polski"})]}),S(R4,{children:n.about.title}),W("section",{children:[S("article",{children:S(G0,{children:n.about.paragraph1})}),S("article",{children:S(G0,{children:n.about.paragraph2})})]})]}),S(A4,{children:S(vi,{})})]})},Bo={_origin:"https://api.emailjs.com"},z4=(e,t="https://api.emailjs.com")=>{Bo._userID=e,Bo._origin=t},Ky=(e,t,n)=>{if(!e)throw"The public key is required. Visit https://dashboard.emailjs.com/admin/account";if(!t)throw"The service ID is required. Visit https://dashboard.emailjs.com/admin";if(!n)throw"The template ID is required. Visit https://dashboard.emailjs.com/admin/templates";return!0};class Q0{constructor(t){this.status=t?t.status:0,this.text=t?t.responseText:"Network Error"}}const Xy=(e,t,n={})=>new Promise((r,i)=>{const o=new XMLHttpRequest;o.addEventListener("load",({target:s})=>{const a=new Q0(s);a.status===200||a.text==="OK"?r(a):i(a)}),o.addEventListener("error",({target:s})=>{i(new Q0(s))}),o.open("POST",Bo._origin+e,!0),Object.keys(n).forEach(s=>{o.setRequestHeader(s,n[s])}),o.send(t)}),I4=(e,t,n,r)=>{const i=r||Bo._userID;return Ky(i,e,t),Xy("/api/v1.0/email/send",JSON.stringify({lib_version:"3.11.0",user_id:i,service_id:e,template_id:t,template_params:n}),{"Content-type":"application/json"})},N4=e=>{let t;if(typeof e=="string"?t=document.querySelector(e):t=e,!t||t.nodeName!=="FORM")throw"The 3rd parameter is expected to be the HTML form element or the style selector of form";return t},F4=(e,t,n,r)=>{const i=r||Bo._userID,o=N4(n);Ky(i,e,t);const s=new FormData(o);return s.append("lib_version","3.11.0"),s.append("service_id",e),s.append("template_id",t),s.append("user_id",i),Xy("/api/v1.0/email/send-form",s)},$4={init:z4,send:I4,sendForm:F4},B4=D.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1024,13 +1035,13 @@ justify-content: center;
   text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   font-size: 12px;
   margin-top: -24px;
-`,$4=D.p`
+`,j4=D.p`
   color: blue;
   margin: 0;
   text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   font-size: 12px;
   margin-top: -24px;
-`,B4=()=>{const e=k.useRef(),[t,n]=k.useState({}),[r,i]=k.useState(!1),[o,s]=k.useState(!1),a=c=>{if(c.preventDefault(),r)return;const u=l();Object.keys(u).length===0?(i(!0),N4.sendForm({}.VITE_EMAILJS_SERVICE_ID,{}.VITE_EMAILJS_TEMPLATE_ID,e.current,{}.VITE_EMAILJS_PUBLIC_KEY).then(d=>{console.log("SUCCESS!",d.text),s(!0),i(!1)},d=>{console.log("FAILED...",d.text),i(!1)})):n(u)},l=()=>{const c={},{user_name:u,user_email:d,message:f}=e.current;return u.value.trim()||(c.user_name="Name is required"),d.value.trim()?/\S+@\S+\.\S+/.test(d.value)||(c.user_email="Invalid email address"):c.user_email="Email is required",f.value.trim()||(c.message="Message is required"),c};return W(F4,{ref:e,onSubmit:a,children:[S("label",{htmlFor:"user_name",children:"Name"}),S("input",{type:"text",name:"user_name",id:"user_name"}),t.user_name&&S(Vc,{children:t.user_name}),S("label",{htmlFor:"user_email",children:"Email"}),S("input",{type:"email",name:"user_email",id:"user_email"}),t.user_email&&S(Vc,{children:t.user_email}),S("label",{htmlFor:"message",children:"Message"}),S("textarea",{name:"message",id:"message"}),t.message&&S(Vc,{children:t.message}),S("button",{type:"submit",disabled:r||o,children:r?"Sending...":o?"Sent!":"Send"}),o&&S($4,{children:"Message sent successfully!"})]})},j4=D.div`
+`,W4=()=>{const e=k.useRef(),[t,n]=k.useState({}),[r,i]=k.useState(!1),[o,s]=k.useState(!1),a=c=>{if(c.preventDefault(),r)return;const u=l();Object.keys(u).length===0?(i(!0),$4.sendForm({}.VITE_EMAILJS_SERVICE_ID,{}.VITE_EMAILJS_TEMPLATE_ID,e.current,{}.VITE_EMAILJS_PUBLIC_KEY).then(d=>{console.log("SUCCESS!",d.text),s(!0),i(!1)},d=>{console.log("FAILED...",d.text),i(!1)})):n(u)},l=()=>{const c={},{user_name:u,user_email:d,message:f}=e.current;return u.value.trim()||(c.user_name="Name is required"),d.value.trim()?/\S+@\S+\.\S+/.test(d.value)||(c.user_email="Invalid email address"):c.user_email="Email is required",f.value.trim()||(c.message="Message is required"),c};return W(B4,{ref:e,onSubmit:a,children:[S("label",{htmlFor:"user_name",children:"Name"}),S("input",{type:"text",name:"user_name",id:"user_name"}),t.user_name&&S(Vc,{children:t.user_name}),S("label",{htmlFor:"user_email",children:"Email"}),S("input",{type:"email",name:"user_email",id:"user_email"}),t.user_email&&S(Vc,{children:t.user_email}),S("label",{htmlFor:"message",children:"Message"}),S("textarea",{name:"message",id:"message"}),t.message&&S(Vc,{children:t.message}),S("button",{type:"submit",disabled:r||o,children:r?"Sending...":o?"Sent!":"Send"}),o&&S(j4,{children:"Message sent successfully!"})]})},H4=D.div`
   background-image: url(${Go});
   background-repeat: no-repeat;
   background-size: cover;
@@ -1041,12 +1052,12 @@ justify-content: center;
   justify-content: center;
   z-index: -1;
   flex-direction: column;
-`,W4=D.footer`
+`,U4=D.footer`
   position: absolute;
   z-index: 2;
   bottom: 0;
   width: 100%;
-`,H4=()=>S(qn,{children:W(j4,{children:[S(B4,{}),S(W4,{children:S(vi,{})})]})}),U4=D.div`
+`,V4=()=>S(qn,{children:W(H4,{children:[S(W4,{}),S(U4,{children:S(vi,{})})]})}),Y4=D.div`
 background-image: url(${Kl});
 background-size: cover;
 background-position: center;
@@ -1104,7 +1115,7 @@ text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
     transform: translateY(-0.15em);
   }
 }
-`,V4=()=>W(U4,{children:[W("h1",{children:["4",S("span",{children:S("img",{src:Yy,alt:"Death Star"})}),"4"]}),S("h2",{children:"Error: 404 page not found"}),S("p",{children:"Sorry, the page you're looking for cannot be accessed"})]}),Y4=Sf`
+`,K4=()=>W(Y4,{children:[W("h1",{children:["4",S("span",{children:S("img",{src:Yy,alt:"Death Star"})}),"4"]}),S("h2",{children:"Error: 404 page not found"}),S("p",{children:"Sorry, the page you're looking for cannot be accessed"})]}),X4=Sf`
   0% {
     fill: black;
   }
@@ -1117,18 +1128,18 @@ text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   100% {
     fill: black;
   }
-`,K4=Sf`
+`,G4=Sf`
   from {
     transform: rotate(0deg) scale(0.1);
   }
   to {
     transform: rotate(360deg) scale(10);
   }
-`,X4=D.svg`
+`,Q4=D.svg`
   fill: red;
-  animation: ${Y4} 2s linear infinite,
-    ${K4} 2s linear infinite;
-`,G4=({width:e="100vw",height:t="90vh"})=>W(X4,{viewBox:"0 0 76 76",width:e,height:t,children:[S("g",{id:"SVGRepo_bgCarrier",strokeWidth:"0"}),S("g",{id:"SVGRepo_tracerCarrier",strokeLinecap:"round",strokeLinejoin:"round"}),W("g",{id:"SVGRepo_iconCarrier",children:[" ",S("path",{fillOpacity:"1",strokeLinejoin:"round",d:"M 30.351,23.3949L 38.0169,19L 45.679,23.4244C 45.3991,23.8942 45.1188,24.364 44.8338,24.8309L 38.013,20.9065C 35.7412,22.216 33.4687,23.5251 31.1941,24.8298L 30.351,23.3949 Z M 33.2788,25.9482L 37.982,23.0164L 42.691,25.9458L 42.2196,26.6994L 39.8535,25.331C 39.6,27.7058 39.3291,30.0798 39.0822,32.4544C 40.1354,33.0708 41.1944,33.6778 42.2507,34.2898L 48.0344,30.0592L 45.6707,28.6901C 45.8087,28.4294 45.94,28.1645 46.0811,27.9054C 47.7098,28.7809 49.3427,29.6484 50.9705,30.5251L 50.7839,36.0726L 49.9052,36.0392L 49.9052,33.3032L 43.3427,36.1976L 43.3427,39.8346L 49.9048,42.7275L 49.9048,39.9911L 50.7831,39.96C 50.8475,41.8096 50.9116,43.6596 50.9689,45.5096L 46.0788,48.1261C 45.9443,47.863 45.8039,47.6029 45.6719,47.3387C 46.4612,46.8858 47.2471,46.4274 48.0348,45.9718L 42.2196,41.7106L 39.0465,43.546L 39.8539,50.7001L 42.2204,49.3321L 42.691,50.0841L 38.0169,53.0139L 33.2784,50.0833L 33.7506,49.3309L 36.1458,50.7001L 36.9194,43.5436C 36.9331,43.5062 36.8891,43.4977 36.8674,43.4819L 33.7804,41.7106L 27.9651,45.9722L 30.3294,47.3717L 29.8902,48.156C 28.269,47.2844 26.6475,46.4137 25.0295,45.5366C 25.0805,43.6875 25.1305,41.8383 25.1859,39.9891L 26.0897,40.0217L 26.0897,42.7617L 32.6574,39.8645L 32.6569,36.1976L 26.0897,33.3016L 26.0897,36.04L 25.1859,36.0726C 25.132,34.2329 25.0774,32.3923 25.031,30.5526L 29.8887,27.9062L 30.3294,28.6901L 27.9644,30.0592L 33.7187,34.2895C 34.7848,33.6775 35.8544,33.0708 36.9174,32.4544C 36.6705,30.0798 36.3997,27.7058 36.1461,25.331L 33.7501,26.699C 33.5897,26.4505 33.4361,26.1982 33.2788,25.9482 Z M 21.5461,28.4939C 24.0993,27.0241 26.6506,25.5504 29.2007,24.075C 29.4893,24.5401 29.7676,25.0122 30.0455,25.4835L 23.1948,29.4385L 23.194,37.3156L 21.5438,37.316C 21.5454,34.3752 21.5411,31.4343 21.5461,28.4939 Z M 45.9829,25.5137L 46.8257,24.0753C 49.3698,25.5464 51.9089,27.0253 54.4538,28.4939C 54.459,31.4343 54.4547,34.3752 54.4563,37.316L 52.8059,37.3156L 52.8052,29.4385L 45.9829,25.5137 Z M 21.5438,38.653L 23.1944,38.653L 23.1944,46.5233C 25.5385,47.898 28.0139,49.3129 30.0475,50.4855L 29.2066,51.923C 26.6502,50.456 24.1017,48.974 21.5457,47.5053C 21.5414,44.5546 21.5446,41.604 21.5438,38.653 Z M 52.8055,38.653L 54.4559,38.653C 54.4551,41.604 54.459,44.555 54.4539,47.5057C 51.9089,48.9747 49.3699,50.4537 46.8257,51.9246L 45.9829,50.4863C 48.2554,49.1638 50.5381,47.8532 52.804,46.5233L 52.8055,38.653 Z M 30.3513,52.5757L 31.1953,51.1377L 38.013,55.093L 44.8349,51.1377L 45.679,52.5757L 38.0169,57L 30.3513,52.5757 Z "})," "]})]}),Q4=D.div`
+  animation: ${X4} 2s linear infinite,
+    ${G4} 2s linear infinite;
+`,q4=({width:e="100vw",height:t="90vh"})=>W(Q4,{viewBox:"0 0 76 76",width:e,height:t,children:[S("g",{id:"SVGRepo_bgCarrier",strokeWidth:"0"}),S("g",{id:"SVGRepo_tracerCarrier",strokeLinecap:"round",strokeLinejoin:"round"}),W("g",{id:"SVGRepo_iconCarrier",children:[" ",S("path",{fillOpacity:"1",strokeLinejoin:"round",d:"M 30.351,23.3949L 38.0169,19L 45.679,23.4244C 45.3991,23.8942 45.1188,24.364 44.8338,24.8309L 38.013,20.9065C 35.7412,22.216 33.4687,23.5251 31.1941,24.8298L 30.351,23.3949 Z M 33.2788,25.9482L 37.982,23.0164L 42.691,25.9458L 42.2196,26.6994L 39.8535,25.331C 39.6,27.7058 39.3291,30.0798 39.0822,32.4544C 40.1354,33.0708 41.1944,33.6778 42.2507,34.2898L 48.0344,30.0592L 45.6707,28.6901C 45.8087,28.4294 45.94,28.1645 46.0811,27.9054C 47.7098,28.7809 49.3427,29.6484 50.9705,30.5251L 50.7839,36.0726L 49.9052,36.0392L 49.9052,33.3032L 43.3427,36.1976L 43.3427,39.8346L 49.9048,42.7275L 49.9048,39.9911L 50.7831,39.96C 50.8475,41.8096 50.9116,43.6596 50.9689,45.5096L 46.0788,48.1261C 45.9443,47.863 45.8039,47.6029 45.6719,47.3387C 46.4612,46.8858 47.2471,46.4274 48.0348,45.9718L 42.2196,41.7106L 39.0465,43.546L 39.8539,50.7001L 42.2204,49.3321L 42.691,50.0841L 38.0169,53.0139L 33.2784,50.0833L 33.7506,49.3309L 36.1458,50.7001L 36.9194,43.5436C 36.9331,43.5062 36.8891,43.4977 36.8674,43.4819L 33.7804,41.7106L 27.9651,45.9722L 30.3294,47.3717L 29.8902,48.156C 28.269,47.2844 26.6475,46.4137 25.0295,45.5366C 25.0805,43.6875 25.1305,41.8383 25.1859,39.9891L 26.0897,40.0217L 26.0897,42.7617L 32.6574,39.8645L 32.6569,36.1976L 26.0897,33.3016L 26.0897,36.04L 25.1859,36.0726C 25.132,34.2329 25.0774,32.3923 25.031,30.5526L 29.8887,27.9062L 30.3294,28.6901L 27.9644,30.0592L 33.7187,34.2895C 34.7848,33.6775 35.8544,33.0708 36.9174,32.4544C 36.6705,30.0798 36.3997,27.7058 36.1461,25.331L 33.7501,26.699C 33.5897,26.4505 33.4361,26.1982 33.2788,25.9482 Z M 21.5461,28.4939C 24.0993,27.0241 26.6506,25.5504 29.2007,24.075C 29.4893,24.5401 29.7676,25.0122 30.0455,25.4835L 23.1948,29.4385L 23.194,37.3156L 21.5438,37.316C 21.5454,34.3752 21.5411,31.4343 21.5461,28.4939 Z M 45.9829,25.5137L 46.8257,24.0753C 49.3698,25.5464 51.9089,27.0253 54.4538,28.4939C 54.459,31.4343 54.4547,34.3752 54.4563,37.316L 52.8059,37.3156L 52.8052,29.4385L 45.9829,25.5137 Z M 21.5438,38.653L 23.1944,38.653L 23.1944,46.5233C 25.5385,47.898 28.0139,49.3129 30.0475,50.4855L 29.2066,51.923C 26.6502,50.456 24.1017,48.974 21.5457,47.5053C 21.5414,44.5546 21.5446,41.604 21.5438,38.653 Z M 52.8055,38.653L 54.4559,38.653C 54.4551,41.604 54.459,44.555 54.4539,47.5057C 51.9089,48.9747 49.3699,50.4537 46.8257,51.9246L 45.9829,50.4863C 48.2554,49.1638 50.5381,47.8532 52.804,46.5233L 52.8055,38.653 Z M 30.3513,52.5757L 31.1953,51.1377L 38.013,55.093L 44.8349,51.1377L 45.679,52.5757L 38.0169,57L 30.3513,52.5757 Z "})," "]})]}),J4=D.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -1139,17 +1150,17 @@ text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   align-items: center;
   background-color: #000;
   z-index: 999;
-`,q4=D(G4)``,J4=()=>S(Q4,{children:S(q4,{})}),Z4=D.div`
+`,Z4=D(q4)``,eE=()=>S(J4,{children:S(Z4,{})}),tE=D.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`,eE=D.p`
+`,nE=D.p`
   color: red;
   margin: 0;
   text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   font-size: 12px;
   margin-top: -24px;
-`,tE=D.form`
+`,rE=D.form`
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -1179,7 +1190,7 @@ label {
   color: #000;
   font-size: 16px;
   resize: vertical;
-`,nE=D.button`
+`,iE=D.button`
   background-color: #ffd700;
   color: #fff;
   font-size: 20px;
@@ -1195,7 +1206,7 @@ label {
     background-color: #fff;
     color: #ffd700;
   }
-`,rE=()=>{const[e,t]=k.useState(""),[n,r]=k.useState(""),[i,o]=k.useState(""),s=Ao(c=>c.loginUser),a=hl();return W(Z4,{children:[i&&S(eE,{children:i}),W(tE,{children:[S(q0,{type:"text",placeholder:"Username",value:e,onChange:c=>t(c.target.value)}),S(q0,{type:"password",placeholder:"Password",value:n,onChange:c=>r(c.target.value)}),S(nE,{type:"button",onClick:()=>{s(e,n),t(""),r(""),o("Invalid username or password"),a("/SWDDB/card-collection")},children:"Login"})]})]})},iE=D.div`
+`,oE=()=>{const[e,t]=k.useState(""),[n,r]=k.useState(""),[i,o]=k.useState(""),s=Ao(c=>c.loginUser),a=hl();return W(tE,{children:[i&&S(nE,{children:i}),W(rE,{children:[S(q0,{type:"text",placeholder:"Username",value:e,onChange:c=>t(c.target.value)}),S(q0,{type:"password",placeholder:"Password",value:n,onChange:c=>r(c.target.value)}),S(iE,{type:"button",onClick:()=>{s(e,n),t(""),r(""),o("Invalid username or password"),a("/SWDDB/card-collection")},children:"Login"})]})]})},sE=D.div`
   background-image: url(${Go});
   background-repeat: no-repeat;
   background-size: cover;
@@ -1206,22 +1217,22 @@ label {
   justify-content: center;
   z-index: -1;
   flex-direction: column;
-`,oE=D.footer`
+`,aE=D.footer`
   position: absolute;
   z-index: 2;
   bottom: 0;
   width: 100%;
-`,J0=()=>S(qn,{children:W(iE,{children:[S(rE,{}),S(oE,{children:S(vi,{})})]})}),sE=D.div`
+`,J0=()=>S(qn,{children:W(sE,{children:[S(oE,{}),S(aE,{children:S(vi,{})})]})}),lE=D.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`,aE=D.p`
+`,cE=D.p`
   color: red;
   margin: 0;
   text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   font-size: 12px;
   margin-top: -24px;
-`,lE=D.form`
+`,uE=D.form`
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -1251,7 +1262,7 @@ label {
   color: #000;
   font-size: 16px;
   resize: vertical;
-`,cE=D.button`
+`,dE=D.button`
   background-color: #ffd700;
   color: #fff;
   font-size: 20px;
@@ -1267,7 +1278,7 @@ label {
     background-color: #fff;
     color: #ffd700;
   }
-`,uE=()=>{const[e,t]=k.useState(""),[n,r]=k.useState(""),[i,o]=k.useState(""),s=Ao(c=>c.registerUser),a=hl();return W(sE,{children:[i&&S(aE,{children:i}),W(lE,{children:[S(Z0,{type:"text",placeholder:"Username",value:e,onChange:c=>t(c.target.value)}),S(Z0,{type:"password",placeholder:"Password",value:n,onChange:c=>r(c.target.value)}),S(cE,{type:"button",onClick:()=>{e&&n?(s(e,n),t(""),r(""),o("Registration successful. You can now log in."),a("/SWDDB/login")):o("Please enter a username and password")},children:"Register"})]})]})},dE=D.div`
+`,fE=()=>{const[e,t]=k.useState(""),[n,r]=k.useState(""),[i,o]=k.useState(""),s=Ao(c=>c.registerUser),a=hl();return W(lE,{children:[i&&S(cE,{children:i}),W(uE,{children:[S(Z0,{type:"text",placeholder:"Username",value:e,onChange:c=>t(c.target.value)}),S(Z0,{type:"password",placeholder:"Password",value:n,onChange:c=>r(c.target.value)}),S(dE,{type:"button",onClick:()=>{e&&n?(s(e,n),t(""),r(""),o("Registration successful. You can now log in."),a("/SWDDB/login")):o("Please enter a username and password")},children:"Register"})]})]})},hE=D.div`
   background-image: url(${Go});
   background-repeat: no-repeat;
   background-size: cover;
@@ -1278,12 +1289,12 @@ label {
   justify-content: center;
   z-index: -1;
   flex-direction: column;
-`,fE=D.footer`
+`,pE=D.footer`
   position: absolute;
   z-index: 2;
   bottom: 0;
   width: 100%;
-`,hE=()=>S(qn,{children:W(dE,{children:[S(uE,{}),S(fE,{children:S(vi,{})})]})}),pE=b_`
+`,gE=()=>S(qn,{children:W(hE,{children:[S(fE,{}),S(pE,{children:S(vi,{})})]})}),mE=b_`
   @font-face {
     font-family: 'DeathStar';
     src: url(${k_});
@@ -1307,4 +1318,4 @@ label {
   button {
     font-family: 'DeathStar', sans-serif;
   }
-`;function gE(){const{isLoading:e,fetchData:t}=Of(),n=Ao(r=>r.isLoggedIn);return k.useEffect(()=>{t()},[t]),e?S(J4,{}):W(qn,{children:[S(pE,{}),W(Sw,{children:[S(nS,{isLoggedIn:n}),W(yw,{children:[S(nn,{path:"/SWDDB/",element:S(gS,{})}),S(nn,{path:"/SWDDB/cards",element:S(c4,{})}),S(nn,{path:"/SWDDB/card-collection",element:n?S(C4,{}):S(J0,{})}),S(nn,{path:"/SWDDB/about",element:S(R4,{})}),S(nn,{path:"/SWDDB/contact",element:S(H4,{})}),S(nn,{path:"/SWDDB/login",element:S(J0,{})}),S(nn,{path:"/SWDDB/register",element:S(hE,{})}),S(nn,{path:"*",element:S(V4,{})})]})]})]})}Kc.createRoot(document.getElementById("root")).render(S(G.StrictMode,{children:S(gE,{})}));export{S as j,D as s};
+`;function yE(){const{isLoading:e,fetchData:t}=Of(),n=Ao(r=>r.isLoggedIn);return k.useEffect(()=>{t()},[t]),e?S(eE,{}):W(qn,{children:[S(mE,{}),W(Sw,{children:[S(nS,{isLoggedIn:n}),W(yw,{children:[S(nn,{path:"/SWDDB/",element:S(gS,{})}),S(nn,{path:"/SWDDB/cards",element:S(d4,{})}),S(nn,{path:"/SWDDB/card-collection",element:n?S(P4,{}):S(J0,{})}),S(nn,{path:"/SWDDB/about",element:S(D4,{})}),S(nn,{path:"/SWDDB/contact",element:S(V4,{})}),S(nn,{path:"/SWDDB/login",element:S(J0,{})}),S(nn,{path:"/SWDDB/register",element:S(gE,{})}),S(nn,{path:"*",element:S(K4,{})})]})]})]})}Kc.createRoot(document.getElementById("root")).render(S(G.StrictMode,{children:S(yE,{})}));export{S as j,D as s};
