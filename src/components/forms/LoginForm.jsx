@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../../store/authStore";
 import styled from "styled-components";
+
+import useAuthStore from "../../store/authStore";
+import useCollectionStore from "../../store/collectionStore";
 
 const LoginPageWrapper = styled.div`
   display: flex;
@@ -75,12 +77,19 @@ const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const loginUser = useAuthStore((state) => state.loginUser);
   const navigate = useNavigate();
+  // const collectionStore = useCollectionStore(username); // Przekazanie identyfikatora użytkownika
 
   const handleLogin = () => {
     loginUser(username, password);
     setUsername("");
     setPassword("");
     setErrorMessage("Invalid username or password");
+
+    const collectionStore = useCollectionStore("user_id");
+    // Inicjalizacja kolekcji dla danego użytkownika
+    const initialCollectionData = []; // lub inne początkowe dane kolekcji
+    collectionStore.initializeCollection(initialCollectionData);
+
     navigate("/SWDDB/card-collection");
   };
 
@@ -90,12 +99,14 @@ const LoginPage = () => {
       <LoginForm>
         <InputField
           type="text"
+          autocomplete="username"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <InputField
           type="password"
+          autocomplete="current-password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

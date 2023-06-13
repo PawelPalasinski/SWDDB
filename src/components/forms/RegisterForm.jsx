@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../../store/authStore";
 import styled from "styled-components";
+
+import useAuthStore from "../../store/authStore";
+import useCollectionStore from "../../store/collectionStore";
 
 const RegisterPageWrapper = styled.div`
   display: flex;
@@ -75,6 +77,7 @@ const RegisterPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const registerUser = useAuthStore((state) => state.registerUser);
   const navigate = useNavigate();
+  const collectionStore = useCollectionStore(username); // Przekazanie identyfikatora użytkownika
 
   const handleRegistration = () => {
     if (username && password) {
@@ -82,6 +85,10 @@ const RegisterPage = () => {
       setUsername("");
       setPassword("");
       setErrorMessage("Registration successful. You can now log in.");
+
+      // Inicjalizacja kolekcji dla danego użytkownika
+      collectionStore.initializeCollection();
+
       navigate("/SWDDB/login");
     } else {
       setErrorMessage("Please enter a username and password");
@@ -94,12 +101,14 @@ const RegisterPage = () => {
       <RegisterForm>
         <InputField
           type="text"
+          autocomplete="ff"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <InputField
           type="password"
+          autocomplete="off"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

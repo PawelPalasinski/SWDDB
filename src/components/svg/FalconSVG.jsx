@@ -1,8 +1,19 @@
 import React from "react";
+import styled from "styled-components";
+
+const StyledFalcon = styled.svg`
+  width: 65px;
+  height: 65px;
+  filter: drop-shadow(3px 5px 10px #ffd700);
+`;
 
 const Falcon = () => {
   return (
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+    <StyledFalcon
+      viewBox="0 0 64 64"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="#000000"
+    >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
@@ -15,7 +26,7 @@ const Falcon = () => {
           fill="#000000"
         ></path>
       </g>
-    </svg>
+    </StyledFalcon>
   );
 };
 

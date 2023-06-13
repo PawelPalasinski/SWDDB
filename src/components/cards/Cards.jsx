@@ -1,4 +1,5 @@
 import React, { useEffect, lazy, Suspense } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -10,11 +11,14 @@ import useFilterStore from "../../store/filterStore";
 import useCardCountStore from "../../store/cardCountStore";
 import useCollectionStore from "../../store/collectionStore";
 
+import useAuthStore from "../../store/authStore";
+
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
 import Sith from "../svg/Sith";
 
 import PaginationAllCards from "../pagination/PaginationAllCards";
+import Falcon from "../svg/FalconSVG";
 
 const CardWrapper = styled.div`
   ul {
@@ -95,6 +99,32 @@ const OverlayText = styled.div`
   & p {
     font-size: 10px;
   }
+`;
+
+const LoginLink = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  color: #ffffff;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-bottom: -45%;
+`;
+
+const StyledLink = styled.a`
+  color: #ffd700;
+  text-decoration: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
 `;
 
 const Cards = ({ handleCardClick }) => {
@@ -200,6 +230,8 @@ const Cards = ({ handleCardClick }) => {
   const endIndex = startIndex + dataPerPage;
   const currentData = filteredData.slice(startIndex, endIndex);
 
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
   const getButtonText = useCollectionStore((state) => state.getButtonText);
 
   const handleButtonClick = (cardCode) => {
@@ -239,7 +271,15 @@ const Cards = ({ handleCardClick }) => {
                 <p>{item.rarity_name}</p>
               </OverlayText>
 
-              {getButtonText(item.code) === "ADD" ? (
+              {!isLoggedIn ? (
+                <LoginLink>
+                  <Falcon />
+                  <StyledLink as={Link} to="/SWDDB/login">
+                    {" "}
+                    Login{" "}
+                  </StyledLink>
+                </LoginLink>
+              ) : getButtonText(item.code) === "ADD" ? (
                 <CardButton onClick={() => handleButtonClick(item.code)}>
                   <Jedi />
                   <span>{getButtonText(item.code)}</span>
