@@ -1,6 +1,10 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import useCollectionStore from "../../store/collectionStore";
+
 import useCardStore from "../../store/cardStore";
+// import useCollectionStore from "../../store/collectionStore";
+
+import useUserStore from "../../store/userStore";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import styled from "styled-components";
 
@@ -100,7 +104,9 @@ const ProgressBar = styled.div`
 `;
 
 const PersonalCollection = () => {
-  const collection = useCollectionStore((state) => state.collection);
+  // const collection = useCollectionStore((state) => state.collection);
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+  const collection = useUserStore((state) => state.collection);
   const data = useCardStore((state) => state.data);
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState([]);

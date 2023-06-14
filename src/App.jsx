@@ -13,7 +13,8 @@ import NotFound from "./pages/NotFound";
 import Loader from "./components/loader/Loader";
 
 import useCardStore from "./store/cardStore";
-import useAuthStore from "./store/authStore";
+// import useAuthStore from "./store/authStore";
+import useUserStore from "./store/userStore";
 
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -46,7 +47,8 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const { isLoading, fetchData } = useCardStore();
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  // const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
 
   useEffect(() => {
     fetchData();

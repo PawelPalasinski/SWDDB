@@ -3,7 +3,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import Logo from "../svg/Logo";
-import useAuthStore from "../../store/authStore";
+// import useAuthStore from "../../store/authStore";
+import useUserStore from "../../store/userStore";
 
 const slideIn = keyframes`
   0% {
@@ -170,10 +171,15 @@ const LogoutButton = styled.button`
 `;
 
 const Navbar = () => {
+  // const [isOpen, setIsOpen] = useState(false);
+
+  // const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  // const logoutUser = useAuthStore((state) => state.logoutUser);
   const [isOpen, setIsOpen] = useState(false);
 
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
-  const logoutUser = useAuthStore((state) => state.logoutUser);
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+  const logoutUser = useUserStore((state) => state.handleLogout);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {

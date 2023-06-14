@@ -9,9 +9,10 @@ import useCardStore from "../../store/cardStore";
 import usePaginationStore from "../../store/paginationStore";
 import useFilterStore from "../../store/filterStore";
 import useCardCountStore from "../../store/cardCountStore";
-import useCollectionStore from "../../store/collectionStore";
+// import useCollectionStore from "../../store/collectionStore";
+import useUserStore from "../../store/userStore";
 
-import useAuthStore from "../../store/authStore";
+// import useAuthStore from "../../store/authStore";
 
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
@@ -230,9 +231,11 @@ const Cards = ({ handleCardClick }) => {
   const endIndex = startIndex + dataPerPage;
   const currentData = filteredData.slice(startIndex, endIndex);
 
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  // const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  const getButtonText = useCollectionStore((state) => state.getButtonText);
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+
+  // const getButtonText = useCollectionStore((state) => state.getButtonText);
 
   const handleButtonClick = (cardCode) => {
     const buttonText = getButtonText(cardCode);
@@ -249,6 +252,8 @@ const Cards = ({ handleCardClick }) => {
 
     handleCardClick(cardCode);
   };
+
+  const loginText = "Login";
 
   return (
     <CardWrapper>
@@ -275,8 +280,7 @@ const Cards = ({ handleCardClick }) => {
                 <LoginLink>
                   <Falcon />
                   <StyledLink as={Link} to="/SWDDB/login">
-                    {" "}
-                    Login{" "}
+                    {loginText}
                   </StyledLink>
                 </LoginLink>
               ) : getButtonText(item.code) === "ADD" ? (

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import useAuthStore from "../../store/authStore";
-import useCollectionStore from "../../store/collectionStore";
+// import useAuthStore from "../../store/authStore";
+// import useCollectionStore from "../../store/collectionStore";
+
+import useUserStore from "../../store/userStore";
 
 const LoginPageWrapper = styled.div`
   display: flex;
@@ -72,47 +74,70 @@ const LoginButton = styled.button`
 `;
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
+  // const loginUser = useAuthStore((state) => state.loginUser);
+  // const navigate = useNavigate();
+
+  // const handleLogin = () => {
+  //   loginUser(username, password);
+  //   setUsername("");
+  //   setPassword("");
+  //   setErrorMessage("Invalid username or password");
+
+  //   const collectionStore = useCollectionStore("user_id");
+  //   // Inicjalizacja kolekcji dla danego użytkownika
+  //   const initialCollectionData = []; // lub inne początkowe dane kolekcji
+  //   collectionStore.initializeCollection(initialCollectionData);
+
+  //   navigate("/SWDDB/card-collection");
+  // };
+
+  const errorMessage = "Invalid username or password";
+
+  const userStore = useUserStore();
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const loginUser = useAuthStore((state) => state.loginUser);
-  const navigate = useNavigate();
-  // const collectionStore = useCollectionStore(username); // Przekazanie identyfikatora użytkownika
 
   const handleLogin = () => {
-    loginUser(username, password);
-    setUsername("");
-    setPassword("");
-    setErrorMessage("Invalid username or password");
+    userStore.handleLogin(login, password);
+  };
 
-    const collectionStore = useCollectionStore("user_id");
-    // Inicjalizacja kolekcji dla danego użytkownika
-    const initialCollectionData = []; // lub inne początkowe dane kolekcji
-    collectionStore.initializeCollection(initialCollectionData);
-
-    navigate("/SWDDB/card-collection");
+  const handleRegister = () => {
+    userStore.addUser(login, password);
   };
 
   return (
     <LoginPageWrapper>
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {/* {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>} */}
       <LoginForm>
         <InputField
           type="text"
-          autocomplete="username"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          // value={username}
+          value={login}
+          // onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setLogin(e.target.value)}
         />
         <InputField
           type="password"
-          autocomplete="current-password"
-          placeholder="Password"
           value={password}
+          // onChange={(e) => setPassword(e.target.value)}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <LoginButton type="button" onClick={handleLogin}>
+        <LoginButton
+          type="button"
+          // onClick={handleLogin}
+          onClick={handleLogin}
+        >
           Login
+        </LoginButton>
+        <LoginButton
+          type="button"
+          // onClick={handleLogin}
+          onClick={handleRegister}
+        >
+          Register
         </LoginButton>
       </LoginForm>
     </LoginPageWrapper>
