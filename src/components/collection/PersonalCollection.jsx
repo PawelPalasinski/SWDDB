@@ -104,10 +104,18 @@ const ProgressBar = styled.div`
 `;
 
 const PersonalCollection = () => {
-  // const collection = useCollectionStore((state) => state.collection);
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
-  const collection = useUserStore((state) => state.collection);
-  const data = useCardStore((state) => state.data);
+  const loggedInUser = useUserStore((state) => state.loggedInUser);
+  const userCollection = useUserStore((state) => state.loggedInUser.collection);
+
+  const collection = isLoggedIn ? loggedInUser.collection : [];
+
+  console.log(loggedInUser);
+  console.log(userCollection);
+  console.log(loggedInUser.collection);
+
+  console.log(collection);
+  const data = collection;
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState([]);
 

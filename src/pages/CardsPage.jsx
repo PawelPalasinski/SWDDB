@@ -52,15 +52,18 @@ const StyledFooter = styled.footer`
   width: 100%;
 `;
 
-import useCollectionStore from "../store/collectionStore";
+import useUserStore from "../store/userStore";
 
 const CardsPage = () => {
   const [showFilters, setShowFilters] = useState(false);
 
-  const { handleAddOrRemoveFromCollection } = useCollectionStore();
+  const { handleAddOrRemoveFromCollection } = useUserStore();
 
   const handleCardClick = (card) => {
-    handleAddOrRemoveFromCollection(card);
+    const loggedInUser = useUserStore.getState().loggedInUser;
+    if (loggedInUser) {
+      handleAddOrRemoveFromCollection(loggedInUser.login, card);
+    }
   };
 
   const handleCardCountChange = (count) => {
