@@ -1,41 +1,24 @@
-import React from "react";
-import styled from "styled-components";
-import RegisterForm from "../components/forms/RegisterForm";
-
-import deathstarwallpaper from "../assets/images/deathstarwallpaper.jpg";
-import Footer from "../components/footer/Footer";
-
-const Wrapper = styled.div`
-  background-image: url(${deathstarwallpaper});
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: -1;
-  flex-direction: column;
-`;
-
-const StyledFooter = styled.footer`
-  position: absolute;
-  z-index: 2;
-  bottom: 0;
-  width: 100%;
-`;
+import React, { useState, useEffect } from "react";
+import useUserStore from "../store/userStore";
 
 const RegisterPage = () => {
+  const loggedInUser = useUserStore((state) => state.loggedInUser);
+  const collection = loggedInUser?.collection || [];
+
+  useEffect(() => {
+    // Funkcja wywoływana po każdej zmianie w kolekcji
+    console.log("Kolekcja została zaktualizowana:", collection);
+  }, [collection]); // Nasłuchiwanie zmian w kolekcji
+
   return (
-    <>
-      <Wrapper>
-        <RegisterForm />
-        <StyledFooter>
-          <Footer />
-        </StyledFooter>
-      </Wrapper>
-    </>
+    <div>
+      <h2>Kolekcja dla użytkownika: {loggedInUser?.login}</h2>
+      <ul>
+        {collection.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
-
 export default RegisterPage;

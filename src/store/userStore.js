@@ -50,66 +50,59 @@ const useUserStore = create((set) => {
     },
 
     handleAddOrRemoveFromCollection: (login, cardCode) => {
-      let updatedUsers;
       set((state) => {
         const userIndex = state.users.findIndex((user) => user.login === login);
         if (userIndex !== -1) {
-          updatedUsers = [...state.users];
+          const updatedUsers = [...state.users];
           const user = { ...updatedUsers[userIndex] };
           const collection = user.collection || [];
           const index = collection.findIndex((code) => code === cardCode);
           if (index !== -1) {
-            // If the card is already in the collection, remove it
+            // Jeśli karta jest już w kolekcji, usuń ją
             const newCollection = [...collection];
             newCollection.splice(index, 1);
-            user.collection = newCollection.length > 0 ? newCollection : null; // Update collection value to null if empty
+            user.collection = newCollection.length > 0 ? newCollection : null;
             updatedUsers[userIndex] = user;
+            // Aktualizuj kolekcję w localStorage
+            localStorage.setItem("users", JSON.stringify(updatedUsers));
             return { users: updatedUsers };
           } else {
-            // If the card is not in the collection, add it
+            // Jeśli karta nie jest w kolekcji, dodaj ją
             const newCollection = collection
               ? [...collection, cardCode]
-              : [cardCode]; // Check if collection is null before adding a new card
+              : [cardCode];
             user.collection = newCollection;
             updatedUsers[userIndex] = user;
+            // Aktualizuj kolekcję w localStorage
+            localStorage.setItem("users", JSON.stringify(updatedUsers));
             return { users: updatedUsers };
           }
         } else {
-          console.log(`User not found: ${login}`);
+          console.log(`Nie znaleziono użytkownika: ${login}`);
           return state;
         }
       });
-      console.log(`Card added/removed from collection for user: ${login}`);
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      console.log(`Dodano/usunięto kartę z kolekcji dla użytkownika: ${login}`);
     },
 
     setRating: (login, rating) => {
-      const state = useUserStore.getState();
-      const userIndex = state.users.findIndex((user) => user.login === login);
-      if (userIndex !== -1) {
-        const updatedUsers = [...state.users];
-        const user = { ...updatedUsers[userIndex] };
-        user.rate = rating;
-        updatedUsers[userIndex] = user;
-        set({ users: updatedUsers });
-        localStorage.setItem("users", JSON.stringify(updatedUsers));
-        console.log(`Rating set for user: ${login}`);
-      } else {
-        console.log(`User not found: ${login}`);
-      }
+      set((state) => {
+        const userIndex = state.users.findIndex((user) => user.login === login);
+        if (userIndex !== -1) {
+          const updatedUsers = [...state.users];
+          const user = { ...updatedUsers[userIndex] };
+          user.rate = rating;
+          updatedUsers[userIndex] = user;
+          // Aktualizuj kolekcję w localStorage
+          localStorage.setItem("users", JSON.stringify(updatedUsers));
+          return { users: updatedUsers };
+        } else {
+          console.log(`Nie znaleziono użytkownika: ${login}`);
+          return state;
+        }
+      });
+      console.log(`Ustawiono ocenę dla użytkownika: ${login}`);
     },
-
-    // getButtonText: (cardCode) => {
-    //   const state = useUserStore.getState();
-    //   const loggedInUser = state.loggedInUser;
-    //   const collection = loggedInUser.collection || [];
-    //   const index = collection.findIndex((code) => code === cardCode);
-    //   if (index !== -1) {
-    //     return "DEL";
-    //   } else {
-    //     return "ADD";
-    //   }
-    // },
   };
 });
 

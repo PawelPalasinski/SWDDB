@@ -251,13 +251,14 @@ const Navbar = () => {
                 Login
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/SWDDB/register" onClick={handleToggleMenu}>
-                Register
-              </NavLink>
-            </li>
           </>
         )}
+
+        <li>
+          <NavLink to="/SWDDB/register" onClick={handleToggleMenu}>
+            Register
+          </NavLink>
+        </li>
       </ul>
     </Nav>
   );
