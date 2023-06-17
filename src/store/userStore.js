@@ -14,7 +14,11 @@ const useUserStore = create((set) => {
         collection: [],
         rate: 0,
       };
-      set((state) => ({ users: [...state.users, newUser] }));
+      set((state) => ({
+        users: [...state.users, newUser],
+        loggedInUser: newUser,
+        isLoggedIn: true,
+      }));
       console.log(`User added: ${login}`);
       localStorage.setItem("users", JSON.stringify([...storedUsers, newUser]));
     },
@@ -25,7 +29,7 @@ const useUserStore = create((set) => {
       if (!isLoggedIn) {
         const user = state.users.find((user) => user.login === login);
         if (user && user.password === password) {
-          set({ isLoggedIn: true, loggedInUser: user }); // Ustawienie loggedInUser
+          set({ isLoggedIn: true, loggedInUser: user });
           console.log(`Logged in as: ${login}`);
           return user;
         } else {
@@ -42,41 +46,35 @@ const useUserStore = create((set) => {
       const state = useUserStore.getState();
       const isLoggedIn = state.isLoggedIn;
       if (isLoggedIn) {
-        set({ isLoggedIn: false });
+        set({ isLoggedIn: false, loggedInUser: null });
         console.log("Logged out successfully");
       } else {
         console.log("User is already logged out");
       }
     },
 
-    handleAddOrRemoveFromCollection: (login, cardCode) => {
+    handleAddOrRemoveFromCollection: (login, cardCode, rating) => {
       set((state) => {
         const userIndex = state.users.findIndex((user) => user.login === login);
         if (userIndex !== -1) {
           const updatedUsers = [...state.users];
           const user = { ...updatedUsers[userIndex] };
           const collection = user.collection || [];
-          const index = collection.findIndex((code) => code === cardCode);
-          if (index !== -1) {
-            // Jeśli karta jest już w kolekcji, usuń ją
-            const newCollection = [...collection];
-            newCollection.splice(index, 1);
-            user.collection = newCollection.length > 0 ? newCollection : null;
-            updatedUsers[userIndex] = user;
-            // Aktualizuj kolekcję w localStorage
-            localStorage.setItem("users", JSON.stringify(updatedUsers));
-            return { users: updatedUsers };
+          const cardIndex = collection.findIndex(
+            (card) => card.cardCode === cardCode
+          );
+          if (cardIndex !== -1) {
+            // Karta już istnieje w kolekcji, usuń ją
+            collection.splice(cardIndex, 1);
           } else {
-            // Jeśli karta nie jest w kolekcji, dodaj ją
-            const newCollection = collection
-              ? [...collection, cardCode]
-              : [cardCode];
-            user.collection = newCollection;
-            updatedUsers[userIndex] = user;
-            // Aktualizuj kolekcję w localStorage
-            localStorage.setItem("users", JSON.stringify(updatedUsers));
-            return { users: updatedUsers };
+            // Karta nie istnieje w kolekcji, dodaj ją
+            const newCard = { cardCode, rate: rating };
+            collection.push(newCard);
           }
+          user.collection = collection.length > 0 ? collection : null;
+          updatedUsers[userIndex] = user;
+          localStorage.setItem("users", JSON.stringify(updatedUsers));
+          return { users: updatedUsers };
         } else {
           console.log(`Nie znaleziono użytkownika: ${login}`);
           return state;
@@ -87,19 +85,14 @@ const useUserStore = create((set) => {
 
     setRating: (login, rating) => {
       set((state) => {
-        const userIndex = state.users.findIndex((user) => user.login === login);
-        if (userIndex !== -1) {
-          const updatedUsers = [...state.users];
-          const user = { ...updatedUsers[userIndex] };
-          user.rate = rating;
-          updatedUsers[userIndex] = user;
-          // Aktualizuj kolekcję w localStorage
-          localStorage.setItem("users", JSON.stringify(updatedUsers));
-          return { users: updatedUsers };
-        } else {
-          console.log(`Nie znaleziono użytkownika: ${login}`);
-          return state;
-        }
+        const updatedUsers = state.users.map((user) => {
+          if (user.login === login) {
+            return { ...user, rate: rating };
+          }
+          return user;
+        });
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
+        return { users: updatedUsers };
       });
       console.log(`Ustawiono ocenę dla użytkownika: ${login}`);
     },

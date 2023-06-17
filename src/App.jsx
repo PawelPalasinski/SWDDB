@@ -13,11 +13,10 @@ import NotFound from "./pages/NotFound";
 import Loader from "./components/loader/Loader";
 
 import useCardStore from "./store/cardStore";
-// import useAuthStore from "./store/authStore";
 import useUserStore from "./store/userStore";
 
 import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import TestPage from "./pages/TestPage";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -47,7 +46,6 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const { isLoading, fetchData } = useCardStore();
-  // const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
 
   useEffect(() => {
@@ -72,7 +70,7 @@ function App() {
           <Route path="/SWDDB/about" element={<AboutPage />} />
           <Route path="/SWDDB/contact" element={<ContactPage />} />
           <Route path="/SWDDB/login" element={<LoginPage />} />
-          <Route path="/SWDDB/register" element={<RegisterPage />} />
+          <Route path="/SWDDB/test" element={<TestPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
