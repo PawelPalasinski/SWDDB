@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import Cards from "../components/cards/Cards";
@@ -56,6 +56,7 @@ import useUserStore from "../store/userStore";
 
 const CardsPage = () => {
   const [showFilters, setShowFilters] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   const loggedInUser = useUserStore((state) => state.loggedInUser);
   const handleAddOrRemoveFromCollection = useUserStore(
@@ -63,11 +64,18 @@ const CardsPage = () => {
   );
 
   const handleCardClick = (card) => {
+    console.log(card);
     if (loggedInUser) {
-      const cardCode = card.code;
-      handleAddOrRemoveFromCollection(loggedInUser.login, cardCode);
+      handleAddOrRemoveFromCollection(loggedInUser.login, card, 0);
+      setRefresh(true);
     }
   };
+
+  useEffect(() => {
+    if (refresh) {
+      setRefresh(false);
+    }
+  }, [refresh]);
 
   const handleToggleFilters = () => {
     setShowFilters(!showFilters);

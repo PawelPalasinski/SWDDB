@@ -231,39 +231,7 @@ const Cards = ({ handleCardClick }) => {
 
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const loggedInUser = useUserStore((state) => state.loggedInUser);
-
-  const [cardCode, setCardCode] = useState("");
-
-  const getButtonText = (cardCode, loggedInUser) => {
-    if (loggedInUser) {
-      const collection = loggedInUser.collection || [];
-      const cardCollection = collection.map((card) => card.cardCode);
-      const isCardInCollection = cardCollection.includes(cardCode);
-      return isCardInCollection ? "DEL" : "ADD";
-    } else {
-      return "?";
-    }
-  };
-
-  const handleAddToCollection = (cardCode) => {
-    const loggedInUser = useUserStore.getState().loggedInUser;
-    if (loggedInUser) {
-      useUserStore
-        .getState()
-        .handleAddOrRemoveFromCollection(loggedInUser.login, cardCode, 0);
-    }
-    setCardCode("");
-  };
-
-  const handleRemoveFromCollection = (cardCode) => {
-    const loggedInUser = useUserStore.getState().loggedInUser;
-    if (loggedInUser) {
-      useUserStore
-        .getState()
-        .handleAddOrRemoveFromCollection(loggedInUser.login, cardCode, 0);
-    }
-    setCardCode("");
-  };
+  const getButtonText = useUserStore((state) => state.getButtonText);
 
   const handleButtonClick = (cardCode) => {
     const buttonText = getButtonText(cardCode, loggedInUser);
@@ -272,13 +240,13 @@ const Cards = ({ handleCardClick }) => {
       toast.success(`Card ${cardCode} added to collection.`, {
         theme: "dark",
       });
-      handleAddToCollection(cardCode);
     } else if (buttonText === "DEL") {
       toast.error(`Card ${cardCode} removed from collection.`, {
         theme: "dark",
       });
-      handleRemoveFromCollection(cardCode);
     }
+
+    handleCardClick(cardCode);
   };
 
   const loginText = "LOGIN";
@@ -304,7 +272,6 @@ const Cards = ({ handleCardClick }) => {
                 <p>{item.rarity_name}</p>
                 <p>{item.code}</p>
               </OverlayText>
-
               {!isLoggedIn ? (
                 <LoginLink>
                   <Falcon />
@@ -312,15 +279,10 @@ const Cards = ({ handleCardClick }) => {
                     {loginText}
                   </StyledLink>
                 </LoginLink>
-              ) : getButtonText(item.code, loggedInUser) === "ADD" ? (
-                <CardButton onClick={() => handleButtonClick(item.code)}>
-                  <Jedi />
-                  <span>{getButtonText(item.code, loggedInUser)}</span>
-                </CardButton>
               ) : (
                 <CardButton onClick={() => handleButtonClick(item.code)}>
-                  <Sith />
-                  <span>{getButtonText(item.code, loggedInUser)}</span>
+                  {getButtonText(item.code) === "ADD" ? <Jedi /> : <Sith />}
+                  <span>{getButtonText(item.code)}</span>
                 </CardButton>
               )}
             </Overlay>

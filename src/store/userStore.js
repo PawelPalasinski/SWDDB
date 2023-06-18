@@ -67,14 +67,14 @@ const useUserStore = create((set) => {
             // DEL
             collection.splice(cardIndex, 1);
             console.log(
-              `STORE: Card ${cardCode} added to collection for user: ${login}`
+              `STORE: Card ${cardCode} removed from collection for user: ${login}`
             );
           } else {
             // ADD
             const newCard = { cardCode, rate: rating };
             collection.push(newCard);
             console.log(
-              `STORE: Card ${cardCode} removed from collection for user: ${login}`
+              `STORE: Card ${cardCode} added to collection for user: ${login}`
             );
           }
           user.collection = collection.length > 0 ? collection : null;
@@ -100,6 +100,23 @@ const useUserStore = create((set) => {
         return { users: updatedUsers };
       });
       console.log(`Ustawiono ocenę dla użytkownika: ${login}`);
+    },
+
+    getButtonText: (cardCode) => {
+      const state = useUserStore.getState();
+      const isLoggedIn = state.isLoggedIn;
+      const collection = useUserStore.getState().loggedInUser.collection || [];
+
+      console.log(collection);
+      const isCardInCollection = collection.some(
+        (card) => card.cardCode === cardCode
+      );
+
+      if (isLoggedIn) {
+        return isCardInCollection ? "DEL" : "ADD";
+      } else {
+        return "LOGIN";
+      }
     },
   };
 });
