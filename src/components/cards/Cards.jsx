@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -232,38 +232,56 @@ const Cards = ({ handleCardClick }) => {
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const loggedInUser = useUserStore((state) => state.loggedInUser);
 
-  const getButtonText = (cardCode) => {
+  const [cardCode, setCardCode] = useState("");
+
+  const getButtonText = (cardCode, loggedInUser) => {
     if (loggedInUser) {
-      const collection = loggedInUser.collection;
-      console.log(loggedInUser.collection);
-      const index = collection.findIndex((code) => code === cardCode);
-      if (index !== -1) {
-        return "DEL";
-      } else {
-        return "ADD";
-      }
+      const collection = loggedInUser.collection || [];
+      const cardCollection = collection.map((card) => card.cardCode);
+      const isCardInCollection = cardCollection.includes(cardCode);
+      return isCardInCollection ? "DEL" : "ADD";
     } else {
-      return "ADD";
+      return "?";
     }
+  };
+
+  const handleAddToCollection = (cardCode) => {
+    const loggedInUser = useUserStore.getState().loggedInUser;
+    if (loggedInUser) {
+      useUserStore
+        .getState()
+        .handleAddOrRemoveFromCollection(loggedInUser.login, cardCode, 0);
+    }
+    setCardCode("");
+  };
+
+  const handleRemoveFromCollection = (cardCode) => {
+    const loggedInUser = useUserStore.getState().loggedInUser;
+    if (loggedInUser) {
+      useUserStore
+        .getState()
+        .handleAddOrRemoveFromCollection(loggedInUser.login, cardCode, 0);
+    }
+    setCardCode("");
   };
 
   const handleButtonClick = (cardCode) => {
-    const buttonText = getButtonText(cardCode);
+    const buttonText = getButtonText(cardCode, loggedInUser);
 
     if (buttonText === "ADD") {
-      toast.success("Card added to collection.", {
+      toast.success(`Card ${cardCode} added to collection.`, {
         theme: "dark",
       });
+      handleAddToCollection(cardCode);
     } else if (buttonText === "DEL") {
-      toast.error("Card removed from collection.", {
+      toast.error(`Card ${cardCode} removed from collection.`, {
         theme: "dark",
       });
+      handleRemoveFromCollection(cardCode);
     }
-    console.log(cardCode);
-    handleCardClick(cardCode);
   };
 
-  const loginText = "Login";
+  const loginText = "LOGIN";
 
   return (
     <CardWrapper>
@@ -284,6 +302,7 @@ const Cards = ({ handleCardClick }) => {
                 <p>{item.name}</p>
                 <p>{item.set_name}</p>
                 <p>{item.rarity_name}</p>
+                <p>{item.code}</p>
               </OverlayText>
 
               {!isLoggedIn ? (
@@ -293,15 +312,15 @@ const Cards = ({ handleCardClick }) => {
                     {loginText}
                   </StyledLink>
                 </LoginLink>
-              ) : getButtonText(item.code) === "ADD" ? (
+              ) : getButtonText(item.code, loggedInUser) === "ADD" ? (
                 <CardButton onClick={() => handleButtonClick(item.code)}>
                   <Jedi />
-                  <span>{getButtonText(item.code)}</span>
+                  <span>{getButtonText(item.code, loggedInUser)}</span>
                 </CardButton>
               ) : (
                 <CardButton onClick={() => handleButtonClick(item.code)}>
                   <Sith />
-                  <span>{getButtonText(item.code)}</span>
+                  <span>{getButtonText(item.code, loggedInUser)}</span>
                 </CardButton>
               )}
             </Overlay>

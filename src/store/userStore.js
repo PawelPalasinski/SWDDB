@@ -64,12 +64,18 @@ const useUserStore = create((set) => {
             (card) => card.cardCode === cardCode
           );
           if (cardIndex !== -1) {
-            // Karta już istnieje w kolekcji, usuń ją
+            // DEL
             collection.splice(cardIndex, 1);
+            console.log(
+              `STORE: Card ${cardCode} added to collection for user: ${login}`
+            );
           } else {
-            // Karta nie istnieje w kolekcji, dodaj ją
+            // ADD
             const newCard = { cardCode, rate: rating };
             collection.push(newCard);
+            console.log(
+              `STORE: Card ${cardCode} removed from collection for user: ${login}`
+            );
           }
           user.collection = collection.length > 0 ? collection : null;
           updatedUsers[userIndex] = user;
@@ -80,7 +86,6 @@ const useUserStore = create((set) => {
           return state;
         }
       });
-      console.log(`Dodano/usunięto kartę z kolekcji dla użytkownika: ${login}`);
     },
 
     setRating: (login, rating) => {

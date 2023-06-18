@@ -57,17 +57,16 @@ import useUserStore from "../store/userStore";
 const CardsPage = () => {
   const [showFilters, setShowFilters] = useState(false);
 
-  const { handleAddOrRemoveFromCollection } = useUserStore();
+  const loggedInUser = useUserStore((state) => state.loggedInUser);
+  const handleAddOrRemoveFromCollection = useUserStore(
+    (state) => state.handleAddOrRemoveFromCollection
+  );
 
   const handleCardClick = (card) => {
-    const loggedInUser = useUserStore.getState().loggedInUser;
     if (loggedInUser) {
-      handleAddOrRemoveFromCollection(loggedInUser.login, card);
+      const cardCode = card.code;
+      handleAddOrRemoveFromCollection(loggedInUser.login, cardCode);
     }
-  };
-
-  const handleCardCountChange = (count) => {
-    setCardCount(count);
   };
 
   const handleToggleFilters = () => {
@@ -94,10 +93,7 @@ const CardsPage = () => {
         <Filters />
       </Modal>
 
-      <Cards
-        onCardCountChange={handleCardCountChange}
-        handleCardClick={handleCardClick}
-      />
+      <Cards handleCardClick={handleCardClick} />
 
       <StyledFooter>
         <Footer />
