@@ -178,6 +178,7 @@ import useUserStore from "../../store/userStore";
 import useCardStore from "../../store/cardStore";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styled from "styled-components";
+import Rating from "./Rating";
 
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 
@@ -385,6 +386,7 @@ const PersonalCollection = () => {
           ))}
         </CollectionCardsWrapper>
       </CardList>
+      <Rating />
     </CollectionWrapper>
   );
 };
