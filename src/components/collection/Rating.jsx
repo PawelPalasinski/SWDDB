@@ -9,15 +9,20 @@ const RatingWrapper = styled.div`
     rgba(230, 230, 230, 0.2),
     transparent
   );
-  padding: 10px;
+  padding: 2px;
   border-radius: 8px;
+  margin: 10px 0;
 `;
 
 const StarList = styled.ul`
   list-style: none;
-  padding: 5px;
-  margin 0;
+  padding: 0;
   display: flex;
+  margin: 0;
+  & li {
+    background-color: transparent;
+    margin: 2px;
+  }
 `;
 
 const Rating = () => {

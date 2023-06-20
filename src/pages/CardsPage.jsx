@@ -64,7 +64,6 @@ const CardsPage = () => {
   );
 
   const handleCardClick = (card) => {
-    console.log(card);
     if (loggedInUser) {
       handleAddOrRemoveFromCollection(loggedInUser.login, card, 0);
       setRefresh(true);

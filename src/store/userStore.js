@@ -106,8 +106,6 @@ const useUserStore = create((set) => {
       const state = useUserStore.getState();
       const isLoggedIn = state.isLoggedIn;
       const collection = useUserStore.getState().loggedInUser.collection || [];
-
-      console.log(collection);
       const isCardInCollection = collection.some(
         (card) => card.cardCode === cardCode
       );

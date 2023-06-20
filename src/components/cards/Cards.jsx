@@ -97,6 +97,7 @@ const OverlayText = styled.div`
   margin-top: -40%;
   & p {
     font-size: 10px;
+    text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   }
 `;
 
@@ -267,9 +268,12 @@ const Cards = ({ handleCardClick }) => {
 
             <Overlay>
               <OverlayText>
-                <p>{item.name}</p>
+                <p>
+                  {item.name.length > 15
+                    ? item.name.slice(0, 12) + "..."
+                    : item.name}
+                </p>
                 <p>{item.set_name}</p>
-                <p>{item.rarity_name}</p>
                 <p>{item.code}</p>
               </OverlayText>
               {!isLoggedIn ? (

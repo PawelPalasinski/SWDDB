@@ -4,9 +4,9 @@ import styled from "styled-components";
 const SvgContainer = styled.svg`
   width: 20px;
   height: 20px;
+  background-color: transparent;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 1));
   transition: transform 0.2s ease-in-out;
-
   &:hover {
     transform: scale(1.1);
   }
@@ -18,12 +18,7 @@ const StarPath = styled.path`
 
 const Star = ({ fill }) => {
   return (
-    <SvgContainer
-      viewBox="0 0 1024 1024"
-      className="icon"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <SvgContainer viewBox="0 0 1024 1024" version="1.1">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
