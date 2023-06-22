@@ -1,15 +1,13 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import styled from "styled-components";
-import Rating from "./Rating";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import useUserStore from "../../store/userStore";
 import useCardStore from "../../store/cardStore";
 
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Sith from "../svg/Sith";
+import Rating from "./Rating";
 
 const PAGE_SIZE = 10;
 
@@ -42,6 +40,7 @@ const CollectionCardsWrapper = styled.div`
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     line-height: 0;
+    animation: ${({ removed }) => (removed ? "fadeOut 0.5s forwards" : "none")};
   }
 `;
 
@@ -111,6 +110,10 @@ const CardButton = styled.button`
   }
 `;
 
+const LoadMoreButton = styled.button`
+  color: red;
+`;
+
 const PersonalCollection = ({ handleCardClick }) => {
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const loggedInUser = useUserStore((state) => state.loggedInUser);
@@ -121,6 +124,7 @@ const PersonalCollection = ({ handleCardClick }) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState([]);
+  const [removedCard, setRemovedCard] = useState(null);
 
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -166,22 +170,23 @@ const PersonalCollection = ({ handleCardClick }) => {
       return;
     }
 
-    // Tutaj można dodać logikę aktualizacji oceny karty
-  };
-
-  const handleButtonClick = (cardCode) => {
-    toast.error(`Card ${cardCode} removed from collection.`, {
-      theme: "dark",
-    });
-
-    handleCardClick(cardCode);
+    // Aktualizacja oceny karty w kolekcji użytkownika
+    const cardIndex = loggedInUser.collection.findIndex(
+      (card) => card.cardCode === cardCode
+    );
+    if (cardIndex !== -1) {
+      loggedInUser.collection[cardIndex].rate = rating;
+      useUserStore
+        .getState()
+        .setRating(loggedInUser.login, loggedInUser.collection);
+    }
   };
 
   return (
     <CollectionWrapper>
       <ToastContainer />
       <CardList>
-        <CollectionCardsWrapper>
+        <CollectionCardsWrapper removed={removedCard === null ? 0 : 1}>
           {filteredData.map((item, index) => (
             <li key={`${item.code}-${index}`}>
               <Suspense fallback={<LoadingMessage>Loading...</LoadingMessage>}>
@@ -201,7 +206,9 @@ const PersonalCollection = ({ handleCardClick }) => {
                   </p>
                   <p>{item.set_name}</p>
 
-                  <Rating />
+                  <Rating
+                    onClick={(rating) => handleStarClick(item.code, rating)}
+                  />
 
                   <CardButton onClick={() => handleButtonClick(item.code)}>
                     <Sith />
@@ -213,6 +220,10 @@ const PersonalCollection = ({ handleCardClick }) => {
           ))}
         </CollectionCardsWrapper>
       </CardList>
+
+      {hasMore && (
+        <LoadMoreButton onClick={loadMoreData}>Load More</LoadMoreButton>
+      )}
     </CollectionWrapper>
   );
 };

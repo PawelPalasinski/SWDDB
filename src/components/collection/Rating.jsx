@@ -1,6 +1,6 @@
+// Rating.js
 import React, { useState } from "react";
 import styled from "styled-components";
-
 import Star from "../svg/Star";
 
 const RatingWrapper = styled.div`
@@ -22,10 +22,11 @@ const StarList = styled.ul`
   & li {
     background-color: transparent;
     margin: 2px;
+    cursor: pointer;
   }
 `;
 
-const Rating = () => {
+const Rating = ({ onClick }) => {
   const [filledStars, setFilledStars] = useState(0);
 
   const handleStarHover = (index) => {
@@ -36,6 +37,10 @@ const Rating = () => {
     setFilledStars(0);
   };
 
+  const handleStarClick = () => {
+    onClick(filledStars);
+  };
+
   return (
     <RatingWrapper>
       <StarList>
@@ -44,6 +49,7 @@ const Rating = () => {
             key={index}
             onMouseEnter={() => handleStarHover(index)}
             onMouseLeave={handleStarLeave}
+            onClick={handleStarClick}
           >
             <Star fill={index < filledStars ? "gold" : "gray"} />
           </li>
