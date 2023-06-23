@@ -9,31 +9,32 @@ const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Sith from "../svg/Sith";
 import Rating from "./Rating";
 
-const PAGE_SIZE = 10;
-
 const CollectionWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1200px;
+  margin-top: 120px;
 `;
 
 const CardList = styled.ul`
   list-style: none;
-  padding: 0;
+  margin: 0 auto;
+  max-width: 1200px;
   padding: 0 20px;
   min-height: calc(100vh - 120px - 110px);
   width: 100%;
+  justify-content: space-between;
 `;
 
 const CollectionCardsWrapper = styled.div`
   max-width: 1200px;
   display: flex;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-
   li {
     position: relative;
     align-items: center;
@@ -112,6 +113,8 @@ const CardButton = styled.button`
 
 const LoadMoreButton = styled.button`
   color: red;
+  margin: 20px auto;
+  display: block;
 `;
 
 const PersonalCollection = ({ handleCardClick }) => {
@@ -125,6 +128,7 @@ const PersonalCollection = ({ handleCardClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState([]);
   const [removedCard, setRemovedCard] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -138,6 +142,8 @@ const PersonalCollection = ({ handleCardClick }) => {
     console.log(progress);
   };
 
+  const PAGE_SIZE = 10;
+
   useEffect(() => {
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const endIndex = startIndex + PAGE_SIZE;
@@ -149,6 +155,7 @@ const PersonalCollection = ({ handleCardClick }) => {
       .slice(startIndex, endIndex);
 
     setFilteredData(() => [...newData]);
+    setLoading(false);
   }, [collection, data, currentPage]);
 
   useEffect(() => {
@@ -159,18 +166,19 @@ const PersonalCollection = ({ handleCardClick }) => {
   }, []);
 
   const loadMoreData = () => {
+    setLoading(true);
     setCurrentPage((prevPage) => prevPage + 1);
   };
+
+  console.log(collection.length);
 
   const hasMore = currentPage * PAGE_SIZE <= collection.length;
 
   const handleStarClick = (cardCode, rating) => {
     if (!isLoggedIn) {
-      // Obsługa dla niezalogowanego użytkownika
       return;
     }
 
-    // Aktualizacja oceny karty w kolekcji użytkownika
     const cardIndex = loggedInUser.collection.findIndex(
       (card) => card.cardCode === cardCode
     );
@@ -182,10 +190,14 @@ const PersonalCollection = ({ handleCardClick }) => {
     }
   };
 
+  const handleButtonClick = (cardCode) => {
+    handleCardClick(cardCode);
+  };
+
   return (
     <CollectionWrapper>
-      <ToastContainer />
       <CardList>
+        <ToastContainer />
         <CollectionCardsWrapper removed={removedCard === null ? 0 : 1}>
           {filteredData.map((item, index) => (
             <li key={`${item.code}-${index}`}>
@@ -221,8 +233,12 @@ const PersonalCollection = ({ handleCardClick }) => {
         </CollectionCardsWrapper>
       </CardList>
 
-      {hasMore && (
-        <LoadMoreButton onClick={loadMoreData}>Load More</LoadMoreButton>
+      {loading ? (
+        <LoadingMessage>Loading...</LoadingMessage>
+      ) : (
+        hasMore && (
+          <LoadMoreButton onClick={loadMoreData}>Load More</LoadMoreButton>
+        )
       )}
     </CollectionWrapper>
   );

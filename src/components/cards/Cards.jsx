@@ -15,6 +15,7 @@ import useUserStore from "../../store/userStore";
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
 import Sith from "../svg/Sith";
+import Fullscreen from "../svg/fullscreen";
 
 import PaginationAllCards from "../pagination/PaginationAllCards";
 import Falcon from "../svg/FalconSVG";
@@ -125,6 +126,22 @@ const StyledLink = styled.a`
   left: 50%;
   transform: translate(-50%, -50%);
   text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+`;
+
+const FullscreenButton = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  color: #ffffff;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-bottom: 110%;
+  width: 40px;
 `;
 
 const Cards = ({ handleCardClick }) => {
@@ -289,6 +306,9 @@ const Cards = ({ handleCardClick }) => {
                   <span>{getButtonText(item.code)}</span>
                 </CardButton>
               )}
+              <FullscreenButton>
+                <Fullscreen />
+              </FullscreenButton>
             </Overlay>
           </li>
         ))}

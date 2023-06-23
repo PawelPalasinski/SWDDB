@@ -12,7 +12,6 @@ const useUserStore = create((set) => {
         login,
         password,
         collection: [],
-        rate: 0,
       };
       set((state) => ({
         users: [...state.users, newUser],
@@ -82,24 +81,37 @@ const useUserStore = create((set) => {
           localStorage.setItem("users", JSON.stringify(updatedUsers));
           return { users: updatedUsers };
         } else {
-          console.log(`Nie znaleziono użytkownika: ${login}`);
+          console.log(`User: ${login} not found`);
           return state;
         }
       });
     },
 
-    setRating: (login, rating) => {
+    setRating: (login, cardCode, rating) => {
       set((state) => {
-        const updatedUsers = state.users.map((user) => {
-          if (user.login === login) {
-            return { ...user, rate: rating };
+        const userIndex = state.users.findIndex((user) => user.login === login);
+        if (userIndex !== -1) {
+          const updatedUsers = [...state.users];
+          const user = { ...updatedUsers[userIndex] };
+          const collection = user.collection || [];
+          const cardIndex = collection.findIndex(
+            (card) => card.cardCode === cardCode
+          );
+          if (cardIndex !== -1) {
+            collection[cardIndex].rate = rating;
+            console.log(
+              `Updated rating for card ${cardCode} for user: ${login}`
+            );
           }
-          return user;
-        });
-        localStorage.setItem("users", JSON.stringify(updatedUsers));
-        return { users: updatedUsers };
+          user.collection = collection.length > 0 ? collection : null;
+          updatedUsers[userIndex] = user;
+          localStorage.setItem("users", JSON.stringify(updatedUsers));
+          return { users: updatedUsers };
+        } else {
+          console.log(`User: ${login} not found`);
+          return state;
+        }
       });
-      console.log(`Ustawiono ocenę dla użytkownika: ${login}`);
     },
 
     getButtonText: (cardCode) => {
