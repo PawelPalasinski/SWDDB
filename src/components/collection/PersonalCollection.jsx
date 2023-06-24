@@ -179,14 +179,23 @@ const PersonalCollection = ({ handleCardClick }) => {
       return;
     }
 
-    const cardIndex = loggedInUser.collection.findIndex(
+    const updatedCollection = [...loggedInUser.collection];
+    const cardIndex = updatedCollection.findIndex(
       (card) => card.cardCode === cardCode
     );
+
     if (cardIndex !== -1) {
-      loggedInUser.collection[cardIndex].rate = rating;
-      useUserStore
-        .getState()
-        .setRating(loggedInUser.login, loggedInUser.collection);
+      updatedCollection[cardIndex] = {
+        ...updatedCollection[cardIndex],
+        rate: rating,
+      };
+
+      const updatedUser = { ...loggedInUser, collection: updatedCollection };
+
+      useUserStore.getState().setUser(updatedUser);
+
+      // Aktualizacja danych w localStorage
+      localStorage.setItem(loggedInUser.login, JSON.stringify(updatedUser));
     }
   };
 
@@ -220,6 +229,7 @@ const PersonalCollection = ({ handleCardClick }) => {
 
                   <Rating
                     onClick={(rating) => handleStarClick(item.code, rating)}
+                    initialRate={item.rate}
                   />
 
                   <CardButton onClick={() => handleButtonClick(item.code)}>

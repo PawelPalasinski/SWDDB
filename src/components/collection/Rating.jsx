@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Star from "../svg/Star";
 
@@ -25,19 +25,27 @@ const StarList = styled.ul`
   }
 `;
 
-const Rating = ({ onClick }) => {
+const Rating = ({ onClick, initialRate }) => {
   const [filledStars, setFilledStars] = useState(0);
+  const [rate, setRate] = useState(initialRate);
+
+  useEffect(() => {
+    setRate(initialRate);
+  }, [initialRate]);
 
   const handleStarHover = (index) => {
     setFilledStars(index + 1);
   };
 
   const handleStarLeave = () => {
-    setFilledStars(0);
+    setFilledStars(rate);
   };
 
   const handleStarClick = () => {
-    onClick(filledStars);
+    if (rate !== filledStars) {
+      setRate(filledStars);
+      onClick(filledStars);
+    }
   };
 
   return (
@@ -45,7 +53,7 @@ const Rating = ({ onClick }) => {
       <StarList>
         {[...Array(5)].map((_, index) => (
           <li
-            key={index}
+            key={"star" + index}
             onMouseEnter={() => handleStarHover(index)}
             onMouseLeave={handleStarLeave}
             onClick={handleStarClick}
@@ -54,6 +62,7 @@ const Rating = ({ onClick }) => {
           </li>
         ))}
       </StarList>
+      <p>Rate: {rate}</p>
     </RatingWrapper>
   );
 };

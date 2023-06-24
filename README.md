@@ -12,12 +12,15 @@
 - [x] zustand for state managment
 - [x] save own collection of cards to local storage
 - [x] statistics
-- [x] contact form
+- [x] contact form (emails)
 - [x] RWD styled components (work in progress)
 - [ ] dark mode
 - [x] Home with paralax effect
-- [ ] login and register (backend - MongoDB)
+- [ ] login and register (backend - MongoDB) => local storage
 - [x] About with technologies used description (star wars opening text?)
+- [x] multiple users (local storage)
+- [ ] card rates
+- [ ] fullscreen cards
 - [ ] refactor to Typescript
 - [ ] tests in jest
 
