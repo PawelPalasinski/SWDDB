@@ -12,7 +12,7 @@
 - [x] statistics
 - [x] contact form (emails)
 - [x] RWD styled components (work in progress)
-- [ ] dark mode
+- [ ] dark mode (?)
 - [x] Home with paralax effect
 - [ ] login and register (backend - MongoDB) => local storage
 - [x] About with technologies used description (star wars opening text?)
