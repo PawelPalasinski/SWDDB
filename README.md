@@ -5,9 +5,7 @@
 ### Features
 
 - [x] get all cards
-- [x] filter by faction
-- [x] filter by rarity
-- [x] filter by expansion
+- [x] filters
 - [x] routing
 - [x] zustand for state managment
 - [x] save own collection of cards to local storage
