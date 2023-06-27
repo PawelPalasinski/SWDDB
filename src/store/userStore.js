@@ -100,7 +100,7 @@ const useUserStore = create((set) => {
           if (cardIndex !== -1) {
             collection[cardIndex].rate = rating;
             console.log(
-              `Updated rating for card ${cardCode} for user: ${login}`
+              `STORE: Rating updated for card ${cardCode} by user: ${login}`
             );
           }
           user.collection = collection.length > 0 ? collection : null;
@@ -117,7 +117,11 @@ const useUserStore = create((set) => {
     getButtonText: (cardCode) => {
       const state = useUserStore.getState();
       const isLoggedIn = state.isLoggedIn;
-      const collection = useUserStore.getState().loggedInUser.collection || [];
+      const collection =
+        state.loggedInUser && state.loggedInUser.collection
+          ? state.loggedInUser.collection
+          : [];
+
       const isCardInCollection = collection.some(
         (card) => card.cardCode === cardCode
       );

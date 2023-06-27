@@ -25,13 +25,17 @@ const StarList = styled.ul`
   }
 `;
 
-const Rating = ({ onClick, initialRate }) => {
-  const [filledStars, setFilledStars] = useState(0);
-  const [rate, setRate] = useState(initialRate);
+const Rating = ({ onClick, initialRate, cardCode, rate }) => {
+  const [filledStars, setFilledStars] = useState(rate);
+
+  console.log("R " + rate);
+  console.log("R " + initialRate);
 
   useEffect(() => {
-    setRate(initialRate);
-  }, [initialRate]);
+    if (rate) {
+      setFilledStars(parseInt(rate));
+    }
+  }, [cardCode]);
 
   const handleStarHover = (index) => {
     setFilledStars(index + 1);
@@ -43,7 +47,6 @@ const Rating = ({ onClick, initialRate }) => {
 
   const handleStarClick = () => {
     if (rate !== filledStars) {
-      setRate(filledStars);
       onClick(filledStars);
     }
   };
