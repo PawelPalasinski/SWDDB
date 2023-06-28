@@ -129,7 +129,6 @@ const PersonalCollection = ({ handleCardClick }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [removedCard, setRemovedCard] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [users, setUsers] = useState([]);
 
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -150,11 +149,6 @@ const PersonalCollection = ({ handleCardClick }) => {
     const endIndex = startIndex + PAGE_SIZE;
     const filteredCardCodes = collection.map((card) => card.cardCode);
     const uniqueCardCodes = [...new Set(filteredCardCodes)];
-    const storedUsers = localStorage.getItem("users");
-
-    if (storedUsers) {
-      setUsers(JSON.parse(storedUsers));
-    }
 
     const newData = data
       .filter((item) => uniqueCardCodes.includes(item.code))
@@ -180,63 +174,33 @@ const PersonalCollection = ({ handleCardClick }) => {
 
   const hasMore = currentPage * PAGE_SIZE <= collection.length;
 
-  const handleButtonClick = (cardCode) => {
-    handleCardClick(cardCode);
-  };
-
   const handleStarClick = (cardCode, rating) => {
     if (!isLoggedIn) {
       return;
     }
 
-    const updatedUsers = [...users];
-    const userIndex = updatedUsers.findIndex(
-      (user) => user.login === loggedInUser.login
-    );
-    if (userIndex !== -1) {
-      const user = { ...updatedUsers[userIndex] };
-      const collection = user.collection || [];
-      const cardIndex = collection.findIndex(
-        (card) => card.cardCode === cardCode
-      );
-      if (cardIndex !== -1) {
-        collection[cardIndex].rate = rating;
-        console.log(
-          `Personal Collection: Rating ${rating} updated for card ${cardCode} by user: ${loggedInUser.login}`
-        );
-
-        // Zaktualizuj wartość rate w filteredData
-        const updatedFilteredData = filteredData.map((item) => {
-          if (item.code === cardCode) {
-            return { ...item, rate: rating };
-          }
-          console.log("handleStarClick " + item); // to nie dziala
-          return item;
-        });
-        console.log("updatedFilteredData " + updatedFilteredData); // tu nie ma rate'a
-        setFilteredData(updatedFilteredData);
-      }
-      user.collection = collection.length > 0 ? collection : null;
-      updatedUsers[userIndex] = user;
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
-      setUsers(updatedUsers);
-    } else {
-      console.log(`User: ${loggedInUser.login} not found`);
-    }
-  };
-
-  const getCardRate = (cardCode) => {
-    const loggedInUserCollection = loggedInUser.collection || [];
-    const foundCard = loggedInUserCollection.find(
+    const updatedCollection = [...loggedInUser.collection];
+    const cardIndex = updatedCollection.findIndex(
       (card) => card.cardCode === cardCode
     );
 
-    if (foundCard) {
-      console.log("getCardRate " + foundCard.rate);
-      return foundCard.rate;
-    }
+    if (cardIndex !== -1) {
+      updatedCollection[cardIndex] = {
+        ...updatedCollection[cardIndex],
+        rate: rating,
+      };
 
-    return 0;
+      const updatedUser = { ...loggedInUser, collection: updatedCollection };
+
+      useUserStore.getState().setUser(updatedUser);
+
+      // Aktualizacja danych w localStorage
+      localStorage.setItem(loggedInUser.login, JSON.stringify(updatedUser));
+    }
+  };
+
+  const handleButtonClick = (cardCode) => {
+    handleCardClick(cardCode);
   };
 
   return (
@@ -265,9 +229,7 @@ const PersonalCollection = ({ handleCardClick }) => {
 
                   <Rating
                     onClick={(rating) => handleStarClick(item.code, rating)}
-                    initialRate={getCardRate(item.code)}
-                    cardCode={item.code}
-                    rate={getCardRate(item.code)}
+                    initialRate={item.rate}
                   />
 
                   <CardButton onClick={() => handleButtonClick(item.code)}>
