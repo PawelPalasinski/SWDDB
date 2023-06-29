@@ -192,7 +192,7 @@ const PersonalCollection = ({ handleCardClick }) => {
 
       const updatedUser = { ...loggedInUser, collection: updatedCollection };
 
-      useUserStore.getState().setUser(updatedUser);
+      useUserStore.getState().setRating(loggedInUser.login, cardCode, rating);
 
       // Aktualizacja danych w localStorage
       localStorage.setItem(loggedInUser.login, JSON.stringify(updatedUser));
@@ -201,6 +201,27 @@ const PersonalCollection = ({ handleCardClick }) => {
 
   const handleButtonClick = (cardCode) => {
     handleCardClick(cardCode);
+  };
+
+  const handleRateChange = (cardCode, rate) => {
+    const updatedUsers = users.map((user) => {
+      if (user.login === currentUser.login) {
+        const updatedCollection = user.collection.map((card) => {
+          if (card.cardCode === cardCode) {
+            return { ...card, rate };
+          }
+          return card;
+        });
+        return { ...user, collection: updatedCollection };
+      }
+      return user;
+    });
+
+    // Aktualizuj tablicę użytkowników w local storage
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+    // Aktualizuj stan kolekcji
+    setUsers(updatedUsers);
   };
 
   return (
@@ -227,10 +248,12 @@ const PersonalCollection = ({ handleCardClick }) => {
                   </p>
                   <p>{item.set_name}</p>
 
+                  {/* {currentUser && ( */}
                   <Rating
-                    onClick={(rating) => handleStarClick(item.code, rating)}
+                    onClick={(rate) => handleRateChange(item.cardCode, rate)}
                     initialRate={item.rate}
                   />
+                  {/* )} */}
 
                   <CardButton onClick={() => handleButtonClick(item.code)}>
                     <Sith />

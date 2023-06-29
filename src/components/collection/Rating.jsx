@@ -18,6 +18,7 @@ const StarList = styled.ul`
   padding: 0;
   display: flex;
   margin: 0;
+
   & li {
     background-color: transparent;
     margin: 2px;
@@ -25,12 +26,15 @@ const StarList = styled.ul`
   }
 `;
 
-const Rating = ({ onClick, initialRate }) => {
+const Rating = ({ onClick, initialRate = 0 }) => {
   const [filledStars, setFilledStars] = useState(0);
   const [rate, setRate] = useState(initialRate);
 
+  console.log(initialRate);
+
   useEffect(() => {
     setRate(initialRate);
+    setFilledStars(initialRate);
   }, [initialRate]);
 
   const handleStarHover = (index) => {
@@ -44,7 +48,7 @@ const Rating = ({ onClick, initialRate }) => {
   const handleStarClick = () => {
     if (rate !== filledStars) {
       setRate(filledStars);
-      onClick(filledStars);
+      // onClick(filledStars);
     }
   };
 
