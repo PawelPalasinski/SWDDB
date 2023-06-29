@@ -56,7 +56,10 @@ const PersonalCollectionPage = () => {
         <EmptyCollection />
       ) : (
         <Wrapper>
-          <PersonalCollection handleCardClick={handleCardClick} />
+          <PersonalCollection
+            collection={collection}
+            handleCardClick={handleCardClick}
+          />
         </Wrapper>
       )}
     </>

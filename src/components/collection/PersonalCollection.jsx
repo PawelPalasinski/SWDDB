@@ -1,7 +1,5 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { Children, lazy, Suspense, useEffect, useState } from "react";
 import styled from "styled-components";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import useUserStore from "../../store/userStore";
 import useCardStore from "../../store/cardStore";
 
@@ -111,70 +109,33 @@ const CardButton = styled.button`
   }
 `;
 
-const LoadMoreButton = styled.button`
-  color: red;
-  margin: 20px auto;
-  display: block;
-`;
-
-const PersonalCollection = ({ handleCardClick }) => {
+const PersonalCollection = ({ collection, handleCardClick }) => {
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const loggedInUser = useUserStore((state) => state.loggedInUser);
-  const userCollection = useUserStore((state) => state.loggedInUser.collection);
   const data = useCardStore((state) => state.data);
 
-  const collection = isLoggedIn ? loggedInUser.collection : [];
-
-  const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState([]);
   const [removedCard, setRemovedCard] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  const handleScroll = () => {
-    const windowHeight = window.innerHeight;
-    const fullHeight = document.documentElement.scrollHeight;
-    const scrolledHeight = window.scrollY;
-    const visibleHeight = windowHeight + scrolledHeight;
-    const progress = (visibleHeight / fullHeight) * 100;
-    setScrollProgress(progress);
-    console.log(progress);
-  };
-
-  const PAGE_SIZE = 10;
-
   useEffect(() => {
-    const startIndex = (currentPage - 1) * PAGE_SIZE;
-    const endIndex = startIndex + PAGE_SIZE;
     const filteredCardCodes = collection.map((card) => card.cardCode);
     const uniqueCardCodes = [...new Set(filteredCardCodes)];
 
-    const newData = data
-      .filter((item) => uniqueCardCodes.includes(item.code))
-      .slice(startIndex, endIndex);
+    const newData = data.filter((item) => uniqueCardCodes.includes(item.code));
 
     setFilteredData(() => [...newData]);
     setLoading(false);
-  }, [collection, data, currentPage]);
+  }, [collection, data]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  console.log("COL " + collection.rate);
+  console.log("LEN" + collection.length);
 
-  const loadMoreData = () => {
-    setLoading(true);
-    setCurrentPage((prevPage) => prevPage + 1);
+  const handleButtonClick = (cardCode) => {
+    handleCardClick(cardCode);
   };
 
-  console.log(collection.length);
-
-  const hasMore = currentPage * PAGE_SIZE <= collection.length;
-
-  const handleStarClick = (cardCode, rating) => {
+  const handleRateChange = (cardCode, rate) => {
     if (!isLoggedIn) {
       return;
     }
@@ -187,47 +148,27 @@ const PersonalCollection = ({ handleCardClick }) => {
     if (cardIndex !== -1) {
       updatedCollection[cardIndex] = {
         ...updatedCollection[cardIndex],
-        rate: rating,
+        rate: rate,
       };
 
       const updatedUser = { ...loggedInUser, collection: updatedCollection };
 
-      useUserStore.getState().setRating(loggedInUser.login, cardCode, rating);
+      useUserStore.getState().setUserCollection(updatedUser.collection);
 
-      // Aktualizacja danych w localStorage
-      localStorage.setItem(loggedInUser.login, JSON.stringify(updatedUser));
+      const usersFromLocalStorage = JSON.parse(localStorage.getItem("users"));
+      const updatedUsers = usersFromLocalStorage.map((user) => {
+        if (user.login === loggedInUser.login) {
+          return updatedUser;
+        }
+        return user;
+      });
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
     }
-  };
-
-  const handleButtonClick = (cardCode) => {
-    handleCardClick(cardCode);
-  };
-
-  const handleRateChange = (cardCode, rate) => {
-    const updatedUsers = users.map((user) => {
-      if (user.login === currentUser.login) {
-        const updatedCollection = user.collection.map((card) => {
-          if (card.cardCode === cardCode) {
-            return { ...card, rate };
-          }
-          return card;
-        });
-        return { ...user, collection: updatedCollection };
-      }
-      return user;
-    });
-
-    // Aktualizuj tablicę użytkowników w local storage
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
-
-    // Aktualizuj stan kolekcji
-    setUsers(updatedUsers);
   };
 
   return (
     <CollectionWrapper>
       <CardList>
-        <ToastContainer />
         <CollectionCardsWrapper removed={removedCard === null ? 0 : 1}>
           {filteredData.map((item, index) => (
             <li key={`${item.code}-${index}`}>
@@ -248,12 +189,11 @@ const PersonalCollection = ({ handleCardClick }) => {
                   </p>
                   <p>{item.set_name}</p>
 
-                  {/* {currentUser && ( */}
                   <Rating
-                    onClick={(rate) => handleRateChange(item.cardCode, rate)}
-                    initialRate={item.rate}
+                    cardCode={item.cardCode}
+                    rate={item.rate}
+                    onRateChange={handleRateChange}
                   />
-                  {/* )} */}
 
                   <CardButton onClick={() => handleButtonClick(item.code)}>
                     <Sith />
@@ -265,14 +205,6 @@ const PersonalCollection = ({ handleCardClick }) => {
           ))}
         </CollectionCardsWrapper>
       </CardList>
-
-      {loading ? (
-        <LoadingMessage>Loading...</LoadingMessage>
-      ) : (
-        hasMore && (
-          <LoadMoreButton onClick={loadMoreData}>Load More</LoadMoreButton>
-        )
-      )}
     </CollectionWrapper>
   );
 };
