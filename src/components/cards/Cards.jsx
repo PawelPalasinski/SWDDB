@@ -251,7 +251,7 @@ const Cards = ({ handleCardClick }) => {
   const loggedInUser = useUserStore((state) => state.loggedInUser);
   const getButtonText = useUserStore((state) => state.getButtonText);
 
-  const handleButtonClick = (cardCode) => {
+  const handleButtonClick = (cardCode, cardImage, cardName) => {
     const buttonText = getButtonText(cardCode, loggedInUser);
 
     if (buttonText === "ADD") {
@@ -264,7 +264,7 @@ const Cards = ({ handleCardClick }) => {
       });
     }
 
-    handleCardClick(cardCode);
+    handleCardClick(cardCode, cardImage, cardName);
   };
 
   const loginText = "LOGIN";
@@ -301,7 +301,11 @@ const Cards = ({ handleCardClick }) => {
                   </StyledLink>
                 </LoginLink>
               ) : (
-                <CardButton onClick={() => handleButtonClick(item.code)}>
+                <CardButton
+                  onClick={() =>
+                    handleButtonClick(item.code, item.imagesrc, item.name)
+                  }
+                >
                   {getButtonText(item.code) === "ADD" ? <Jedi /> : <Sith />}
                   <span>{getButtonText(item.code)}</span>
                 </CardButton>

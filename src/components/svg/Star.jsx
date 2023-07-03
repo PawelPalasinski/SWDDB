@@ -16,7 +16,7 @@ const StarPath = styled.path`
   fill: ${({ fill }) => fill};
 `;
 
-const Star = ({ fill }) => {
+const Star = ({ fill, rate }) => {
   return (
     <SvgContainer viewBox="0 0 1024 1024" version="1.1">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

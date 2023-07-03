@@ -63,9 +63,15 @@ const CardsPage = () => {
     (state) => state.handleAddOrRemoveFromCollection
   );
 
-  const handleCardClick = (card) => {
+  const handleCardClick = (cardCode, cardImage, cardName) => {
     if (loggedInUser) {
-      handleAddOrRemoveFromCollection(loggedInUser.login, card, 0);
+      handleAddOrRemoveFromCollection(
+        loggedInUser.login,
+        cardCode,
+        0,
+        cardImage,
+        cardName
+      );
       setRefresh(true);
     }
   };

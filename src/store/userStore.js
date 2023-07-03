@@ -52,7 +52,13 @@ const useUserStore = create((set) => {
       }
     },
 
-    handleAddOrRemoveFromCollection: (login, cardCode, rating) => {
+    handleAddOrRemoveFromCollection: (
+      login,
+      cardCode,
+      rating,
+      cardImage,
+      cardName
+    ) => {
       set((state) => {
         const userIndex = state.users.findIndex((user) => user.login === login);
         if (userIndex !== -1) {
@@ -70,7 +76,8 @@ const useUserStore = create((set) => {
             );
           } else {
             // ADD
-            const newCard = { cardCode, rate: rating };
+            const newCard = { cardCode, rate: rating, cardImage, cardName };
+
             collection.push(newCard);
             console.log(
               `STORE: Card ${cardCode} added to collection for user: ${login}`

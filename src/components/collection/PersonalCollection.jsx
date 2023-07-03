@@ -1,9 +1,7 @@
-import React, { Children, lazy, Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import useUserStore from "../../store/userStore";
-import useCardStore from "../../store/cardStore";
-
-const CardImage = lazy(() => import("../cardImage/CardImage"));
+import CardImage from "../cardImage/CardImage";
 import Sith from "../svg/Sith";
 import Rating from "./Rating";
 
@@ -112,7 +110,7 @@ const CardButton = styled.button`
 const PersonalCollection = ({ collection, handleCardClick }) => {
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const loggedInUser = useUserStore((state) => state.loggedInUser);
-  const data = useCardStore((state) => state.data);
+  const setUserCollection = useUserStore((state) => state.setUserCollection);
 
   const [filteredData, setFilteredData] = useState([]);
   const [removedCard, setRemovedCard] = useState(null);
@@ -122,14 +120,19 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
     const filteredCardCodes = collection.map((card) => card.cardCode);
     const uniqueCardCodes = [...new Set(filteredCardCodes)];
 
-    const newData = data.filter((item) => uniqueCardCodes.includes(item.code));
+    const newData = uniqueCardCodes.map((cardCode) => {
+      const card = collection.find((c) => c.cardCode === cardCode);
+      return {
+        cardCode: card.cardCode,
+        cardName: card.cardName,
+        cardImage: card.cardImage,
+        rate: card.rate,
+      };
+    });
 
-    setFilteredData(() => [...newData]);
+    setFilteredData(newData);
     setLoading(false);
-  }, [collection, data]);
-
-  console.log("COL " + collection.rate);
-  console.log("LEN" + collection.length);
+  }, [collection]);
 
   const handleButtonClick = (cardCode) => {
     handleCardClick(cardCode);
@@ -140,7 +143,8 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
       return;
     }
 
-    const updatedCollection = [...loggedInUser.collection];
+    const updatedCollection = [...collection];
+
     const cardIndex = updatedCollection.findIndex(
       (card) => card.cardCode === cardCode
     );
@@ -153,7 +157,10 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
 
       const updatedUser = { ...loggedInUser, collection: updatedCollection };
 
-      useUserStore.getState().setUserCollection(updatedUser.collection);
+      useUserStore.setState((state) => ({
+        ...state,
+        loggedInUser: updatedUser,
+      }));
 
       const usersFromLocalStorage = JSON.parse(localStorage.getItem("users"));
       const updatedUsers = usersFromLocalStorage.map((user) => {
@@ -171,23 +178,21 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
       <CardList>
         <CollectionCardsWrapper removed={removedCard === null ? 0 : 1}>
           {filteredData.map((item, index) => (
-            <li key={`${item.code}-${index}`}>
-              <Suspense fallback={<LoadingMessage>Loading...</LoadingMessage>}>
-                <CardImage
-                  className="image"
-                  src={item.imagesrc}
-                  alt={item.name}
-                />
-              </Suspense>
+            <li key={`${item.cardCode}-${index}`}>
+              <CardImage
+                className="image"
+                src={item.cardImage}
+                alt={item.cardName}
+              />
 
               <Overlay>
                 <OverlayText>
                   <p>
-                    {item.name.length > 15
-                      ? item.name.slice(0, 12) + "..."
-                      : item.name}
+                    {item.cardName.length > 15
+                      ? item.cardName.slice(0, 12) + "..."
+                      : item.cardName}
                   </p>
-                  <p>{item.set_name}</p>
+                  <p>{item.setName}</p>
 
                   <Rating
                     cardCode={item.cardCode}
@@ -195,7 +200,7 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
                     onRateChange={handleRateChange}
                   />
 
-                  <CardButton onClick={() => handleButtonClick(item.code)}>
+                  <CardButton onClick={() => handleButtonClick(item.cardCode)}>
                     <Sith />
                     <span>DEL</span>
                   </CardButton>
