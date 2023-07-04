@@ -17,8 +17,9 @@
 - [ ] login and register (backend - MongoDB) => local storage
 - [x] About with technologies used description (star wars opening text?)
 - [x] multiple users (local storage)
-- [ ] card rates
-- [ ] fullscreen cards
+- [x] card rates
+- [x] fullscreen cards
+- [ ] pagination collection
 - [ ] refactor to Typescript
 - [ ] tests in jest
 

@@ -19,6 +19,7 @@ import Fullscreen from "../svg/Fullscreen";
 
 import PaginationAllCards from "../pagination/PaginationAllCards";
 import Falcon from "../svg/FalconSVG";
+import Modal from "../modal/Modal";
 
 const CardWrapper = styled.div`
   ul {
@@ -269,6 +270,19 @@ const Cards = ({ handleCardClick }) => {
 
   const loginText = "LOGIN";
 
+  // Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+
+  const openModal = (imageSrc) => {
+    setSelectedImage(imageSrc);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <CardWrapper>
       <ToastContainer />
@@ -310,7 +324,7 @@ const Cards = ({ handleCardClick }) => {
                   <span>{getButtonText(item.code)}</span>
                 </CardButton>
               )}
-              <FullscreenButton>
+              <FullscreenButton onClick={() => openModal(item.imagesrc)}>
                 <Fullscreen />
               </FullscreenButton>
             </Overlay>
@@ -318,6 +332,10 @@ const Cards = ({ handleCardClick }) => {
         ))}
       </ul>
       <PaginationAllCards totalPages={totalPages} />
+
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <img src={selectedImage} alt="Fullscreen" />
+      </Modal>
     </CardWrapper>
   );
 };

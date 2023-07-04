@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import useUserStore from "../../store/userStore";
+
 import CardImage from "../cardImage/CardImage";
-import Sith from "../svg/Sith";
+import Modal from "../modal/Modal";
 import Rating from "./Rating";
+
+import Sith from "../svg/Sith";
+import Fullscreen from "../svg/Fullscreen";
 
 const CollectionWrapper = styled.div`
   display: flex;
@@ -72,7 +76,7 @@ const OverlayText = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: -40%;
+  margin-top: -60%;
 
   & p {
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
@@ -105,6 +109,22 @@ const CardButton = styled.button`
     transform: translate(-50%, -50%);
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
   }
+`;
+
+const FullscreenButton = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  color: #ffffff;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-top: -70%;
+  width: 40px;
 `;
 
 const PersonalCollection = ({ collection, handleCardClick }) => {
@@ -158,6 +178,19 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
     );
   };
 
+  // Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+
+  const openModal = (cardImage) => {
+    setSelectedImage(cardImage);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <CollectionWrapper>
       <CardList>
@@ -190,11 +223,19 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
                     <span>{getButtonText(item.cardCode)}</span>
                   </CardButton>
                 </OverlayText>
+
+                <FullscreenButton onClick={() => openModal(item.cardImage)}>
+                  <Fullscreen />
+                </FullscreenButton>
               </Overlay>
             </li>
           ))}
         </CollectionCardsWrapper>
       </CardList>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <img src={selectedImage} alt="Fullscreen" />
+      </Modal>
     </CollectionWrapper>
   );
 };

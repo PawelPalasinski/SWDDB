@@ -61,7 +61,6 @@ const Rating = ({ cardCode, rate, onRateChange }) => {
           </li>
         ))}
       </StarList>
-      <p>Rate: {rate}</p>
     </RatingWrapper>
   );
 };

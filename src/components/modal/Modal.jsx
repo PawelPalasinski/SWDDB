@@ -13,16 +13,19 @@ const ModalContainer = styled.div`
   justify-content: center;
   z-index: 9;
   overflow: auto;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 `;
 
 const ModalContent = styled.div`
   border-radius: 8px;
   max-width: 600px;
-  background: rgba(255, 255, 255, 0.44);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+
+  & img {
+    border-radius: 15px;
+  }
 `;
 
 const CloseButton = styled.button`
