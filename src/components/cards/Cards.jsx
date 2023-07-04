@@ -15,7 +15,7 @@ import useUserStore from "../../store/userStore";
 const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
 import Sith from "../svg/Sith";
-import Fullscreen from "../svg/fullscreen";
+import Fullscreen from "../svg/Fullscreen";
 
 import PaginationAllCards from "../pagination/PaginationAllCards";
 import Falcon from "../svg/FalconSVG";
