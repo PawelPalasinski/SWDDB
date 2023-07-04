@@ -2,8 +2,9 @@ import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
+
 import Logo from "../svg/Logo";
-// import useAuthStore from "../../store/authStore";
+
 import useUserStore from "../../store/userStore";
 
 const slideIn = keyframes`
@@ -171,10 +172,6 @@ const LogoutButton = styled.button`
 `;
 
 const Navbar = () => {
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
-  // const logoutUser = useAuthStore((state) => state.logoutUser);
   const [isOpen, setIsOpen] = useState(false);
 
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
@@ -253,12 +250,6 @@ const Navbar = () => {
             </li>
           </>
         )}
-
-        <li>
-          <NavLink to="/SWDDB/test" onClick={handleToggleMenu}>
-            Test
-          </NavLink>
-        </li>
       </ul>
     </Nav>
   );
