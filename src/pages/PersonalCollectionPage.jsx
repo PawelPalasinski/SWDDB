@@ -8,6 +8,19 @@ import useUserStore from "../store/userStore";
 
 import space from "../assets/images/space.webp";
 
+const Wrapper = styled.div`
+  background-image: url(${space});
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  z-index: -1;
+  margin-top: -60px;
+  overflow: auto;
+`;
+
 const PersonalCollectionPage = () => {
   const [refresh, setRefresh] = useState(false);
 
@@ -20,29 +33,7 @@ const PersonalCollectionPage = () => {
 
   const collection = isLoggedIn ? loggedInUser?.collection : [];
 
-  console.log(collection);
-
   const isEmpty = collection === null;
-
-  const Wrapper = styled.div`
-    background-image: url(${space});
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    z-index: -1;
-    margin-top: -60px;
-    overflow: auto;
-  `;
-
-  const handleCardClick = (cardCode) => {
-    if (loggedInUser) {
-      handleAddOrRemoveFromCollection(loggedInUser.login, cardCode, 0);
-      setRefresh(true);
-    }
-  };
 
   useEffect(() => {
     if (refresh) {
@@ -56,10 +47,7 @@ const PersonalCollectionPage = () => {
         <EmptyCollection />
       ) : (
         <Wrapper>
-          <PersonalCollection
-            collection={collection}
-            handleCardClick={handleCardClick}
-          />
+          <PersonalCollection collection={collection} />
         </Wrapper>
       )}
     </>

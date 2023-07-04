@@ -110,74 +110,59 @@ const CardButton = styled.button`
 const PersonalCollection = ({ collection, handleCardClick }) => {
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const loggedInUser = useUserStore((state) => state.loggedInUser);
-  const setUserCollection = useUserStore((state) => state.setUserCollection);
+  const handleAddOrRemoveFromCollection = useUserStore(
+    (state) => state.handleAddOrRemoveFromCollection
+  );
+  const setRating = useUserStore((state) => state.setRating);
+  const getButtonText = useUserStore((state) => state.getButtonText);
 
-  const [filteredData, setFilteredData] = useState([]);
-  const [removedCard, setRemovedCard] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [localCollection, setLocalCollection] = useState(collection);
 
   useEffect(() => {
-    const filteredCardCodes = collection.map((card) => card.cardCode);
-    const uniqueCardCodes = [...new Set(filteredCardCodes)];
-
-    const newData = uniqueCardCodes.map((cardCode) => {
-      const card = collection.find((c) => c.cardCode === cardCode);
-      return {
-        cardCode: card.cardCode,
-        cardName: card.cardName,
-        cardImage: card.cardImage,
-        rate: card.rate,
-      };
-    });
-
-    setFilteredData(newData);
-    setLoading(false);
+    setLocalCollection(collection);
   }, [collection]);
 
-  const handleButtonClick = (cardCode) => {
-    handleCardClick(cardCode);
-  };
+  useEffect(() => {
+    setLocalCollection(collection);
+  }, [collection]);
 
   const handleRateChange = (cardCode, rate) => {
     if (!isLoggedIn) {
       return;
     }
 
-    const updatedCollection = [...collection];
+    setRating(loggedInUser.login, cardCode, rate);
 
-    const cardIndex = updatedCollection.findIndex(
-      (card) => card.cardCode === cardCode
-    );
+    const updatedCollection = localCollection.map((card) => {
+      if (card.cardCode === cardCode) {
+        return { ...card, rate };
+      }
+      return card;
+    });
 
-    if (cardIndex !== -1) {
-      updatedCollection[cardIndex] = {
-        ...updatedCollection[cardIndex],
-        rate: rate,
-      };
+    setLocalCollection(updatedCollection);
+  };
 
-      const updatedUser = { ...loggedInUser, collection: updatedCollection };
-
-      useUserStore.setState((state) => ({
-        ...state,
-        loggedInUser: updatedUser,
-      }));
-
-      const usersFromLocalStorage = JSON.parse(localStorage.getItem("users"));
-      const updatedUsers = usersFromLocalStorage.map((user) => {
-        if (user.login === loggedInUser.login) {
-          return updatedUser;
-        }
-        return user;
-      });
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
+  const handleAddOrRemove = (card) => {
+    if (!isLoggedIn) {
+      return;
     }
+
+    const { cardCode, rate, cardImage, cardName } = card;
+    handleAddOrRemoveFromCollection(
+      loggedInUser.login,
+      cardCode,
+      rate,
+      cardImage,
+      cardName
+    );
   };
 
   return (
     <CollectionWrapper>
       <CardList>
-        <CollectionCardsWrapper removed={removedCard === null ? 0 : 1}>
-          {filteredData.map((item, index) => (
+        <CollectionCardsWrapper>
+          {collection.map((item, index) => (
             <li key={`${item.cardCode}-${index}`}>
               <CardImage
                 className="image"
@@ -200,9 +185,9 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
                     onRateChange={handleRateChange}
                   />
 
-                  <CardButton onClick={() => handleButtonClick(item.cardCode)}>
+                  <CardButton onClick={() => handleAddOrRemove(item)}>
                     <Sith />
-                    <span>DEL</span>
+                    <span>{getButtonText(item.cardCode)}</span>
                   </CardButton>
                 </OverlayText>
               </Overlay>

@@ -72,7 +72,7 @@ const useUserStore = create((set) => {
             // DEL
             collection.splice(cardIndex, 1);
             console.log(
-              `STORE: Card ${cardCode} removed from collection for user: ${login}`
+              `STORE: Card ${cardCode}: ${cardName} removed from collection for user: ${login}`
             );
           } else {
             // ADD
@@ -80,13 +80,14 @@ const useUserStore = create((set) => {
 
             collection.push(newCard);
             console.log(
-              `STORE: Card ${cardCode} added to collection for user: ${login}`
+              `STORE: Card ${cardCode}: ${cardName} added to collection for user: ${login}`
             );
           }
           user.collection = collection.length > 0 ? collection : null;
           updatedUsers[userIndex] = user;
           localStorage.setItem("users", JSON.stringify(updatedUsers));
-          return { users: updatedUsers };
+          // return { users: updatedUsers };
+          return { users: updatedUsers, loggedInUser: user };
         } else {
           console.log(`User: ${login} not found`);
           return state;
