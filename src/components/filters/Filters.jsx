@@ -13,6 +13,7 @@ const FiltersContainer = styled.div`
   margin: 1rem 0;
   flex-direction: column;
   position: relative;
+  padding-top: 80px;
 `;
 
 const StatisticsContainer = styled.div`

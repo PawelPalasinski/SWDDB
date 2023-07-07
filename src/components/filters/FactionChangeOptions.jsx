@@ -1,7 +1,10 @@
 import React from "react";
-import { filterFactionOptions } from "../../js/options";
-import useFilterStore from "../../store/filterStore";
 import styled from "styled-components";
+
+import useFilterStore from "../../store/filterStore";
+import useCardCountStore from "../../store/cardCountStore";
+
+import { filterFactionOptions } from "../../js/options";
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const FactionButton = styled.button`
-  width: 100px;
+  width: 140px;
   border-radius: 10px;
   margin: 10px 5px;
   background-color: ${({ active }) => (active ? "#ffd700" : "#fff")};
@@ -32,16 +35,36 @@ const FactionButton = styled.button`
 const FactionChangeOptions = () => {
   const { selectedFaction, setSelectedFaction } = useFilterStore();
 
+  const cardRedCount = useCardCountStore((state) => state.cardRedCount);
+  const cardYellowCount = useCardCountStore((state) => state.cardYellowCount);
+  const cardBlueCount = useCardCountStore((state) => state.cardBlueCount);
+  const cardGrayCount = useCardCountStore((state) => state.cardGrayCount);
+
   const renderFilterButtons = () => {
     return filterFactionOptions.map((option) => {
       const active = selectedFaction === option.value;
+
+      let count;
+
+      if (option.value === "red") {
+        count = cardRedCount;
+      } else if (option.value === "yellow") {
+        count = cardYellowCount;
+      } else if (option.value === "blue") {
+        count = cardBlueCount;
+      } else if (option.value === "gray") {
+        count = cardGrayCount;
+      }
+
+      console.log(option.value + " " + count);
+
       return (
         <FactionButton
           key={option.value}
           active={active}
           onClick={() => setSelectedFaction(option.value)}
         >
-          {option.label}
+          {option.label} {count}
         </FactionButton>
       );
     });

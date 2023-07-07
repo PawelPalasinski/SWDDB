@@ -1,7 +1,10 @@
 import React from "react";
-import { filterRarityOptions } from "../../js/options";
-import useFilterStore from "../../store/filterStore";
 import styled from "styled-components";
+
+import useCardCountStore from "../../store/cardCountStore";
+import useFilterStore from "../../store/filterStore";
+
+import { filterRarityOptions } from "../../js/options";
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const RarityButton = styled.button`
-  width: 100px;
+  width: 140px;
   border-radius: 10px;
   margin: 10px 5px;
   background-color: ${({ active }) => (active ? "#ffd700" : "#fff")};
@@ -30,16 +33,34 @@ const RarityButton = styled.button`
 const RarityChangeOptions = () => {
   const { selectedRarity, setSelectedRarity } = useFilterStore();
 
+  const cardLCount = useCardCountStore((state) => state.cardLCount);
+  const cardRCount = useCardCountStore((state) => state.cardRCount);
+  const cardUCount = useCardCountStore((state) => state.cardUCount);
+  const cardCCount = useCardCountStore((state) => state.cardCCount);
+
   const renderFilterButtons = () => {
     return filterRarityOptions.map((option) => {
       const active = selectedRarity === option.value;
+      let count;
+
+      if (option.value === "L") {
+        count = cardLCount;
+      } else if (option.value === "R") {
+        count = cardRCount;
+      } else if (option.value === "U") {
+        count = cardUCount;
+      } else if (option.value === "C") {
+        count = cardCCount;
+      }
+
+      console.log(option.value + " " + count);
       return (
         <RarityButton
           key={option.value}
           active={active}
           onClick={() => setSelectedRarity(option.value)}
         >
-          {option.label}
+          {option.label} {count}
         </RarityButton>
       );
     });

@@ -148,28 +148,49 @@ const FullscreenButton = styled.button`
 const Cards = ({ handleCardClick }) => {
   const data = useCardStore((state) => state.data);
 
+  // Pagination
+
   const currentPage = usePaginationStore((state) => state.currentPage);
   const setCurrentPage = usePaginationStore((state) => state.setCurrentPage);
   const dataPerPage = usePaginationStore((state) => state.dataPerPage);
+
+  // Filters
 
   const selectedFaction = useFilterStore((state) => state.selectedFaction);
   const selectedRarity = useFilterStore((state) => state.selectedRarity);
   const selectedExpansion = useFilterStore((state) => state.selectedExpansion);
   const searchQuery = useFilterStore((state) => state.searchQuery);
 
+  // Count cards
+
   const setStoreCardCount = useCardCountStore((state) => state.setCardCount);
+
+  // Faction
+
   const setStoreCardRedCount = useCardCountStore(
     (state) => state.setCardRedCount
   );
+
   const setStoreCardYellowCount = useCardCountStore(
     (state) => state.setCardYellowCount
   );
+
   const setStoreCardBlueCount = useCardCountStore(
     (state) => state.setCardBlueCount
   );
+
   const setStoreCardGrayCount = useCardCountStore(
     (state) => state.setCardGrayCount
   );
+
+  // Rarity
+
+  const setStoreCardLCount = useCardCountStore((state) => state.setLCount);
+  const setStoreCardRCount = useCardCountStore((state) => state.setRCount);
+  const setStoreCardUCount = useCardCountStore((state) => state.setCCount);
+  const setStoreCardCCount = useCardCountStore((state) => state.setUCount);
+
+  // Filters
 
   let filteredData = data.filter((item) => {
     if (
@@ -205,9 +226,11 @@ const Cards = ({ handleCardClick }) => {
     return true;
   });
 
+  // Count cards
+
   const cardCount = filteredData.length;
 
-  const totalPages = Math.ceil(cardCount / dataPerPage);
+  // Faction
 
   const cardRedCount = filteredData.filter(
     (x) => x.faction_code === "red"
@@ -225,24 +248,51 @@ const Cards = ({ handleCardClick }) => {
     (x) => x.faction_code === "gray"
   ).length;
 
+  // Rarity
+
+  const cardLCount = filteredData.filter((x) => x.rarity_code === "L").length;
+  const cardRCount = filteredData.filter((x) => x.rarity_code === "R").length;
+  const cardUCount = filteredData.filter((x) => x.rarity_code === "U").length;
+  const cardCCount = filteredData.filter((x) => x.rarity_code === "C").length;
+
   useEffect(() => {
     setStoreCardCount(cardCount);
     setStoreCardRedCount(cardRedCount);
     setStoreCardYellowCount(cardYellowCount);
     setStoreCardBlueCount(cardBlueCount);
     setStoreCardGrayCount(cardGrayCount);
+
+    setStoreCardLCount(cardLCount);
+    setStoreCardRCount(cardRCount);
+    setStoreCardUCount(cardCCount);
+    setStoreCardCCount(cardUCount);
   }, [
     cardCount,
     cardRedCount,
     cardYellowCount,
     cardBlueCount,
     cardGrayCount,
+
+    cardLCount,
+    cardRCount,
+    cardUCount,
+    cardCCount,
+
     setStoreCardCount,
     setStoreCardRedCount,
     setStoreCardYellowCount,
     setStoreCardBlueCount,
     setStoreCardGrayCount,
+
+    setStoreCardLCount,
+    setStoreCardRCount,
+    setStoreCardCCount,
+    setStoreCardUCount,
   ]);
+
+  // Pagination
+
+  const totalPages = Math.ceil(cardCount / dataPerPage);
 
   const startIndex = (currentPage - 1) * dataPerPage;
   const endIndex = startIndex + dataPerPage;
@@ -268,9 +318,8 @@ const Cards = ({ handleCardClick }) => {
     handleCardClick(cardCode, cardImage, cardName);
   };
 
-  const loginText = "LOGIN";
-
   // Modal
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
 
@@ -311,7 +360,7 @@ const Cards = ({ handleCardClick }) => {
                 <LoginLink>
                   <Falcon />
                   <StyledLink as={Link} to="/SWDDB/login">
-                    {loginText}
+                    "LOGIN"
                   </StyledLink>
                 </LoginLink>
               ) : (

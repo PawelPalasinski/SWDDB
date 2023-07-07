@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 import Logo from "../svg/Logo";
+import Sabers from "../svg/Sabers";
 
 import useUserStore from "../../store/userStore";
 
@@ -163,12 +164,16 @@ const LogoutButton = styled.button`
   heigth: 60px;
   border: none;
   text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
-  margin-left: 25%;
 
   &:hover {
     background-color: #fff;
     color: #ffd700;
   }
+`;
+
+const CloseButton = styled.button`
+  background-color: transparent;
+  border: none;
 `;
 
 const Navbar = () => {
@@ -196,11 +201,9 @@ const Navbar = () => {
       <FaBars className="menu-icon" onClick={handleToggleMenu} />
       <ul>
         <li>
-          <FaTimes
-            className="close-icon"
-            onClick={handleToggleMenu}
-            style={{ display: isOpen ? "block" : "none" }}
-          />
+          <CloseButton className="close-icon" onClick={handleToggleMenu}>
+            <Sabers />
+          </CloseButton>
         </li>
 
         <li>

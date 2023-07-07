@@ -55,7 +55,7 @@ const InputField = styled.input`
   resize: vertical;
 `;
 
-const LoginButton = styled.button`
+const LoginRegisterButton = styled.button`
   background-color: #ffd700;
   color: #fff;
   font-size: 20px;
@@ -66,6 +66,7 @@ const LoginButton = styled.button`
   width: 100%;
   border: none;
   text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
+  margin: 10px;
 
   &:hover {
     background-color: #fff;
@@ -74,28 +75,6 @@ const LoginButton = styled.button`
 `;
 
 const LoginPage = () => {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [errorMessage, setErrorMessage] = useState("");
-  // const loginUser = useAuthStore((state) => state.loginUser);
-  // const navigate = useNavigate();
-
-  // const handleLogin = () => {
-  //   loginUser(username, password);
-  //   setUsername("");
-  //   setPassword("");
-  //   setErrorMessage("Invalid username or password");
-
-  //   const collectionStore = useCollectionStore("user_id");
-  //   // Inicjalizacja kolekcji dla danego użytkownika
-  //   const initialCollectionData = []; // lub inne początkowe dane kolekcji
-  //   collectionStore.initializeCollection(initialCollectionData);
-
-  //   navigate("/SWDDB/card-collection");
-  // };
-
-  const errorMessage = "Invalid username or password";
-
   const userStore = useUserStore();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -110,35 +89,23 @@ const LoginPage = () => {
 
   return (
     <LoginPageWrapper>
-      {/* {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>} */}
       <LoginForm>
         <InputField
           type="text"
-          // value={username}
           value={login}
-          // onChange={(e) => setUsername(e.target.value)}
           onChange={(e) => setLogin(e.target.value)}
         />
         <InputField
           type="password"
           value={password}
-          // onChange={(e) => setPassword(e.target.value)}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <LoginButton
-          type="button"
-          // onClick={handleLogin}
-          onClick={handleLogin}
-        >
+        <LoginRegisterButton type="button" onClick={handleLogin}>
           Login
-        </LoginButton>
-        <LoginButton
-          type="button"
-          // onClick={handleLogin}
-          onClick={handleRegister}
-        >
+        </LoginRegisterButton>
+        <LoginRegisterButton type="button" onClick={handleRegister}>
           Register
-        </LoginButton>
+        </LoginRegisterButton>
       </LoginForm>
     </LoginPageWrapper>
   );
