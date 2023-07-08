@@ -21,7 +21,8 @@ const cardCountStore = create((set) => ({
 
   // Expansion
 
-  cardSorCount: 0,
+  cardAWCount: 0,
+  cardSoRCount: 0,
   cardEaWCount: 0,
   cardTPGCount: 0,
   cardLEGCount: 0,
@@ -58,7 +59,7 @@ const cardCountStore = create((set) => ({
   // Expansion
 
   setAWCount: (count) => set((state) => ({ ...state, cardAWCount: count })),
-  setSorCount: (count) => set((state) => ({ ...state, cardSorCount: count })),
+  setSoRCount: (count) => set((state) => ({ ...state, cardSoRCount: count })),
   setEaWCount: (count) => set((state) => ({ ...state, cardEaWCount: count })),
   setTPGCount: (count) => set((state) => ({ ...state, cardTPGCount: count })),
   setLEGCount: (count) => set((state) => ({ ...state, cardLEGCount: count })),
@@ -66,7 +67,7 @@ const cardCountStore = create((set) => ({
   setWotFCount: (count) => set((state) => ({ ...state, cardWotFCount: count })),
   setAtGCount: (count) => set((state) => ({ ...state, cardAtGCount: count })),
   setCONVCount: (count) => set((state) => ({ ...state, cardCONVCount: count })),
-  setAoNCount: (count) => set((state) => ({ ...state, cardAoNFCount: count })),
+  setAoNCount: (count) => set((state) => ({ ...state, cardAoNCount: count })),
   setSoHCount: (count) => set((state) => ({ ...state, cardSoHCount: count })),
   setCMCount: (count) => set((state) => ({ ...state, cardCMCount: count })),
   setTRCount: (count) => set((state) => ({ ...state, cardTRCount: count })),

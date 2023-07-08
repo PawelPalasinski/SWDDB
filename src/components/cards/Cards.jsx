@@ -190,6 +190,26 @@ const Cards = ({ handleCardClick }) => {
   const setStoreCardUCount = useCardCountStore((state) => state.setCCount);
   const setStoreCardCCount = useCardCountStore((state) => state.setUCount);
 
+  // Expansion
+
+  const setStoreCardAWCount = useCardCountStore((state) => state.setAWCount);
+  const setStoreCardSoRCount = useCardCountStore((state) => state.setSoRCount);
+  const setStoreCardEaWCount = useCardCountStore((state) => state.setEaWCount);
+  const setStoreCardTPGCount = useCardCountStore((state) => state.setTPGCount);
+  const setStoreCardLEGCount = useCardCountStore((state) => state.setLEGCount);
+  const setStoreCardRIVCount = useCardCountStore((state) => state.setRIVCount);
+  const setStoreCardWotFCount = useCardCountStore(
+    (state) => state.setWotFCount
+  );
+  const setStoreCardAtGCount = useCardCountStore((state) => state.setAtGCount);
+  const setStoreCardCONVCount = useCardCountStore(
+    (state) => state.setCONVCount
+  );
+  const setStoreCardAoNCount = useCardCountStore((state) => state.setAoNCount);
+  const setStoreCardSoHCount = useCardCountStore((state) => state.setSoHCount);
+  const setStoreCardCMCount = useCardCountStore((state) => state.setCMCount);
+  const setStoreCardTRCount = useCardCountStore((state) => state.setTRCount);
+
   // Filters
 
   let filteredData = data.filter((item) => {
@@ -255,8 +275,31 @@ const Cards = ({ handleCardClick }) => {
   const cardUCount = filteredData.filter((x) => x.rarity_code === "U").length;
   const cardCCount = filteredData.filter((x) => x.rarity_code === "C").length;
 
+  // Expansion
+
+  const cardAWCount = filteredData.filter((x) => x.set_code === "AW").length;
+  const cardSoRCount = filteredData.filter((x) => x.set_code === "SoR").length;
+  const cardEaWCount = filteredData.filter((x) => x.set_code === "EaW").length;
+  const cardTPGCount = filteredData.filter((x) => x.set_code === "TPG").length;
+  const cardLEGCount = filteredData.filter((x) => x.set_code === "LEG").length;
+  const cardRIVCount = filteredData.filter((x) => x.set_code === "RIV").length;
+  const cardWotFCount = filteredData.filter(
+    (x) => x.set_code === "WotF"
+  ).length;
+  const cardAtGCount = filteredData.filter((x) => x.set_code === "AtG").length;
+  const cardCONVCount = filteredData.filter(
+    (x) => x.set_code === "CONV"
+  ).length;
+  const cardAoNCount = filteredData.filter((x) => x.set_code === "AoN").length;
+  const cardSoHCount = filteredData.filter((x) => x.set_code === "SoH").length;
+  const cardCMCount = filteredData.filter((x) => x.set_code === "CM").length;
+  const cardTRCount = filteredData.filter((x) => x.set_code === "TR").length;
+
+  // Count cards - useEffect
+
   useEffect(() => {
     setStoreCardCount(cardCount);
+
     setStoreCardRedCount(cardRedCount);
     setStoreCardYellowCount(cardYellowCount);
     setStoreCardBlueCount(cardBlueCount);
@@ -266,8 +309,23 @@ const Cards = ({ handleCardClick }) => {
     setStoreCardRCount(cardRCount);
     setStoreCardUCount(cardCCount);
     setStoreCardCCount(cardUCount);
+
+    setStoreCardAWCount(cardAWCount);
+    setStoreCardSoRCount(cardSoRCount);
+    setStoreCardEaWCount(cardEaWCount);
+    setStoreCardTPGCount(cardTPGCount);
+    setStoreCardLEGCount(cardLEGCount);
+    setStoreCardRIVCount(cardRIVCount);
+    setStoreCardWotFCount(cardWotFCount);
+    setStoreCardAtGCount(cardAtGCount);
+    setStoreCardCONVCount(cardCONVCount);
+    setStoreCardAoNCount(cardAoNCount);
+    setStoreCardSoHCount(cardSoHCount);
+    setStoreCardCMCount(cardCMCount);
+    setStoreCardTRCount(cardTRCount);
   }, [
     cardCount,
+
     cardRedCount,
     cardYellowCount,
     cardBlueCount,
@@ -277,6 +335,20 @@ const Cards = ({ handleCardClick }) => {
     cardRCount,
     cardUCount,
     cardCCount,
+
+    cardAWCount,
+    cardSoRCount,
+    cardEaWCount,
+    cardTPGCount,
+    cardLEGCount,
+    cardRIVCount,
+    cardWotFCount,
+    cardAtGCount,
+    cardCONVCount,
+    cardAoNCount,
+    cardSoHCount,
+    cardCMCount,
+    cardTRCount,
 
     setStoreCardCount,
     setStoreCardRedCount,
@@ -288,6 +360,20 @@ const Cards = ({ handleCardClick }) => {
     setStoreCardRCount,
     setStoreCardCCount,
     setStoreCardUCount,
+
+    setStoreCardAWCount,
+    setStoreCardSoRCount,
+    setStoreCardEaWCount,
+    setStoreCardTPGCount,
+    setStoreCardLEGCount,
+    setStoreCardRIVCount,
+    setStoreCardWotFCount,
+    setStoreCardAtGCount,
+    setStoreCardCONVCount,
+    setStoreCardAoNCount,
+    setStoreCardSoHCount,
+    setStoreCardCMCount,
+    setStoreCardTRCount,
   ]);
 
   // Pagination
