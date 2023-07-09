@@ -181,14 +181,33 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
   // Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
+  const [selectedCardCode, setSelectedCardCode] = useState(null);
+  const [selectedRate, setSelectedRate] = useState(0);
 
-  const openModal = (cardImage) => {
+  const openModal = (cardImage, cardCode, rate) => {
     setSelectedImage(cardImage);
+    setSelectedCardCode(cardCode);
+    setSelectedRate(rate);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
+    setSelectedCardCode(null);
     setIsModalOpen(false);
+  };
+
+  const handleModalRateChange = (selectedCardCode, rate) => {
+    setSelectedRate(rate);
+    handleRateChange(selectedCardCode, rate);
+
+    const updatedCollection = localCollection.map((card) => {
+      if (card.cardCode === selectedCardCode) {
+        return { ...card, rate };
+      }
+      return card;
+    });
+
+    setLocalCollection(updatedCollection);
   };
 
   return (
@@ -224,7 +243,11 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
                   </CardButton>
                 </OverlayText>
 
-                <FullscreenButton onClick={() => openModal(item.cardImage)}>
+                <FullscreenButton
+                  onClick={() =>
+                    openModal(item.cardImage, item.cardCode, item.rate)
+                  }
+                >
                   <Fullscreen />
                 </FullscreenButton>
               </Overlay>
@@ -235,6 +258,12 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
 
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <img src={selectedImage} alt="Fullscreen" />
+
+        <Rating
+          cardCode={selectedCardCode}
+          rate={selectedRate}
+          onRateChange={handleModalRateChange}
+        />
       </Modal>
     </CollectionWrapper>
   );
