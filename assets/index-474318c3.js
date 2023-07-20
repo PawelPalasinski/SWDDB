@@ -841,7 +841,7 @@ Error generating stack: `+o.message+`
   );
   padding: 2px;
   border-radius: 8px;
-  margin: 10px 0;
+  margin: 0 0 10px 0;
 `,L6=D.ul`
   list-style: none;
   padding: 0;
@@ -925,11 +925,11 @@ Error generating stack: `+o.message+`
   }
 
   &.horizontal-overlay-text {
-    margin-top: 20%;
+    margin-top: -40%;
   }
 
   &.vertical-overlay-text {
-    margin-top: -60%;
+    margin-top: -80%;
   }
 `,D6=D.button`
   position: absolute;
@@ -944,14 +944,20 @@ Error generating stack: `+o.message+`
   color: #ffffff;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  margin-top: 120%;
-
   & span {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+  }
+
+  &.horizontal-overlay-button {
+    margin-top: 80%;
+  }
+
+  &.vertical-overlay-button {
+    margin-top: 160%;
   }
 `,I6=D.button`
   position: absolute;
@@ -965,8 +971,16 @@ Error generating stack: `+o.message+`
   color: #ffffff;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  margin-top: -70%;
+
   width: 40px;
+
+  &.horizontal-overlay-fullscreenbutton {
+    margin-top: 5%;
+  }
+
+  &.vertical-overlay-fullscreenbutton {
+    margin-top: 5%;
+  }
 `,N6=({collection:e,handleCardClick:t})=>{const n=fe(C=>C.isLoggedIn),r=fe(C=>C.loggedInUser),i=fe(C=>C.handleAddOrRemoveFromCollection),o=fe(C=>C.setRating),s=fe(C=>C.getButtonText),[a,l]=k.useState(e);k.useEffect(()=>{l(e)},[e]),k.useEffect(()=>{l(e)},[e]);const c=(C,b)=>{if(!n)return;o(r.login,C,b);const M=a.map(O=>O.cardCode===C?{...O,rate:b}:O);l(M)},u=C=>{if(!n)return;const{cardCode:b,rate:M,cardImage:O,cardName:j}=C;i(r.login,b,M,O,j)},[d,f]=k.useState(!1),[p,y]=k.useState(""),[m,v]=k.useState(null),[h,g]=k.useState(0),x=(C,b,M)=>{y(C),v(b),g(M),f(!0)},w=()=>{v(null),f(!1)},_=(C,b)=>{g(b),c(C,b);const M=a.map(O=>O.cardCode===C?{...O,rate:b}:O);l(M)},P=C=>{const b=new Image;return b.src=C,console.log(b.src+": "+b.width+" "+b.height),b.width>b.height};return $(O6,{children:[S(T6,{children:S(M6,{children:e.map((C,b)=>$("li",{children:[S(Wy,{className:"image",src:C.cardImage,alt:C.cardName,isHorizontal:P(C.cardImage)}),$(A6,{className:P(C.cardImage)?"horizontal-overlay":"vertical-overlay",children:[$(z6,{className:P(C.cardImage)?"horizontal-overlay-text":"vertical-overlay-text",children:[S("p",{children:C.cardName.length>15?C.cardName.slice(0,12)+"...":C.cardName}),S("p",{children:C.setName}),S(H0,{cardCode:C.cardCode,rate:C.rate,onRateChange:c,className:P(C.cardImage)?"horizontal-overlay-rating":"vertical-overlay-rating"}),$(D6,{onClick:()=>u(C),className:P(C.cardImage)?"horizontal-overlay-button":"vertical-overlay-button",children:[S(ey,{}),S("span",{children:s(C.cardCode)})]})]}),S(I6,{onClick:()=>x(C.cardImage,C.cardCode,C.rate),className:P(C.cardImage)?"horizontal-overlay-fullscreenbutton":"vertical-overlay-fullscreenbutton",children:S(ty,{})})]})]},`${C.cardCode}-${b}`))})}),$(kf,{isOpen:d,onClose:w,children:[S("img",{src:p,alt:"Fullscreen"}),S(H0,{cardCode:m,rate:h,onRateChange:_})]})]})},Hy="/SWDDB/assets/deathstarpng-cab082e6.png",F6="/SWDDB/assets/cards-b0dc59ee.png",$6=D.div`
 background-image: url(${Yl});
 background-size: cover;
