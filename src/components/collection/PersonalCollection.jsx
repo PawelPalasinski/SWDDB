@@ -89,11 +89,11 @@ const OverlayText = styled.div`
   }
 
   &.horizontal-overlay-text {
-    margin-top: 20%;
+    margin-top: -40%;
   }
 
   &.vertical-overlay-text {
-    margin-top: -60%;
+    margin-top: -80%;
   }
 `;
 
@@ -110,14 +110,20 @@ const CardButton = styled.button`
   color: #ffffff;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  margin-top: 120%;
-
   & span {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+  }
+
+  &.horizontal-overlay-button {
+    margin-top: 80%;
+  }
+
+  &.vertical-overlay-button {
+    margin-top: 160%;
   }
 `;
 
@@ -133,8 +139,16 @@ const FullscreenButton = styled.button`
   color: #ffffff;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  margin-top: -70%;
+
   width: 40px;
+
+  &.horizontal-overlay-fullscreenbutton {
+    margin-top: 5%;
+  }
+
+  &.vertical-overlay-fullscreenbutton {
+    margin-top: 5%;
+  }
 `;
 
 const PersonalCollection = ({ collection, handleCardClick }) => {

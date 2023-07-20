@@ -10,7 +10,7 @@ const RatingWrapper = styled.div`
   );
   padding: 2px;
   border-radius: 8px;
-  margin: 10px 0;
+  margin: 0 0 10px 0;
 `;
 
 const StarList = styled.ul`
