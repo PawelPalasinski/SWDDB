@@ -29,7 +29,7 @@ const CardList = styled.ul`
 `;
 
 const CollectionCardsWrapper = styled.div`
-  max-width: 1200px;
+  max-width: 1200px;gi
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -139,7 +139,6 @@ const FullscreenButton = styled.button`
   color: #ffffff;
   text-transform: uppercase;
   transition: all 0.3s ease;
-
   width: 40px;
 
   &.horizontal-overlay-fullscreenbutton {
@@ -237,7 +236,6 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
   const isHorizontal = (src) => {
     const img = new Image();
     img.src = src;
-    console.log(img.src + ": " + img.width + " " + img.height);
     return img.width > img.height;
   };
 

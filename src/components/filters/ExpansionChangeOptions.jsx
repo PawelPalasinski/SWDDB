@@ -80,8 +80,6 @@ const ExpansionChangeOptions = () => {
       {filterExpansionOptions.map((option) => {
         let count;
 
-        console.log(option);
-
         if (option.value === "AW") {
           count = cardAWCount;
         } else if (option.value === "Sor") {
@@ -109,8 +107,6 @@ const ExpansionChangeOptions = () => {
         } else if (option.value === "TR") {
           count = cardTRCount;
         }
-
-        console.log(option.value + " " + count);
 
         return (
           <label key={option.value}>

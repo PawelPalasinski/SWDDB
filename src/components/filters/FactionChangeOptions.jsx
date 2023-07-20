@@ -56,8 +56,6 @@ const FactionChangeOptions = () => {
         count = cardGrayCount;
       }
 
-      console.log(option.value + " " + count);
-
       return (
         <FactionButton
           key={option.value}

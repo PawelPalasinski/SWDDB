@@ -141,8 +141,15 @@ const FullscreenButton = styled.button`
   color: #ffffff;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  margin-bottom: 110%;
   width: 40px;
+
+  &.horizontal-overlay-fullscreenbutton {
+    margin-top: 0%;
+  }
+
+  &.vertical-overlay-fullscreenbutton {
+    margin-bottom: 110%;
+  }
 `;
 
 const Cards = ({ handleCardClick }) => {
@@ -418,6 +425,14 @@ const Cards = ({ handleCardClick }) => {
     setIsModalOpen(false);
   };
 
+  // card position
+
+  const isHorizontal = (src) => {
+    const img = new Image();
+    img.src = src;
+    return img.width > img.height;
+  };
+
   return (
     <CardWrapper>
       <ToastContainer />
@@ -429,11 +444,18 @@ const Cards = ({ handleCardClick }) => {
                 className="image"
                 src={item.imagesrc}
                 alt={item.name}
+                isHorizontal={isHorizontal(item.imagesrc)}
               />
             </Suspense>
 
             <Overlay>
-              <OverlayText>
+              <OverlayText
+                className={
+                  isHorizontal(item.imagesrc)
+                    ? "horizontal-overlay-text"
+                    : "vertical-overlay-text"
+                }
+              >
                 <p>
                   {item.name.length > 15
                     ? item.name.slice(0, 12) + "..."
@@ -459,7 +481,14 @@ const Cards = ({ handleCardClick }) => {
                   <span>{getButtonText(item.code)}</span>
                 </CardButton>
               )}
-              <FullscreenButton onClick={() => openModal(item.imagesrc)}>
+              <FullscreenButton
+                onClick={() => openModal(item.imagesrc)}
+                className={
+                  isHorizontal(item.imagesrc)
+                    ? "horizontal-overlay-fullscreenbutton"
+                    : "vertical-overlay-fullscreenbutton"
+                }
+              >
                 <Fullscreen />
               </FullscreenButton>
             </Overlay>

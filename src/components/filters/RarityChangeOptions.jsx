@@ -53,7 +53,6 @@ const RarityChangeOptions = () => {
         count = cardCCount;
       }
 
-      console.log(option.value + " " + count);
       return (
         <RarityButton
           key={option.value}
