@@ -4,7 +4,7 @@ import styled from "styled-components";
 import backgroundImage from "../assets/images/deathstarwallpaper.jpg";
 import layerImage from "../assets/images/layer1.png";
 import logoImage from "../assets/images/logo.png";
-import tieFightersImage from "../assets/images/tieFighters.png";
+import tieFightersImage from "../assets/images/tie.png";
 
 import Footer from "../components/footer/Footer";
 
