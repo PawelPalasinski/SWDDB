@@ -2,23 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-// import useAuthStore from "../../store/authStore";
-// import useCollectionStore from "../../store/collectionStore";
-
 import useUserStore from "../../store/userStore";
 
 const LoginPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  margin: 0;
-  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
-  font-size: 12px;
-  margin-top: -24px;
 `;
 
 const LoginForm = styled.form`
@@ -79,12 +68,16 @@ const LoginPage = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleLogin = () => {
     userStore.handleLogin(login, password);
+    navigate("/SWDDB/card-collection");
   };
 
   const handleRegister = () => {
     userStore.addUser(login, password);
+    navigate("/SWDDB/card-collection");
   };
 
   return (

@@ -45,11 +45,6 @@ const CollectionCardsWrapper = styled.div`
   }
 `;
 
-const LoadingMessage = styled.div`
-  font-size: 16px;
-  color: #999;
-`;
-
 const Overlay = styled.div`
   position: absolute;
   border-radius: 7px;
@@ -69,6 +64,14 @@ const Overlay = styled.div`
     bottom: 0;
     height: 100%;
   }
+
+  &.horizontal-overlay {
+    color: red;
+  }
+
+  &.vertical-overlay {
+    color: green;
+  }
 `;
 
 const OverlayText = styled.div`
@@ -76,7 +79,6 @@ const OverlayText = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: -60%;
 
   & p {
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
@@ -84,6 +86,14 @@ const OverlayText = styled.div`
     word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-word;
+  }
+
+  &.horizontal-overlay-text {
+    margin-top: 20%;
+  }
+
+  &.vertical-overlay-text {
+    margin-top: -60%;
   }
 `;
 
@@ -210,6 +220,13 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
     setLocalCollection(updatedCollection);
   };
 
+  const isHorizontal = (src) => {
+    const img = new Image();
+    img.src = src;
+    console.log(img.src + ": " + img.width + " " + img.height);
+    return img.width > img.height;
+  };
+
   return (
     <CollectionWrapper>
       <CardList>
@@ -220,10 +237,23 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
                 className="image"
                 src={item.cardImage}
                 alt={item.cardName}
+                isHorizontal={isHorizontal(item.cardImage)}
               />
 
-              <Overlay>
-                <OverlayText>
+              <Overlay
+                className={
+                  isHorizontal(item.cardImage)
+                    ? "horizontal-overlay"
+                    : "vertical-overlay"
+                }
+              >
+                <OverlayText
+                  className={
+                    isHorizontal(item.cardImage)
+                      ? "horizontal-overlay-text"
+                      : "vertical-overlay-text"
+                  }
+                >
                   <p>
                     {item.cardName.length > 15
                       ? item.cardName.slice(0, 12) + "..."
@@ -235,9 +265,21 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
                     cardCode={item.cardCode}
                     rate={item.rate}
                     onRateChange={handleRateChange}
+                    className={
+                      isHorizontal(item.cardImage)
+                        ? "horizontal-overlay-rating"
+                        : "vertical-overlay-rating"
+                    }
                   />
 
-                  <CardButton onClick={() => handleAddOrRemove(item)}>
+                  <CardButton
+                    onClick={() => handleAddOrRemove(item)}
+                    className={
+                      isHorizontal(item.cardImage)
+                        ? "horizontal-overlay-button"
+                        : "vertical-overlay-button"
+                    }
+                  >
                     <Sith />
                     <span>{getButtonText(item.cardCode)}</span>
                   </CardButton>
@@ -246,6 +288,11 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
                 <FullscreenButton
                   onClick={() =>
                     openModal(item.cardImage, item.cardCode, item.rate)
+                  }
+                  className={
+                    isHorizontal(item.cardImage)
+                      ? "horizontal-overlay-fullscreenbutton"
+                      : "vertical-overlay-fullscreenbutton"
                   }
                 >
                   <Fullscreen />

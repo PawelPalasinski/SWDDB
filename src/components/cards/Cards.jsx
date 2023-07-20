@@ -16,9 +16,9 @@ const CardImage = lazy(() => import("../cardImage/CardImage"));
 import Jedi from "../svg/Jedi";
 import Sith from "../svg/Sith";
 import Fullscreen from "../svg/Fullscreen";
+import Falcon from "../svg/FalconSVG";
 
 import PaginationAllCards from "../pagination/PaginationAllCards";
-import Falcon from "../svg/FalconSVG";
 import Modal from "../modal/Modal";
 
 const CardWrapper = styled.div`

@@ -6,8 +6,14 @@ const StyledCardImage = styled.img`
   border-radius: 8px;
 `;
 
-const CardImage = ({ src, alt }) => {
-  return <StyledCardImage src={src} alt={alt} />;
+const CardImage = ({ src, alt, position }) => {
+  const isHorizontal = () => {
+    const img = new Image();
+    img.src = src;
+    return img.width > img.height;
+  };
+
+  return <StyledCardImage src={src} alt={alt} isHorizontal={isHorizontal()} />;
 };
 
 export default CardImage;

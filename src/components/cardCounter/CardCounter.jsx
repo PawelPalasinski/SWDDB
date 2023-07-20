@@ -9,7 +9,7 @@ const CardAmount = styled.ul`
   position: absolute;
   top: 0;
   margin-top: 120px;
-  margin-left: -60%;
+  left: 20px;
   color: white;
   mix-blend-mode: difference;
   li {
