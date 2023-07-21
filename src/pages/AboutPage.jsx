@@ -9,13 +9,12 @@ const Wrapper = styled.div`
   background-image: url(${deathstarwallpaper});
   background-repeat: no-repeat;
   background-size: cover;
-  position: fixed;
   inset: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
   z-index: -1;
-  flex-direction: column;
+  margin-top: -60px;
+  overflow: auto;
   text-align: center;
   font-weight: 400;
 `;
@@ -27,14 +26,14 @@ const MainContainer = styled.main`
   align-items: center;
   width: 50%;
   min-width: 300px;
-  margin: 0 auto;
-  padding: 30px;
+  margin: 60px auto 60px;
+  padding: 20px 20px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  height: auto;
+  min-height: calc(100vh - 120px - 40px);
   @import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
   font-family: "Michroma", sans-serif;
 `;
@@ -74,8 +73,7 @@ const Paragraph = styled.p`
 `;
 
 const StyledFooter = styled.footer`
-  position: absolute;
-  z-index: 2;
+  position: fixed;
   bottom: 0;
   width: 100%;
 `;

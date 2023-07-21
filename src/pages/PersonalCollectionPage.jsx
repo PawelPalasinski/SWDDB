@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import PersonalCollection from "../components/collection/PersonalCollection";
 import EmptyCollection from "../components/emptyCollection/EmptyCollection";
+import Footer from "../components/footer/Footer";
 
 import useUserStore from "../store/userStore";
 
@@ -12,13 +13,18 @@ const Wrapper = styled.div`
   background-image: url(${space});
   background-repeat: no-repeat;
   background-size: cover;
-  position: fixed;
   inset: 0;
   display: flex;
   justify-content: center;
   z-index: -1;
   margin-top: -60px;
   overflow: auto;
+`;
+
+const StyledFooter = styled.footer`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 const PersonalCollectionPage = () => {
@@ -50,6 +56,10 @@ const PersonalCollectionPage = () => {
           <PersonalCollection collection={collection} />
         </Wrapper>
       )}
+
+      <StyledFooter>
+        <Footer />
+      </StyledFooter>
     </>
   );
 };

@@ -13,9 +13,10 @@ const CollectionWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: 60px auto 60px;
   max-width: 1200px;
-  margin-top: 120px;
+  padding: 20px 20px;
+  min-height: calc(100vh - 120px - 40px);
 `;
 
 const CardList = styled.ul`
@@ -29,12 +30,13 @@ const CardList = styled.ul`
 `;
 
 const CollectionCardsWrapper = styled.div`
-  max-width: 1200px;gi
+  max-width: 1200px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+
   li {
     position: relative;
     align-items: center;
@@ -60,17 +62,9 @@ const Overlay = styled.div`
   transition: 0.5s ease;
   overflow: hidden;
 
-  li:hover & {
+  ${CollectionCardsWrapper} li:hover & {
     bottom: 0;
     height: 100%;
-  }
-
-  &.horizontal-overlay {
-    color: red;
-  }
-
-  &.vertical-overlay {
-    color: green;
   }
 `;
 
@@ -141,6 +135,7 @@ const FullscreenButton = styled.button`
   transition: all 0.3s ease;
   width: 40px;
 
+  // Poprawione klasy, aby działały tylko wewnątrz OverlayText
   &.horizontal-overlay-fullscreenbutton {
     margin-top: 5%;
   }
@@ -277,11 +272,6 @@ const PersonalCollection = ({ collection, handleCardClick }) => {
                     cardCode={item.cardCode}
                     rate={item.rate}
                     onRateChange={handleRateChange}
-                    className={
-                      isHorizontal(item.cardImage)
-                        ? "horizontal-overlay-rating"
-                        : "vertical-overlay-rating"
-                    }
                   />
 
                   <CardButton

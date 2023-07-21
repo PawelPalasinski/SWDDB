@@ -3,6 +3,8 @@ import { FaBars } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
+import Avatar from "./Avatar";
+
 import Logo from "../svg/Logo";
 import Sabers from "../svg/Sabers";
 
@@ -164,7 +166,7 @@ const LogoutButton = styled.button`
   heigth: 60px;
   border: none;
   text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
-
+  margin: 0;
   &:hover {
     background-color: #fff;
     color: #ffd700;
@@ -181,6 +183,10 @@ const Navbar = () => {
 
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const logoutUser = useUserStore((state) => state.handleLogout);
+
+  const loggedInUser = useUserStore((state) => state.loggedInUser);
+
+  const username = loggedInUser === null ? null : loggedInUser.login;
 
   const navigate = useNavigate();
 
@@ -253,6 +259,8 @@ const Navbar = () => {
             </li>
           </>
         )}
+
+        {isLoggedIn && loggedInUser && <Avatar username={username} />}
       </ul>
     </Nav>
   );
