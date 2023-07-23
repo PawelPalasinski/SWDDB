@@ -5,9 +5,8 @@ const StyledCardImage = styled.img`
   border-radius: 8px;
 
   @media (max-width: 600px) {
-    width: 90vw;
+    width: 100%;
     max-width: 400px;
-    margin-bottom: 20px;
   }
 
   @media (min-width: 600px) {

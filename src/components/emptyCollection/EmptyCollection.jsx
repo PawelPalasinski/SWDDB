@@ -14,6 +14,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+margin-top: -60px;
 
 & img {
     width: 200px;
@@ -85,23 +86,15 @@ const EmptyCollection = () => {
         <span>
           <img src={deathstarpng} alt="Death Star" />
         </span>
-        cards added to collection found.
+        cards added to collection found
       </h1>
       <p>
-        <StyledLink as={Link} to="/SWDDB/register">
-          Register{" "}
-        </StyledLink>
-        or
-        <StyledLink as={Link} to="/SWDDB/login">
-          {" "}
-          login{" "}
-        </StyledLink>
-        now and start adding
+        Start adding
         <StyledLink as={Link} to="/SWDDB/cards">
           {" "}
           cards{" "}
         </StyledLink>
-        to your collection.
+        to your collection
       </p>
     </StyledNotFound>
   );

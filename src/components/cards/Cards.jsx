@@ -32,6 +32,11 @@ const CardWrapper = styled.div`
     max-width: 1200px;
     padding: 0 20px;
     min-height: calc(100vh - 120px - 110px);
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
   li {
     position: relative;
@@ -98,8 +103,15 @@ const OverlayText = styled.div`
   flex-direction: column;
   margin-top: -40%;
   & p {
-    font-size: 10px;
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+
+    @media (max-width: 600px) {
+      font-size: 24px;
+    }
+
+    @media (min-width: 600px) {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -468,7 +480,7 @@ const Cards = ({ handleCardClick }) => {
                 <LoginLink>
                   <Falcon />
                   <StyledLink as={Link} to="/SWDDB/login">
-                    "LOGIN"
+                    LOGIN
                   </StyledLink>
                 </LoginLink>
               ) : (

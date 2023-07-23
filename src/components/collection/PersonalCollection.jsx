@@ -81,7 +81,6 @@ const OverlayText = styled.div`
 
   & p {
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
-
     word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-word;

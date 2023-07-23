@@ -21,7 +21,7 @@ const spinAndGrow = keyframes`
     transform: rotate(0deg) scale(0.1);
   }
   to {
-    transform: rotate(360deg) scale(10);
+    transform: rotate(360deg) scale(0.2);
   }
 `;
 
