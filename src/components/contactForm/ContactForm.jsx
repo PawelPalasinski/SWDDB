@@ -66,12 +66,14 @@ const StyledError = styled.p`
 `;
 
 const StyledSuccess = styled.p`
-  color: blue;
-  margin: 0;
+  color: green;
   text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
-  font-size: 12px;
-  margin-top: -24px;
+  font-size: 35px;
+  position: fixed;
+  text-align: center;
 `;
+
+const VITE_EMAILJS_PUBLIC_KEY = "wX5QgN6IV0Tdm3PKK";
 
 const ContactForm = () => {
   const form = useRef();
@@ -81,7 +83,7 @@ const ContactForm = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    if (isSending) return; // prevent multiple submissions
+    if (isSending) return;
 
     const errors = validateForm();
 
@@ -93,7 +95,7 @@ const ContactForm = () => {
           import.meta.env.VITE_EMAILJS_SERVICE_ID,
           import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
           form.current,
-          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+          VITE_EMAILJS_PUBLIC_KEY
         )
         .then(
           (result) => {
