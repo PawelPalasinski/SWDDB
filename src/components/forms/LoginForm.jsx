@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import {
+  isValidLogin,
+  isValidPassword,
+  isExistingUser,
+} from "../../js/loginAndPasswordValidation";
+
 import useUserStore from "../../store/userStore";
 
 const LoginPageWrapper = styled.div`
@@ -63,19 +69,49 @@ const LoginRegisterButton = styled.button`
   }
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
+  font-size: 14px;
+  margin-top: -10px;
+  text-align: center;
+`;
+
 const LoginPage = () => {
   const userStore = useUserStore();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    userStore.handleLogin(login, password);
-    navigate("/SWDDB/card-collection");
+    const user = userStore.handleLogin(login, password);
+    if (user) {
+      navigate("/SWDDB/card-collection");
+    } else {
+      setErrorMessage("Invalid login or password");
+    }
   };
 
   const handleRegister = () => {
+    if (!isValidLogin(login)) {
+      setErrorMessage("Invalid login. Must be between 3 and 20 characters.");
+      return;
+    }
+
+    if (!isValidPassword(password)) {
+      setErrorMessage(
+        "Invalid password. Must contain at least one uppercase letter and one digit."
+      );
+      return;
+    }
+
+    if (isExistingUser(userStore.users, login)) {
+      setErrorMessage("User with this login already exists.");
+      return;
+    }
+
     userStore.addUser(login, password);
     navigate("/SWDDB/card-collection");
   };
@@ -93,6 +129,9 @@ const LoginPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
+        <ErrorMessage>{errorMessage}</ErrorMessage>
+
         <LoginRegisterButton type="button" onClick={handleLogin}>
           Login
         </LoginRegisterButton>

@@ -1,4 +1,9 @@
 import { create } from "zustand";
+import {
+  isValidLogin,
+  isValidPassword,
+  isExistingUser,
+} from "../js/loginAndPasswordValidation";
 
 const useUserStore = create((set) => {
   const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
@@ -8,6 +13,26 @@ const useUserStore = create((set) => {
     loggedInUser: null,
     users: storedUsers,
     addUser: (login, password) => {
+      const state = useUserStore.getState();
+      const users = state.users;
+
+      if (!isValidLogin(login)) {
+        console.log("Invalid login. Must be between 3 and 20 characters.");
+        return;
+      }
+
+      if (!isValidPassword(password)) {
+        console.log(
+          "Invalid password. Must contain at least one uppercase letter and one digit."
+        );
+        return;
+      }
+
+      if (isExistingUser(users, login)) {
+        console.log("User with this login already exists.");
+        return;
+      }
+
       const newUser = {
         login,
         password,
@@ -86,7 +111,6 @@ const useUserStore = create((set) => {
           user.collection = collection.length > 0 ? collection : null;
           updatedUsers[userIndex] = user;
           localStorage.setItem("users", JSON.stringify(updatedUsers));
-          // return { users: updatedUsers };
           return { users: updatedUsers, loggedInUser: user };
         } else {
           console.log(`User: ${login} not found`);

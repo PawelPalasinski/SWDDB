@@ -73,6 +73,9 @@ const StyledSuccess = styled.p`
   text-align: center;
 `;
 
+const VITE_EMAILJS_SERVICE_ID = "service_8vpo8q8";
+const VITE_EMAILJS_TEMPLATE_ID = "template_7991oy5";
+
 const VITE_EMAILJS_PUBLIC_KEY = "wX5QgN6IV0Tdm3PKK";
 
 const ContactForm = () => {
@@ -92,8 +95,8 @@ const ContactForm = () => {
 
       emailjs
         .sendForm(
-          import.meta.env.VITE_EMAILJS_SERVICE_ID,
-          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          VITE_EMAILJS_SERVICE_ID,
+          VITE_EMAILJS_TEMPLATE_ID,
           form.current,
           VITE_EMAILJS_PUBLIC_KEY
         )
