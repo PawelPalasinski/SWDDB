@@ -839,9 +839,18 @@ Error generating stack: `+o.message+`
 `,L6=z.footer`
   width: 100%;
 `,O6=()=>{const[e,t]=k.useState(!1),[n,r]=k.useState(!1),i=ae(l=>l.loggedInUser),o=ae(l=>l.handleAddOrRemoveFromCollection),s=(l,c,u)=>{i&&(o(i.login,l,0,c,u),r(!0))};k.useEffect(()=>{n&&r(!1)},[n]);const a=()=>{t(!e)};return $(Zn,{children:[S(k6,{children:S(u6,{})}),$(E6,{children:[S(P6,{children:S(ES,{type:"text",placeholder:"Search by name"})}),S(R6,{onClick:a,showFilters:e,children:e?"Hide filters":"Show filters"})]}),S(Pf,{isOpen:e,onClose:a,children:S(C6,{})}),S(bS,{handleCardClick:s}),S(L6,{children:S(bi,{})})]})},T6=z.img`
-  max-height: 200px;
   object-fit: cover;
   border-radius: 8px;
+
+  @media (max-width: 600px) {
+    width: 90vw;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 600px) {
+    max-height: 200px;
+  }
 `,Gy=({src:e,alt:t,position:n})=>S(T6,{src:e,alt:t,isHorizontal:(()=>{const i=new Image;return i.src=e,i.width>i.height})()}),M6=Object.freeze(Object.defineProperty({__proto__:null,default:Gy},Symbol.toStringTag,{value:"Module"})),A6=z.svg`
   width: 20px;
   height: 20px;
@@ -881,6 +890,11 @@ Error generating stack: `+o.message+`
   max-width: 1200px;
   padding: 20px 20px;
   min-height: calc(100vh - 120px - 40px);
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `,F6=z.ul`
   list-style: none;
   margin: 0 auto;
@@ -932,10 +946,18 @@ Error generating stack: `+o.message+`
 
   & p {
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
-    font-size: 12px;
+
     word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-word;
+
+    @media (max-width: 600px) {
+      font-size: 24px;
+    }
+
+    @media (min-width: 600px) {
+      font-size: 12px;
+    }
   }
 
   &.horizontal-overlay-text {
@@ -987,7 +1009,6 @@ Error generating stack: `+o.message+`
   transition: all 0.3s ease;
   width: 40px;
 
-  // Poprawione klasy, aby działały tylko wewnątrz OverlayText
   &.horizontal-overlay-fullscreenbutton {
     margin-top: 5%;
   }
