@@ -17,6 +17,11 @@ const CollectionWrapper = styled.div`
   max-width: 1200px;
   padding: 20px 20px;
   min-height: calc(100vh - 120px - 40px);
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const CardList = styled.ul`
@@ -76,10 +81,18 @@ const OverlayText = styled.div`
 
   & p {
     text-shadow: 1px 1px 2px #000, 0 0 1em #ffd700, 0 0 0.2em #000;
-    font-size: 12px;
+
     word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-word;
+
+    @media (max-width: 600px) {
+      font-size: 24px;
+    }
+
+    @media (min-width: 600px) {
+      font-size: 12px;
+    }
   }
 
   &.horizontal-overlay-text {
@@ -135,7 +148,6 @@ const FullscreenButton = styled.button`
   transition: all 0.3s ease;
   width: 40px;
 
-  // Poprawione klasy, aby działały tylko wewnątrz OverlayText
   &.horizontal-overlay-fullscreenbutton {
     margin-top: 5%;
   }
