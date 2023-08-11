@@ -19,7 +19,9 @@ This app is Star Wars Destiny card browser. You can browse all cards, filter the
 
 # Demo
 
-https://pawelpalasinski.github.io/SWDDB/
+[<img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/collections/github-pages-examples/github-pages-examples.png" width="80px" alt="home page" border="0">](https://pawelpalasinski.github.io/SWDDB/)
+
+
 
 # Tech Stack
 
